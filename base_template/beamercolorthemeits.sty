@@ -1,0 +1,27 @@
+
+\definecolor{blendedgold}{rgb}{0.7,0.6,0.36} % use structure theme to change
+
+\setbeamercolor{struct}{fg=blendedgold}
+
+\setbeamercolor{palette primary}{use=struct,bg=struct.fg}
+\setbeamercolor{palette secondary}{use=struct,bg=struct.fg!75!black}
+\setbeamercolor{palette tertiary}{use=struct,bg=struct.fg!50!black}
+\setbeamercolor{palette quaternary}{bg=black}
+
+\setbeamercolor{block title}{use=struct,fg=white,bg=struct.fg!75!black}
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=alerted text.fg!75!black}
+\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg!75!black}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=red}
+\setbeamercolor{example text}{fg=green!50!black}
+
+\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{palette sidebar secondary}{use=struct,fg=struct.fg}
+\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{palette sidebar quaternary}{use=struct,fg=struct.fg}
+
