@@ -129,6 +129,7 @@ leftmargin\romannumeral\@ld \endcsname
 \newcommand{\intel}{Intel{\regtrademark}}
 \newcommand{\cray}{Cray{\regtrademark}}
 
+\newcommand{\craycs}{Cray~CS300}
 
 \newcommand{\ci}{Cyberinfrastructure}
 
@@ -201,9 +202,9 @@ University of {\hawaii} \\ % Your institution for the title page
 
 \section{University of Hawai'i Cluster}
 
-\subsection{Cray CS300}
+\subsection{{\craycs}}
 \begin{frame}
-\frametitle{Cray CS300 -- History}
+\frametitle{{\craycs} -- History}
 \begin{itemize}
 		\item Brought online Fall 2014 -- Spring 2015
 		\item Initial investment of 1.8 Million by the University of {\hawaii} (UH)
@@ -214,7 +215,7 @@ University of {\hawaii} \\ % Your institution for the title page
 
 \subsubsection{Hardware}
 \begin{frame}
-	\frametitle{Cray CS300 -- Compute Nodes}
+	\frametitle{{\craycs}0 -- Compute Nodes}
 	\begin{itemize}
 		\item 3,800 total cores -- \textbf{Spring upgrade} $\rightarrow$ 5,400$+$
 		\item 178 standard nodes -- \textbf{Spring upgrade} $\rightarrow$ 270
@@ -235,8 +236,8 @@ University of {\hawaii} \\ % Your institution for the title page
 
 
 \begin{frame}
-	\frametitle{Cray CS300 -- Storage}
-	Two storage options are currently available on the Cray CS300.
+	\frametitle{{\craycs} -- Storage}
+	Two storage options are currently available on the {\craycs}
 	\begin{enumerate}
 		\item {\lustre}
 		\item ValueStorage
@@ -245,10 +246,10 @@ University of {\hawaii} \\ % Your institution for the title page
 
 
 \begin{frame}
-	\frametitle{Cray CS300 -- Storage $\rightarrow$ {\lustre}}
+	\frametitle{{\craycs} -- Storage $\rightarrow$ {\lustre}}
 	\begin{itemize}
 		\item {\lustre} is a high performance parallel filesystem
-		\item The Cray CS300 has $\approx582$TB of storage space
+		\item The {\craycs} has $\approx582$TB of storage space
 		\item Shared between all compute nodes and login nodes
 		\item Primarily used as scratch space for jobs (Input and Output)
 		\item User do not have a usage quota (soft or hard)
@@ -259,7 +260,7 @@ University of {\hawaii} \\ % Your institution for the title page
 
 
 \begin{frame}
-	\frametitle{Cray CS300 -- Storage $\rightarrow$ ValueStorage}
+	\frametitle{{\craycs} -- Storage $\rightarrow$ ValueStorage}
 	\begin{itemize}
 		\item $500$TB of scale out storage
 		\item Currently only available for purchase by cluster users and only accessible via the login nodes
@@ -288,7 +289,7 @@ University of {\hawaii} \\ % Your institution for the title page
 
 
 \begin{frame}
-	\frametitle{Cray CS300 -- Network}
+	\frametitle{{\craycs} -- Network}
 	\begin{itemize}
 		\item 40Gb Infiniband inter-connects (QDR)
 		\begin{itemize}
@@ -305,7 +306,7 @@ University of {\hawaii} \\ % Your institution for the title page
 
 \subsubsection{Layout}
 \begin{frame}
-	\frametitle{Cray CS300 -- Layout}
+	\frametitle{{\craycs} -- Layout}
 	\includegraphics[width=0.95\textwidth]{images/high_level}
 \end{frame}
 
@@ -452,7 +453,7 @@ University of {\hawaii} \\ % Your institution for the title page
 	\end{itemize}
 	\item[] ~\\
 	\item[] \begin{itemize}
-		\item The Cray CS300 has two login nodes:
+		\item The {\craycs} has two login nodes:
 		\begin{itemize}
 			\item uhhpc1.its.hawaii.edu
 			\item uhhpc2.its.hawaii.edu
@@ -463,9 +464,9 @@ University of {\hawaii} \\ % Your institution for the title page
 \end{frame}
 
 
-\subsubsection{Login to the Cray CS300}
+\subsubsection{Login to the {\craycs}}
 \begin{frame}
-\frametitle{Login to the Cray CS300}
+\frametitle{Login to the {\craycs}}
 	\begin{center}\textbf{Windows}\end{center}
 	\hrule~\\
 	\begin{itemize}
@@ -484,7 +485,7 @@ University of {\hawaii} \\ % Your institution for the title page
 
 
 \begin{frame}
-\frametitle{Login to the Cray CS300}
+\frametitle{Login to the {\craycs}}
 	\begin{center}\textbf{Mac \& Linux}\end{center}
 	\hrule~\\
 	\begin{itemize}
@@ -693,7 +694,7 @@ Filesystem                                  Size  Used Avail Use% Mounted on
 
 \begin{frame}
 	\frametitle{Globus}\footnotesize
-If you already use Globus, the endpoints for the Cray CS300 are:
+If you already use Globus, the endpoints for the {\craycs} are:
 \begin{itemize}
 \item hawaii\#UHHPC1
 \item hawaii\#UHHPC1
@@ -747,22 +748,22 @@ For those that have not used Globus, and wish to try it out, you can learn how t
 	
 	\end{block}
 	\begin{itemize}
-		\item We globally install popular/frequently requested software packages and create modules for all users to access
+		\item We globally install frequently requested software packages and create modules for all users to access
 		\item Access to modules is via the \textbf{module} command
-		\begin{itemize}\tiny
+		\begin{itemize}\footnotesize
 			\item `module avail' -- list installed modules
 			\item `module load $<$module name$>$' -- Loads the named module
 			\item `module unload $<$module name$>$' -- Remove named module
 			\item `module purge' -- Unload all loaded modules
 		\end{itemize}
 		\item Installing software in your \ctilde{}/apps directory is suggested to prevent us from being a bottleneck
-		\begin{itemize}\footnotesize
-			\item Two ways to install software on the cluster
-			\begin{itemize}\tiny
-				\item Download compatible binaries
-				\item Compile software from source
-			\end{itemize}
-		\end{itemize}
+		%\begin{itemize}\footnotesize
+			%\item Two ways to install software on the cluster
+			%\begin{itemize}\tiny
+				%\item Download compatible binaries
+				%\item Compile software from source
+			%\end{itemize}
+		%\end{itemize}
 	\end{itemize}
 	\footnotetext[1]{\tiny \url{https://en.wikipedia.org/wiki/Environment_Modules_(software)}}
 \end{frame}
@@ -771,7 +772,7 @@ For those that have not used Globus, and wish to try it out, you can learn how t
 \begin{frame}
 	\frametitle{Acquiring Software -- Binaries and/or Source}
 	\begin{itemize}
-		\item	You can transfer software source, binaries or scripts into your \ctilde{}/apps directory on the Cray CS300
+		\item	You can transfer software source, binaries or scripts into your \ctilde{}/apps directory on the {\craycs}
 		\begin{itemize}
 			\item Binaries compiled as x86\_64 (64-bit) for CentOS 6.5 or RHEL6.5 should work
 		\end{itemize}
@@ -846,21 +847,21 @@ For those that have not used Globus, and wish to try it out, you can learn how t
 \begin{frame}
 \frametitle{Managing User Jobs}
 User jobs all come in different shapes and sizes:  
-\begin{itemize}
+\begin{itemize}\footnotesize
 	\item Require multiple nodes working in concert towards a common goal (MPI)
-	\item Require a single node, in which they use multiple threads work together (OpenMP, pthreads, TBB)
-	\item Require a lot of cores to process a lot of data in an identical manner, yet none of the inputs have dependencies on another (HTC)
+	\item Require a single node, in which they use multiple threads~\\work together (OpenMP, pthreads)
+	\item Require a lot of cores to process a lot of data in an identical manner,~\\yet none of the inputs have dependencies on another (HTC)
 \end{itemize}
-The Cray CS300 is capable of handle many different types of jobs, but in a multi-user environment with so many users, how do we turn chaos into organized chaos?
-~\\
-~\\
-This looks like a job for a \textbf{\emph{job scheduler}}!
+\bigskip
+The {\craycs} is capable of handling many different types of jobs, but with so many users in a multi-user environment, how do we turn this chaos into organized chaos?
+\btVFill
+\begin{center}This looks like a job for a \textbf{\emph{job scheduler}}!\end{center}
 \end{frame}
 
 \begin{frame}
 	\frametitle{What is a Job Scheduler?}
 	\begin{definition}{\footnotesize
-		A job scheduler is a computer application for controlling unattended background program execution (commonly called batch processing).
+		A job scheduler is a computer application for controlling unattended background program execution (commonly called batch processing)
 		}
 	\end{definition}
 	Basic features expected of a job scheduler include:
@@ -870,7 +871,7 @@ This looks like a job for a \textbf{\emph{job scheduler}}!
     \item Interfaces to monitor the executions
     \item Priorities and/or queues to control the execution order of unrelated jobs
 	\end{itemize}
-	For the Cray CS300, we utilize the \textbf{S}imple \textbf{L}inux \textbf{U}tility \textbf{R}esource \textbf{M}anager~\\ or simply known as the \emph{SLURM scheduler}.
+	For the {\craycs}, we utilize the \textbf{S}imple \textbf{L}inux \textbf{U}tility \textbf{R}esource \textbf{M}anager~\\ or simply known as the \emph{SLURM scheduler}
 	\numlessfootnotetxt{\tiny \url{https://en.wikipedia.org/wiki/Job_scheduler}}
 	\numlessfootnotetxt{\tiny \url{https://en.wikipedia.org/wiki/Slurm_Workload_Manager}}
 	\numlessfootnotetxt{\tiny \url{http://slurm.schedmd.com/slurm.html}}
@@ -880,24 +881,36 @@ This looks like a job for a \textbf{\emph{job scheduler}}!
 \begin{frame}
 \frametitle{SLURM}
 \begin{block}{How are jobs scheduled?}
-User submitted jobs are assigned a priority using a fairshare algorithm.  Factors such as: runtime, resource usage request, age of job, and amount of compute time a user has used in recent history are all factored in to assigning a priority to a give job.   
+User submitted jobs are assigned a priority using a fairshare algorithm.  Factors such as: runtime, resource usage request, age of job, and amount of compute time a user has used in recent history are all factored in to assigning a priority to a give job   
 \end{block}
+%The following slides that cover slurm will cover
+%\begin{enumerate}
+%\item Several useful SLURM commands
+%\item Resource partitions
+%\item example interactive jobs and batch job scripts
+%\end{enumerate}
 \end{frame}
 
 \begin{frame}
-\frametitle{How to use SLURM}
+\frametitle{SLURM commands}\footnotesize
 SLURM has a series of commands, each of which allow users to interact with the job scheduler
+\begin{itemize}\tiny
+	\item \emph{\textbf{srun}} --  Used to submit a job for execution or initiate job steps in real time
+	\item \emph{\textbf{srun.x11}} -- Used to submit an interactive job with x11 support
+	\item \emph{\textbf{sbatch}} -- Used to submit a job script for later execution. The script could contain one or more srun commands
+	\item \emph{\textbf{scancel}} -- Used to cancel a pending or running job or job step. It can also be used to send an arbitrary signal to all processes associated with a running job or job step
+	\item \emph{\textbf{sinfo}} -- Reports the state of partitions and nodes managed by Slurm. It has a wide variety of filtering, sorting, and formatting options
+	\item \emph{\textbf{squeue}} -- Reports the state of jobs or job steps
+	\item \emph{\textbf{sacct}} -- Used to report job or job step accounting information about active or completed jobs
+	\item \emph{\textbf{scontrol}} -- The administrative tool used to view and/or modify Slurm state. Note that many scontrol commands can only be executed as user root
+\end{itemize}
 \begin{itemize}
-	\item sbatch -- 
-	\item srun --
-	\item srun.x11 --
-	\item sacct --
-	\item scontrol --
-	\item scancel --
-\end{itemize}  
-~\\
-Let us look at how the nodes are partitioned, as well as some examples of submitting jobs and create job scripts
+	\item[--] Examples usage of the SLURM commands can be seen on schedmd's \href{http://slurm.schedmd.com/quickstart.html}{quickstart}
+	\item[--] Each command should have a `man' page, or displays help when the -h flag is used
+\end{itemize}
+\numlessfootnotetxt{\tiny \url{http://slurm.schedmd.com/quickstart.html}}
 \end{frame}
+
 
 \subsection{SLURM Partitions}
 \begin{frame}
@@ -907,7 +920,7 @@ Let us look at how the nodes are partitioned, as well as some examples of submit
 A partition can be thought of as a group of nodes/resources divided into possibly overlapping sets.  Each partition can be considered as a job queue, each of which has an assortment of constraints such as job size limit, job time limit, users permitted to use it, etc. Priority-ordered jobs are allocated nodes within a partition until the resources (nodes, processors, memory, etc.) within that partition are exhausted.\footnotemark
 \end{block}
 \begin{itemize}
-	\item The Cray CS300 currently has six public partitions:~\\\textbf{lm.q}, \textbf{community.q}, \textbf{exclusive.q}, \textbf{sb.q}, \textbf{kill.q}, \textbf{htc.q}
+	\item The {\craycs} currently has six public partitions:~\\\textbf{lm.q}, \textbf{community.q}, \textbf{exclusive.q}, \textbf{sb.q}, \textbf{kill.q}, \textbf{htc.q}
 	\item Jobs submitted to kill.q and htc.q can be preempted by jobs in other partitions
 	\item More details on partition constraints can be viewed by visiting the \href{http://www.hawaii.edu/its/ci/hpc-resources/slurm-partitions/}{{\ci} website} or by using the following command
 	\begin{itemize}\footnotesize
@@ -947,7 +960,7 @@ A partition can be thought of as a group of nodes/resources divided into possibl
 
 
 \begin{frame}[fragile]
-\frametitle{SLURM Submission Script File (MPI Job)}
+\frametitle{SLURM sbatch -- Submission Script File (MPI Job)}
 \begin{semiverbatim}\tiny
 [login lus]\$ cat mpi.slurm
 
@@ -980,7 +993,7 @@ srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel
 
 
 \begin{frame}[fragile]
-\frametitle{SLURM Submission Script File (Non-MPI Job)}
+\frametitle{SLURM sbatch -- Submission Script File (Non-MPI Job)}
 \begin{semiverbatim}\tiny
 [login lus]\$ cat hello_world.slurm
 
@@ -1011,7 +1024,7 @@ cd \$SLURM\_SUBMIT\_DIR
 
 
 \begin{frame}[fragile]
-\frametitle{SLURM Submission Script File (Job Array)}
+\frametitle{SLURM sbatch -- Submission Script File (Job Array)}
 \begin{semiverbatim}\tiny
 [login lus]\$ cat job_array.slurm
 
