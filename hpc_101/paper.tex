@@ -991,10 +991,10 @@ A partition can be thought of as a group of nodes/resources divided into possibl
 \begin{tabular}{l || c || c || c || c || c || c}
 \toprule                                                                    
 \textbf{Partition} & \textbf{Time} & \textbf{Nodes per job} & \textbf{Priority} & \textbf{Shared} & \textbf{Preempt Mode} & \textbf{Memory per CPU (MB)} \\
-\toprule                                                                    
-\toprule                                                                    
-%\midrule
-%\midrule
+%\toprule                                                                    
+%\toprule                                                                    
+\midrule
+\midrule
 community.q & \begin{tabular}{l r} \textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} & \begin{tabular}{c c} \textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} & \padfrom{\ \ \ }{20}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
 \hline
 exclusive.q & \begin{tabular}{l r}\textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min}& \padfrom{\ \ \ }{1}~\\ \textbf{Max}&\padfrom{\ \ \ }{20}\end{tabular} & 10 & EXCLUSIVE & OFF & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
