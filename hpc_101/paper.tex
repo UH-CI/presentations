@@ -148,6 +148,7 @@ leftmargin\romannumeral\@ld \endcsname
 \newcommand{\craycs}{Cray~CS300}
 
 \newcommand{\ci}{Cyberinfrastructure}
+\newcommand{\citeam}{CI--Team}
 
 \newcommand\padfrom[2]{\StrLen{#2}[\templen]\StrGobbleLeft{#1}{\templen}#2}
 
@@ -175,7 +176,7 @@ leftmargin\romannumeral\@ld \endcsname
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[On-boarding]{HPC On-boarding} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[HPC--101]{HPC--101\\Onboarding} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 \author{Sean Cleveland Ph.D, Ron Merrill Ph.D,\\David Schanzenbach M.S.} % Your name
 \institute[University of {\hawaii} -- ITS--CI] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -1137,23 +1138,48 @@ cd \$SLURM\_SUBMIT\_DIR
 \section{Cluster Etiquette}
 \begin{frame}
 \frametitle{Cluster Etiquette}
+\begin{itemize}
+\item Never run anything on the login nodes
+\item Try to request only the resources that your job needs.  Leaving unneeded resources available, allows other users to use them
+\item Test what your application in an interactive session before scheduling a long running job
+\begin{itemize}
+\item[--] This can help identify what resources your job will require, and potentially aid you in correctly sizing what resources you request.
+\end{itemize}
+\item Use the nodes in the sb.q to validate your slurm script runs as intended
+\begin{itemize}
+\item[--] This helps to reduce the chance of you having a small error that kills your job prematurely after waiting for resources 
+\end{itemize} 
+\item Always run jobs from within {\ctilde}/lus/ directory to ensure output is written there and does not fill up the system filesystem
+\end{itemize}
 \end{frame}
 
 
 
 \section{Policies}
-\begin{frame}
-	\frametitle{Overview}
-	\begin{itemize}
-		\item Login node usage policy
-		\item Scratch filesystem purge policy
-	\end{itemize}
-\end{frame}
+%% \begin{frame}
+%% 	\frametitle{Overview}
+%% 	\begin{itemize}
+%% 		\item Login node usage policy
+%% 		\item Scratch filesystem purge policy
+%% 	\end{itemize}
+%% \end{frame}
 
 
 \subsection{Login Node Usage Policy}
 \begin{frame}
-\frametitle{Login Node Usage Policy}
+\frametitle{Login Node Usage Policy}\footnotesize
+The login nodes are a shared resource and are the only access to the cluster for hundreds of user and are meant to provide the following functionality for all users: 
+\begin{itemize}
+\item Providing ssh shell access 
+\item Facilitate the transfer files to and from the cluster:\\Globus, sftp, scp, rsync
+\item Launching and monitoring SLURM jobs (batch and interactive)
+\item Modifying text files with a text editor: vi/vim, emacs, nano
+\end{itemize}
+\bigskip
+\begin{itemize}
+\item[--] If we identify or are notified that a user is running computation on the login nodes, the application will be killed
+\item[--] If we determine that a user repeatly violates the login node policy, even after being warned, the repeat offender can have their cluster account disabled
+\end{itemize}
 \btVFill
 \begin{center}
 \footnotesize \textbf{\emph{Login node usage policy is subject to change~\\Users will be notified via email prior to changes taking effect}}
@@ -1185,12 +1211,27 @@ Due to users not having any quotas on the {\lustre} filesystem, we need some pol
 \section{Frequently Asked Questions}
 \begin{frame}
 \frametitle{FAQ}
-\begin{itemize}
-	\item Are files on the cluster backed up?
-	\begin{itemize}\footnotesize
-	\item \textbf{Answer:} \textbf{NO!}  User files on the cluster \textbf{\emph{are not backed up}}.  It is up to you as the user to validate and maintain your own backups.  The {\ci} team takes no responsibility for any data that is lost due to human or mechanical error.  
-	\end{itemize}
+\begin{itemize}\footnotesize
+\item Are files on the cluster backed up?
+  \begin{itemize}\tiny
+  \item \textbf{Answer:} \textbf{NO!}  User files on the cluster \textbf{\emph{are not backed up}}.  It is up to you as the user to validate and maintain your own backups.  The {\citeam} takes no responsibility for any data that is lost due to human or mechanical error.  
+  \end{itemize}
+
+\item Help I have been trying to compile an application without success, can the {\citeam} help?
+  \begin{itemize}\tiny
+  \item \textbf{Answer:} We are willing to help, just send us an email at \textit{uh-hpc-help@lists.hawaii.edu} with a description of what you have attempted as well a link to the software you are trying to compile, and/or where it is located on the cluster.
+  \end{itemize}
+  
+\item HELP! My job needs more time and does not support checkpointing.  What can I do?
+  \begin{itemize}\tiny
+  \item \textbf{Answer:} We understand that jobs may not all fit within the 3 day timelimit or unforeseen issues during the execution can cause a job to run long.  The {\citeam} does review and potentially approves requests to extend jobs in a one off fashion.  A request to extend a job can be denied, since we need to take into account factor such as: how busy the cluster is, the number of time extension requests a user has made in recent history.\\If it is known before the job is submitted that more than 3 days is required, we would ask that you contact us first so we can verify that you truly will need more time.\\If a job is already running and just doesn't look like it will complete in time, please send us a request with the jobid number and what you want the job extended to e.g., please extend my jobs run time to 7 days.\\Please remember the {\citeam} is small and we are also human.  Depending on when you make your request we may not be able to immediately respond or act.  It is best to make your request at the first signs you need more time, in hopes that you can provide us with ample time to act.
+  \end{itemize}
+
+
 \end{itemize}
+
+
+
 \end{frame}
 
 
