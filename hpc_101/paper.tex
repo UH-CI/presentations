@@ -16,6 +16,21 @@
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND THEMES
 %----------------------------------------------------------------------------------------
+
+%https://tex.stackexchange.com/questions/74353/what-commands-are-there-for-horizontal-spacing
+%https://tex.stackexchange.com/questions/80212/controling-padding-using-the-xstring-package
+%https://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell
+%https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabularx_package
+%https://tex.stackexchange.com/questions/312/correctly-typesetting-a-tilde
+%https://tex.stackexchange.com/questions/34580/escape-character-in-latex
+%https://tex.stackexchange.com/questions/54180/how-do-i-write-something-at-the-end-of-the-slide-in-beamer
+%http://code.hammerpig.com/add-footnote-number-latex.html
+%https://tex.stackexchange.com/questions/51452/reduce-spacing-in-table-of-contents-beamer
+%https://www.sharelatex.com/learn/Using_colours_in_LaTeX
+%http://www.math-linux.com/latex-26/article/how-to-make-a-presentation-with-latex-introduction-to-beamer
+%https://stackoverflow.com/questions/3594329/semi-transparent-text-in-beamer-pdflatex
+%https://www.sharelatex.com/blog/2013/08/16/beamer-series-pt3.html
+
 %\documentclass[t]{beamer}
 \documentclass[t,hyperref={pdfpagelabels=false}]{beamer}
 
@@ -31,7 +46,8 @@
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
 \usepackage{calc}
-
+\usepackage{makecell}
+\usepackage{xstring}
 \mode<presentation> {
 
 % The Beamer class comes with a number of default slide themes
@@ -132,6 +148,9 @@ leftmargin\romannumeral\@ld \endcsname
 \newcommand{\craycs}{Cray~CS300}
 
 \newcommand{\ci}{Cyberinfrastructure}
+
+\newcommand\padfrom[2]{\StrLen{#2}[\templen]\StrGobbleLeft{#1}{\templen}#2}
+
 
 \AtBeginSection[]
 {
@@ -966,119 +985,35 @@ A partition can be thought of as a group of nodes/resources divided into possibl
 \includegraphics[width=0.95\textwidth]{images/partitions}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Partition Details}\tiny
-\begin{tabular}{c c c c c c c}
-  \toprule                                                                    
-\textbf{Partition} & \textbf{Time} & \textbf{Nodes} & \textbf{Priority} & \textbf{Shared} & \textbf{Preempt\\Mode} & \textbf{Mem per CPU} \\
-\midrule 
-community.q & \begin{tabular}{c c}\textbf{Def}&\textbf{Max}\\00:10:00&3-00:00:00\end{tabular} & \begin{tabular}{c c}\textbf{Min}&\textbf{Max}\\1&20\end{tabular} & 10 & NO & OFF &  \begin{tabular}{c c}\textbf{Def}&\textbf{Max}\\3250&6500\end{tabular}\\
-exclusive.q & \begin{tabular}{c  c}\textbf{Def}&\textbf{Max}\\00:10:00&3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min}&\textbf{Max}\\1&20\end{tabular} & 10 & NO & OFF &  \begin{tabular}{c  c}\textbf{Def}&\textbf{Max}\\3250&6500\end{tabular}\\
+\begin{frame}
+\frametitle{Partition Details}
+\resizebox{0.95\textwidth}{!}{%
+\begin{tabular}{l || c || c || c || c || c || c}
+\toprule                                                                    
+\textbf{Partition} & \textbf{Time} & \textbf{Nodes per job} & \textbf{Priority} & \textbf{Shared} & \textbf{Preempt Mode} & \textbf{Memory per CPU (MB)} \\
+\toprule                                                                    
+\toprule                                                                    
+%\midrule
+%\midrule
+community.q & \begin{tabular}{l r} \textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} & \begin{tabular}{c c} \textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} & \padfrom{\ \ \ }{20}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+\hline
+exclusive.q & \begin{tabular}{l r}\textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min}& \padfrom{\ \ \ }{1}~\\ \textbf{Max}&\padfrom{\ \ \ }{20}\end{tabular} & 10 & EXCLUSIVE & OFF & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+\hline
+kill.q & \begin{tabular}{l r}\textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} &\padfrom{\ \ \ }{12}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+\hline
+htc.q & \begin{tabular}{l r}\textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} &\padfrom{\ \ \ }{1}\end{tabular} & 1 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+\hline
+lm.q & \begin{tabular}{l r}\textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} &\padfrom{\ \ \ }{1}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ }{262100}\end{tabular}\\
+\hline
+sb.q & \begin{tabular}{l r}\textbf{Default} & 0-00:05:00~\\ \textbf{Max} & 0-01:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} &\padfrom{\ \ \ }{2}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
 \bottomrule 
 \end{tabular}   
-
-
-%% \begin{columns}[t]
-%%   \begin{column}{.3\textwidth}\begin{semiverbatim}\tiny
-%% PartitionName=community.q
-%%    DefaultTime=00:10:00
-%%    MaxTime=3-00:00:00 
-%%    MinNodes=1
-%%    MaxNodes=20 
-%%    Nodes=prod2-[0003-0085]
-%%    Priority=10
-%%    Shared=NO 
-%%    PreemptMode=OFF
-%%    DefMemPerCPU=3250 
-%%    MaxMemPerCPU=6500
-%% \end{semiverbatim}
-%%   \end{column} 
-
-%% \begin{column}{.3\textwidth}\begin{semiverbatim}\tiny
-%% PartitionName=exclusive.q
-%%    DefaultTime=00:10:00 
-%%    MaxTime=3-00:00:00 
-%%    MinNodes=1 
-%%    MaxNodes=20 
-%%    Nodes=prod2-[0003-0085]
-%%    Priority=10
-%%    Shared=EXCLUSIVE 
-%%    PreemptMode=OFF
-%%    DefMemPerNode=UNLIMITED 
-%%    MaxMemPerCPU=6500
-%% \end{semiverbatim}
-%% \end{column} 
-
-%% \begin{column}{.3\textwidth}\begin{semiverbatim}\tiny
-%% PartitionName=lm.q
-%%    DefaultTime=00:10:00
-%%    MaxTime=3-00:00:00 
-%%    MinNodes=1 
-%%    MaxNodes=1 
-%%    Nodes=lm2-[0001-0006]
-%%    Priority=10
-%%    Shared=NO
-%%    PreemptMode=REQUEUE
-%%    DefMemPerNode=UNLIMITED 
-%%    MaxMemPerCPU=262100
-%% \end{semiverbatim}
-%% \end{column} 
-%% \end{columns}
-
-%% \begin{columns}[t]
-%% \begin{column}{.3\textwidth}\begin{semiverbatim}\tiny
-%% PartitionName=kill.q
-%%    DefaultTime=00:10:00
-%%    MaxTime=3-00:00:00
-%%    MinNodes=1
-%%    MaxNodes=12
-%%    Nodes=prod2-[0085-0176]
-%%    Priority=10
-%%    Shared=NO
-%%    PreemptMode=REQUEUE
-%%    DefMemPerCPU=3250
-%%    MaxMemPerCPU=6500
-
-%% \end{semiverbatim}
-%% \end{column} 
-
-%% \begin{column}{.3\textwidth}\begin{semiverbatim}\tiny
-%% PartitionName=htc.q
-%%    DefaultTime=00:10:00
-%%    MaxTime=3-00:00:00 
-%%    MinNodes=1 
-%%    MaxNodes=1 
-%%    Nodes=prod2-[0001-0176]
-%%    Priority=1
-%%    Shared=NO
-%%    PreemptMode=REQUEUE
-%%    DefMemPerCPU=3250 
-%%    MaxMemPerCPU=6500
-%% \end{semiverbatim}
-%% \end{column} 
-
-%% \begin{column}{.3\textwidth}\begin{semiverbatim}\tiny
-%% PartitionName=sb.q
-%%    DefaultTime=00:05:00
-%%    MaxTime=01:00:00
-%%    MinNodes=1
-%%    MaxNodes=2
-%%    Nodes=prod2-[0177-0178]
-%%    Priority=10 
-%%    Shared=NO 
-%%    PreemptMode=REQUEUE
-%%    DefMemPerCPU=3250 
-%%    MaxMemPerCPU=6500
-%% \end{semiverbatim}
-%% \end{column} 
-%% \end{columns}
-
-More details on partition constraints can be viewed by visiting the \href{http://www.hawaii.edu/its/ci/hpc-resources/slurm-partitions/}{{\ci} website} or by using the following command
-\begin{itemize}\footnotesize
-\item[] \texttt{$[$login \ctilde$]$\$ scontrol show partition $<$partition name$>$}
-\item[] Example: \texttt{$[$login \ctilde$]$\$ scontrol show partition community.q}
-\end{itemize}   
-
+}
+\\
+\bigskip
+Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-resources/slurm-partitions/}{{\ci} website} or by using the following command:
+\\
+\texttt{$[$login \ctilde$]$\$ scontrol show partition $<$partition name$>$}
 \end{frame}
 
 
