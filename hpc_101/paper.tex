@@ -799,18 +799,11 @@ These instructions can also be found on the {\ci} website:~\\
 		\item Access to modules is via the \textbf{module} command
 		\begin{itemize}\footnotesize
 			\item `module avail' -- list installed modules
+			\item `module show $<$module name$>$' -- Show what actions a module performs
 			\item `module load $<$module name$>$' -- Loads the named module
-			\item `module unload $<$module name$>$' -- Remove named module
 			\item `module purge' -- Unload all loaded modules
 		\end{itemize}
 		\item Installing software in your \ctilde{}/apps directory is suggested to prevent us from being a bottleneck
-		%\begin{itemize}\footnotesize
-			%\item Two ways to install software on the cluster
-			%\begin{itemize}\tiny
-				%\item Download compatible binaries
-				%\item Compile software from source
-			%\end{itemize}
-		%\end{itemize}
 	\end{itemize}
 	\footnotetext[1]{\tiny \url{https://en.wikipedia.org/wiki/Environment_Modules_(software)}}
 \end{frame}
@@ -907,25 +900,14 @@ The {\craycs} is capable of handling many different types of jobs, but with so m
 
 \begin{frame}
 	\frametitle{What is a Job Scheduler?}
-	\begin{definition}{\footnotesize
-		A job scheduler is a computer application for controlling unattended background program execution (commonly called batch processing)
-		}
-	\end{definition}
 	Basic features expected of a job scheduler include:
 	\begin{itemize}\footnotesize
-        
-        \item The ability for the user to interact with the schduler to define workflows and/or define job dependencies
-        \item[--] Interfaces which help to define workflows and/or job dependencies
-        
-        \item The ability to automatically manage the scheduling of user jobs
-        \item[--] Automatic submission of executions
-        
-        \item The functionality to allow users to monitor submitted jobs
-        \item[--] Interfaces to monitor the executions
-        
         \item The capability to control and prioritize the execution order of unrelated jobs
-        \item[--] Priorities and/or queues to control the execution order of unrelated jobs
+        \item Allocates exclusive and/or non-exclusive access to resources to users for some duration of time so they can perform work
+				\item Provides a framework for starting, executing, and monitoring work on the set of allocated nodes
+				\item Arbitrate contention for resources by managing a queue of pending work
 	\end{itemize}
+	\bigskip
 	For the {\craycs}, we utilize the \textbf{S}imple \textbf{L}inux \textbf{U}tility \textbf{R}esource \textbf{M}anager~\\ or simply known as the \emph{SLURM scheduler}
 	\numlessfootnotetxt{\tiny \url{https://en.wikipedia.org/wiki/Job_scheduler}}
 	\numlessfootnotetxt{\tiny \url{https://en.wikipedia.org/wiki/Slurm_Workload_Manager}}
@@ -938,12 +920,6 @@ The {\craycs} is capable of handling many different types of jobs, but with so m
 \begin{block}{How are jobs scheduled?}
 User submitted jobs are assigned a priority using a fairshare algorithm.  Factors such as: runtime, resource usage request, age of job, and amount of compute time a user has used in recent history are all factored in to assigning a priority to a give job   
 \end{block}
-%The following slides that cover slurm will cover
-%\begin{enumerate}
-%\item Several useful SLURM commands
-%\item Resource partitions
-%\item example interactive jobs and batch job scripts
-%\end{enumerate}
 \end{frame}
 
 \begin{frame}
@@ -1017,7 +993,7 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 \texttt{$[$login \ctilde$]$\$ scontrol show partition $<$partition name$>$}
 \end{frame}
 
-
+\subsection{Interactive Job -- srun}
 \frametitle{SLURM Job Scripts}
 \begin{frame}
 \frametitle{Interactive Job with SLURM}
@@ -1040,6 +1016,7 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 
 
 
+\subsection{MPI Batch Job Example Script}
 \begin{frame}[fragile]
 \frametitle{SLURM sbatch -- Submission Script File (MPI Job)}
 \begin{semiverbatim}\tiny
@@ -1073,6 +1050,7 @@ srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel
 \end{frame}
 
 
+\subsection{Non-MPI Batch Job Example Script}
 \begin{frame}[fragile]
 \frametitle{SLURM sbatch -- Submission Script File (Non-MPI Job)}
 \begin{semiverbatim}\tiny
@@ -1104,6 +1082,7 @@ cd \$SLURM\_SUBMIT\_DIR
 \end{frame}
 
 
+\subsection{Batch Job Example Script Using Job Array}
 \begin{frame}[fragile]
 \frametitle{SLURM sbatch -- Submission Script File (Job Array)}
 \begin{semiverbatim}\tiny
@@ -1133,6 +1112,42 @@ cd \$SLURM\_SUBMIT\_DIR
 ./worker\_bee -i input\_\$\{SLURM_ARRAY_TASK_ID\}.flower -o output\_\$\{SLURM_ARRAY_TASK_ID\}.honey
 \end{semiverbatim}
 \end{frame}
+
+
+\subsection{Executing and Monitoring Batch Jobs}
+\begin{frame}[fragile]
+\frametitle{SLURM sbatch -- Executing \& Monitoring Jobs}\footnotesize
+To execute a submission script you use the \textbf{\texttt{sbatch}} command
+\begin{block}{Example -- Non Job Array}
+\begin{semiverbatim}\tiny
+[login lus]\$ sinfo
+PARTITION     AVAIL  TIMELIMIT  NODES  STATE NODELIST
+community.q   up     3-00:00:00 2      idle  compute-[0001-0002]
+[login lus]\$ sbatch hello_world.slurm
+sbatch: Submitted batch job 469
+[login lus]\$ squeue
+JOBID PARTITION    NAME     USER    ST TIME  NODES  NODELIST(REASON)
+469   community.q  example  user99  R  00:01 1      compute-0001
+\end{semiverbatim}
+\end{block}
+\begin{block}{Example -- Job Array}
+\begin{semiverbatim}\tiny
+[login lus]\$ sinfo
+PARTITION     AVAIL  TIMELIMIT  NODES  STATE NODELIST
+community.q   up     3-00:00:00 2      idle  compute-[0001-0002]
+[login lus]\$ sbatch {\ddash}array=0-2 job_array.slurm
+sbatch: Submitted batch job 470
+[login lus]\$ squeue
+JOBID     PARTITION    NAME     USER    ST   TIME    NODES  NODELIST(REASON)
+470[0-2]  community.q  example  user99  PD   00:00   1      (resource)
+470_0     community.q  example  user99  R    00:01   1      compute-0001
+470_1     community.q  example  user99  R    00:05   1      compute-0002
+\end{semiverbatim}
+\end{block}
+
+
+\end{frame}
+
 
 
 \section{Cluster Etiquette}
