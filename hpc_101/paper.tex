@@ -334,7 +334,7 @@ University of {\hawaii} \\ % Your institution for the title page
 \subsubsection{Layout}
 \begin{frame}
 	\frametitle{{\craycs} -- Layout}
-	\includegraphics[width=0.95\textwidth]{images/high_level}
+	\includegraphics[width=1\textwidth]{images/layout}
 \end{frame}
 
 \section{Sustainability}
@@ -903,13 +903,12 @@ The {\craycs} is capable of handling many different types of jobs, but with so m
 	Basic features expected of a job scheduler include:
 	\begin{itemize}\footnotesize
         \item The capability to control and prioritize the execution order of unrelated jobs
-        \item Allocates exclusive and/or non-exclusive access to resources to users for some duration of time so they can perform work
-				\item Provides a framework for starting, executing, and monitoring work on the set of allocated nodes
-				\item Arbitrate contention for resources by managing a queue of pending work
+        \item Allocate exclusive and/or non-exclusive access to resources to users for some duration of time so they can perform work
+	\item Provides a framework for starting, executing, and monitoring work on the set of allocated resources
+	\item Arbitrate contention for resources by managing a queue of pending work
 	\end{itemize}
 	\bigskip
 	For the {\craycs}, we utilize the \textbf{S}imple \textbf{L}inux \textbf{U}tility \textbf{R}esource \textbf{M}anager~\\ or simply known as the \emph{SLURM scheduler}
-	\numlessfootnotetxt{\tiny \url{https://en.wikipedia.org/wiki/Job_scheduler}}
 	\numlessfootnotetxt{\tiny \url{https://en.wikipedia.org/wiki/Slurm_Workload_Manager}}
 	\numlessfootnotetxt{\tiny \url{http://slurm.schedmd.com/slurm.html}}
 \end{frame}
@@ -918,7 +917,15 @@ The {\craycs} is capable of handling many different types of jobs, but with so m
 \begin{frame}
 \frametitle{SLURM}
 \begin{block}{How are jobs scheduled?}
-User submitted jobs are assigned a priority using a fairshare algorithm.  Factors such as: runtime, resource usage request, age of job, and amount of compute time a user has used in recent history are all factored in to assigning a priority to a give job   
+User submitted jobs are assigned a priority using a fairshare algorithm.\\
+Factors such as the following are all used to assign a priority to a given job: 
+\begin{itemize}
+\item Runtime
+\item Resource usage request
+\item Age of job
+\item Amount of core hours a user has used in recent history
+\end{itemize}
+
 \end{block}
 \end{frame}
 
