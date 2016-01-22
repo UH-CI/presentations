@@ -1,0 +1,113 @@
+\documentclass[11pt,twocolumn]{article}
+
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{etoolbox}
+\usepackage{lmodern}% http://ctan.org/pkg/lm                                                                                                                                                                                                                                                
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{anyfontsize}
+\usepackage{graphicx} % Allows including images                                                                                                                                                                                                                                             
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables                                                                                                                                                                                                      
+\usepackage{calc}
+\usepackage{xstring}
+\usepackage{titling}
+
+
+
+\newcommand{\lft}{$<$}
+\newcommand{\rht}{$>$}
+
+\newcommand{\pth}[1]{{\lft}#1{\rht}}
+
+
+\newlength{\okinalen}
+\setlength{\okinalen}{\widthof{'}}
+\newcommand{\okina}{\hbox to.666\okinalen{\hss`\hss}}
+\newcommand{\ctilde}{{\fontfamily{ptm}\selectfont\texttildelow}}
+\newcommand{\ddash}{-{}-}
+\newcommand{\hawaii}{Hawai{\okina}i}
+\newcommand{\ci}{Cyberinfrastructure}
+
+\newcommand{\desc}[1]{\small \begin{itemize}\item[]#1\end{itemize}}
+
+
+\begin{document}
+\setlength{\droptitle}{-10em}
+\title{HPC--101 -- Cheatsheet \vspace{-2ex}}
+\date{\today}
+\author{Sean Cleveland Ph.D, Ron Merrill Ph.D,\\David Schanzenbach M.S.\\~\\University of {\hawaii}\\Information Technology Services -- {\ci}}
+\maketitle
+\section{Directory Navigation}
+\begin{itemize}
+\item[] cd {\pth{Directory}}\desc{Change to directory specified}
+\item[] ls {\pth{Path}}\desc{List the contents of the specified path}
+\item[] ls -l {\pth{Path}}\desc{This flag list the paths content in long form}
+\item[] ls -lh {\pth{Path}}\desc{Make the filesize humanreable}
+\item[] ls -a {\pth{Path}}\desc{Show hidden directories and files}
+%\item[] pwd \desc{Print working directory}
+\end{itemize}
+
+\section{SSH/SCP}
+\begin{itemize}
+\item ssh {\lft}user{\rht}@{\lft}host{\rht}
+\item ssh -Y {\lft}user{\rht}@{\lft}host{\rht}\desc{Enable X11 forwarding}
+\item scp~{\lft}file{\rht}~{\lft}user{\rht}@{\lft}host{\rht}:{\lft}remote~path{\rht}\desc{Copy a file to a remote location}
+\item scp~-r~{\lft}dir{\rht}~{\lft}user{\rht}@{\lft}host{\rht}:{\lft}remote~path{\rht}\desc{Recursivly copy a directory to a remote location}
+\end{itemize}
+
+\section{SLURM}
+\subsection{Management And Monitoring}
+\begin{itemize}
+\item[] sbatch \pth{slurm\_script}\desc{Submit a slurm script to the scheduler for batch processing}
+\item[] sbatch~--array=[\#-\#]~\pth{slurm\_script}\desc{Submit a job array to the scheduler}
+\item[] srun \desc{Used in submitting an interactive job, or also  used within a slurm\_script}
+\item[] srun.x11 \desc{Used in submitting an interactive job, that also forwards the X, if you logged in while enabling X forwarding}
+\item{} squeue \desc{Display all jobs running or waiting on the cluster}
+\item{} squeue -u{\lft}user{\rht} \desc{Only display jobs for the specified user}
+\item{} sinfo \desc{Display the partitions and nodes state}
+\item{} scancel {\lft}jobid{\rht} \desc{Cancel the specified job}
+\end{itemize}
+
+\subsection{Details and Profiling}
+\begin{itemize}
+\item[] scontrol show jobid {\lft}jobid{\rht}\desc{Show job details of a waiting or running job}
+\item[] scontrol show parition {\lft}partition name{\rht}\desc{Show details of the specified partition}
+\item[] scontrol show node {\lft}node name{\rht}\desc{Show details of the specified node}
+\item[] sacct -l -j {\lft}jobid{\rht}\desc{Show usage details of a job}
+\item[] sacct -u {\lft}user{\rht}\desc{Show all jobs from a given user}
+\end{itemize}
+
+\section{Miscellaneous}
+\subsection{Commands}
+\begin{itemize}
+\item[] less \pth{file} \desc{Show contents of file\\Navigate using up/down arrow keys, spacebar, and pageup/pagedown keys\\  Press 'q' to exit out of less}
+\item[] less -S \pth{file} \desc{Show contents of file without line wrap\\Navigate using up/down arrow keys, spacebar, and pageup/pagedown keys\\Press 'q' to exit out of less}
+
+\end{itemize}
+
+
+\subsection{Operators}
+\begin{itemize}
+\item[] | \desc{Pipe operator is used between two commands, in which you wish to pass the output of the 1st command to the input of the 2nd command\\Ex. \texttt{sacct -l -j 467 | less -S }}
+\end{itemize}
+
+\subsection{Hosts}
+\begin{itemize}
+\item[] login-0001 -- uhhpc1.its.hawaii.edu
+\item[] login-0002 -- uhhpc2.its.hawaii.edu
+\end{itemize}
+
+\subsection{Globus Endpoints}
+\begin{itemize}
+\item[] login-0001 -- hawaii#UHHPC1
+\item[] login-0002 -- hawaii#UHHPC2
+\end{itemize}
+
+
+\end{document}
+
+
