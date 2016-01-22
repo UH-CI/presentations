@@ -81,13 +81,23 @@
 \item[] \texttt{sacct -u {\lft}user{\rht}}\desc{Show all jobs from a given user}
 \end{itemize}
 
+\section{Modules}
+\begin{itemize}
+\item[] \texttt{module avail} \desc{List all available software modules}
+\item[] \texttt{module load \pth{module name}} \desc{Load the specified module into your environment}
+\item[] \texttt{module show \pth{module name}} \desc{Shows you what actions the module performs to your environment}
+\item[] \texttt{module purge} \desc{unload all loaded modules}
+\end{itemize}
+
+
 \section{Miscellaneous}
 \subsection{Commands}
 \begin{itemize}
-\item[] \texttt{less \pth{file}} \desc{Show contents of file\\Navigate using up/down arrow keys, spacebar, or pageup/pagedown keys\\  Press 'q' to exit out of less}
+\item[] \texttt{less \pth{file}} \desc{Show contents of file\\Navigate using up/down arrow keys, spacebar, or pageup/pagedown keys\\Press 'q' to exit out of less}
 \item[] \texttt{less -S \pth{file}} \desc{Show contents of file without line wrap\\Navigate using up/down arrow keys, spacebar, or pageup/pagedown keys\\Press 'q' to exit out of less}
+\item[] \texttt{man \pth{command}} \desc{Show the manual entry (if one exists) for the given command\\Press 'q' to exit out of less}
 \end{itemize}
-\bigskip
+
 \subsection{Operators}
 \begin{itemize}
 \item[] \texttt{|} \desc{Pipe operator is used between two commands, in which you wish to pass the output of the 1st command to the input of the 2nd command\\Ex. \texttt{sacct -l -j 467 | less -S }}
