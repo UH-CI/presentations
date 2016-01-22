@@ -227,7 +227,7 @@ University of {\hawaii} \\ % Your institution for the title page
 \frametitle{{\craycs} -- History}
 \begin{itemize}
  \item Initial investment of 1.8 Million by the University of {\hawaii} (UH)
- \item Deilvered in October of 2014
+ \item Delivered in October of 2014
  \item Accepted in December of 2014 
  \item Early adopter testing started in January 2015
  \item Opened for general use in April 2015
@@ -448,7 +448,7 @@ University of {\hawaii} \\ % Your institution for the title page
 		\begin{itemize}{\semitransp[25]{
 			\item Modules
 			\item Acquiring software
-			\item Compiliers
+			\item Compilers
 			}}
 		\end{itemize}
 		\item Managing user jobs
@@ -980,17 +980,22 @@ A partition can be thought of as a group of nodes/resources divided into possibl
 %\toprule                                                                    
 \midrule
 \midrule
-community.q & \begin{tabular}{l r} \textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} & \begin{tabular}{c c} \textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} & \padfrom{\ \ \ }{20}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+community.q & \begin{tabular}{l r} \textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} & \begin{tabular}{c c} \textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} & \padfrom{\ \ \ }{20}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
 \hline
-exclusive.q & \begin{tabular}{l r}\textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min}& \padfrom{\ \ \ }{1}~\\ \textbf{Max}&\padfrom{\ \ \ }{20}\end{tabular} & 10 & EXCLUSIVE & OFF & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
 \hline
-kill.q & \begin{tabular}{l r}\textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} &\padfrom{\ \ \ }{12}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+exclusive.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:}& \padfrom{\ \ \ }{1}~\\ \textbf{Max:}&\padfrom{\ \ \ }{20}\end{tabular} & 10 & EXCLUSIVE & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
 \hline
-htc.q & \begin{tabular}{l r}\textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} &\padfrom{\ \ \ }{1}\end{tabular} & 1 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
 \hline
-lm.q & \begin{tabular}{l r}\textbf{Default} & 0-00:10:00~\\ \textbf{Max} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} &\padfrom{\ \ \ }{1}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ }{262100}\end{tabular}\\
+kill.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{12}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
 \hline
-sb.q & \begin{tabular}{l r}\textbf{Default} & 0-00:05:00~\\ \textbf{Max} & 0-01:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min} & \padfrom{\ \ \ }{1}~\\ \textbf{Max} &\padfrom{\ \ \ }{2}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+\hline
+htc.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{1}\end{tabular} & 1 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+\hline
+\hline
+lm.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{1}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ }{262100}\end{tabular}\\
+\hline
+\hline
+sb.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:05:00~\\ \textbf{Max:} & 0-01:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{2}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
 \bottomrule 
 \end{tabular}   
 }
@@ -1006,7 +1011,7 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 \begin{frame}
 \frametitle{Interactive Job with SLURM}
 	\begin{block}{Interactive session (no X11)}\tiny
-	$[$login \ctilde$]$\$ srun \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 5 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00 \ddash{}pty /bin/bash
+	$[$login \ctilde$]$\$ srun \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 5 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00:00 \ddash{}pty /bin/bash
 	\end{block}
 	
 	\begin{block}{Interactive session (with X11)}\tiny
@@ -1017,7 +1022,7 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 		~\\
 		~\\
 		$[$local \ctilde$]$\$ ssh -Y user99@uhhpc1.its.hawaii.edu	~\\
-		$[$login \ctilde$]$\$ srun.x11 \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 5 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00	~\\
+		$[$login \ctilde$]$\$ srun.x11 \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 5 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00:00	~\\
 		$[$compute-0001 \ctilde$]$\$ xterm	~\\
 	\end{block}
 \end{frame}
@@ -1201,7 +1206,7 @@ The login nodes are a shared resource and are the only access to the cluster for
 \bigskip
 \begin{itemize}
 \item[--] If we identify or are notified that a user is running computation on the login nodes, the application will be killed
-\item[--] If we determine that a user repeatly violates the login node policy, even after being warned, the repeat offender can have their cluster account disabled
+\item[--] If we determine that a user repeatedly violates the login node policy, even after being warned, the repeat offender can have their cluster account disabled
 \end{itemize}
 \btVFill
 \begin{center}
