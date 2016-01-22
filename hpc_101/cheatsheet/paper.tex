@@ -53,10 +53,10 @@
 
 \section{SSH/SCP}
 \begin{itemize}
-\item \texttt{ssh {\lft}user{\rht}@{\lft}host{\rht}}
-\item \texttt{ssh -Y {\lft}user{\rht}@{\lft}host{\rht}}\desc{Enable X11 forwarding}
-\item \texttt{scp~{\lft}file{\rht}~{\lft}user{\rht}@{\lft}host{\rht}:{\lft}remote~path{\rht}}\desc{Copy a file to a remote location}
-\item \texttt{scp~-r~{\lft}dir{\rht}~{\lft}user{\rht}@{\lft}host{\rht}:{\lft}remote~path{\rht}}\desc{Recursivly copy a directory to a remote location}
+\item[] \texttt{ssh {\lft}user{\rht}@{\lft}host{\rht}}
+\item[] \texttt{ssh -Y {\lft}user{\rht}@{\lft}host{\rht}}\desc{Enable X11 forwarding}
+\item[] \texttt{scp~{\lft}file{\rht}~{\lft}user{\rht}@{\lft}host{\rht}:{\lft}remote~path{\rht}}\desc{Copy a file to a remote location}
+\item[] \texttt{scp~-r~{\lft}dir{\rht}~{\lft}user{\rht}@{\lft}host{\rht}:{\lft}remote~path{\rht}}\desc{Recursivly copy a directory to a remote location}
 \end{itemize}
 
 \section{SLURM}
@@ -66,16 +66,16 @@
 \item[] \texttt{sbatch~--array=[\#-\#]~\pth{slurm\_script}}\desc{Submit a job array to the scheduler}
 \item[] \texttt{srun} \desc{Used in submitting an interactive job, or also  used within a slurm\_script}
 \item[] \texttt{srun.x11} \desc{Used in submitting an interactive job, that also forwards the X, if you logged in while enabling X forwarding}
-\item{} \texttt{squeue} \desc{Display all jobs running or waiting on the cluster}
-\item{} \texttt{squeue -u{\lft}user{\rht}} \desc{Only display jobs for the specified user}
-\item{} \texttt{sinfo} \desc{Display the partitions and nodes state}
-\item{} \texttt{scancel {\lft}jobid{\rht}} \desc{Cancel the specified job}
+\item[] \texttt{squeue} \desc{Display all jobs running or waiting on the cluster}
+\item[] \texttt{squeue -u{\lft}user{\rht}} \desc{Only display jobs for the specified user}
+\item[]\texttt{sinfo} \desc{Display the partitions and nodes state}
+\item[] \texttt{scancel {\lft}jobid{\rht}} \desc{Cancel the specified job}
 \end{itemize}
 
 \subsection{Details and Profiling}
 \begin{itemize}
 \item[] \texttt{scontrol show jobid {\lft}jobid{\rht}}\desc{Show job details of a waiting or running job}
-\item[] \texttt{scontrol show parition {\lft}partition name{\rht}}\desc{Show details of the specified partition}
+\item[] \texttt{scontrol show parition {\lft}partition{\rht}}\desc{Show details of the specified partition}
 \item[] \texttt{scontrol show node {\lft}node name{\rht}}\desc{Show details of the specified node}
 \item[] \texttt{sacct -l -j {\lft}jobid{\rht}}\desc{Show usage details of a job}
 \item[] \texttt{sacct -u {\lft}user{\rht}}\desc{Show all jobs from a given user}
@@ -101,8 +101,8 @@
 
 \subsection{Globus Endpoints}
 \begin{itemize}
-\item[] login-0001 -- \texttt{hawaii#UHHPC1}
-\item[] login-0002 -- \texttt{hawaii#UHHPC2}
+\item[] login-0001 -- \texttt{hawaii\#UHHPC1}
+\item[] login-0002 -- \texttt{hawaii\#UHHPC2}
 \end{itemize}
 
 
