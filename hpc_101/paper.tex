@@ -899,16 +899,17 @@ The {\craycs} is capable of handling many different types of jobs, but with so m
 \end{frame}
 
 \begin{frame}
-	\frametitle{What is a Job Scheduler?}
-	Basic features expected of a job scheduler include:
+  \frametitle{Job Schedulers}
+  \begin{block}{Purpose}To control and prioritize the execution order of unrelated jobs\end{block}
+	Basic features expected of a job scheduler:
 	\begin{itemize}\footnotesize
-        \item The capability to control and prioritize the execution order of unrelated jobs
-        \item Allocate exclusive and/or non-exclusive access to resources to users for some duration of time so they can perform work
-	\item Provides a framework for starting, executing, and monitoring work on the set of allocated resources
-	\item Arbitrate contention for resources by managing a queue of pending work
+        \item Provides a user interface for users to request resources and monitor work 
+        \item Allocates access to resources for the requested duration of time
+	\item Starts, monitors and terminates work on allocated resources
+	\item Arbitrates contention for resources by managing queues of pending work
 	\end{itemize}
 	\bigskip
-	For the {\craycs}, we utilize the \textbf{S}imple \textbf{L}inux \textbf{U}tility for \textbf{R}esource \textbf{M}anager~\\ or simply known as the \emph{SLURM scheduler}
+        The {\craycs} uses the \textbf{S}imple \textbf{L}inux \textbf{U}tility for \textbf{R}esource \textbf{M}anagement~\\ or simply known as the \emph{SLURM scheduler}
 	\numlessfootnotetxt{\tiny \url{https://en.wikipedia.org/wiki/Slurm_Workload_Manager}}
 	\numlessfootnotetxt{\tiny \url{http://slurm.schedmd.com/slurm.html}}
 \end{frame}
@@ -934,7 +935,7 @@ Factors such as the following are all used to assign a priority to a given job:
 SLURM has a series of commands, each of which allow users to interact with the job scheduler
 \begin{itemize}\tiny
 	\item \emph{\textbf{srun}} --  Used to submit a job for execution or initiate job steps in real time
-	\item \emph{\textbf{srun.x11}} -- Used to submit an interactive job with x11 support
+	\item \emph{\textbf{srun.x11}} -- Used to submit an interactive job with X11 support
 	\item \emph{\textbf{sbatch}} -- Used to submit a job script for later execution. The script could contain one or more srun commands
 	\item \emph{\textbf{scancel}} -- Used to cancel a pending or running job or job step. It can also be used to send an arbitrary signal to all processes associated with a running job or job step
 	\item \emph{\textbf{sinfo}} -- Reports the state of partitions and nodes managed by Slurm. It has a wide variety of filtering, sorting, and formatting options
@@ -1230,7 +1231,13 @@ Due to users not having any quotas on the {\lustre} filesystem, we need some pol
 
 \end{frame}
 
-\section{Frequently Asked Questions}
+
+
+\begin{frame}
+\Huge{\centerline{Questions?}}
+\end{frame}
+
+%\section{Frequently Asked Questions}
 \begin{frame}
 \frametitle{FAQ}
 \begin{itemize}\footnotesize
@@ -1255,12 +1262,6 @@ Due to users not having any quotas on the {\lustre} filesystem, we need some pol
 
 
 \end{frame}
-
-
-\begin{frame}
-\Huge{\centerline{Questions?}}
-\end{frame}
-
 
 \end{document}
 
