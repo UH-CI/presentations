@@ -692,7 +692,7 @@ Filesystem                                  Size  Used Avail Use% Mounted on
 		\begin{itemize}
 			\item[--] scp (RCP$+$SSH protocol)
 			\item[--] rsync (rsync protocol with SSH transport)
-			\item[--] SFTP (SSH FTP protocol)
+			\item[--] SFTP (SSH FTP protocol) -- Filezilla, Cyberduck
 			\item[--] \href{https://www.globus.org/}{Globus} (Grid FTP protocol)
 		\end{itemize}
 		\item All options are widely used, and have clients that can be found for on most major operating systems
@@ -1039,7 +1039,7 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 \#SBATCH \ddash{}job-name=MPI\_example
 \#SBATCH \ddash{}partition=exclusive.q
 \#\# 3 day max run time for community.q, kill.q, exclusive.q, and htc.q.  1 Hour max run time for sb.q
-\#SBATCH \ddash{}time=3-00:00:00 
+\#SBATCH \ddash{}time=3-00:00:00 ## time format is DD-HH:MM:SS
 \#\# task-per-node x cpus-per-task should not typically exceed core count on an individual node 
 \#SBATCH \ddash{}nodes=4
 \#SBATCH \ddash{}tasks-per-node=20
@@ -1057,7 +1057,6 @@ export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 export I\_MPI\_FABRICS=tmi  
 export I\_MPI\_PMI\_LIBRARY=/opt/local/slurm/default/lib64/libpmi.so
 
-cd \$SLURM\_SUBMIT\_DIR
 srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel 
 \end{semiverbatim}
 \end{frame}
@@ -1073,7 +1072,7 @@ srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel
 \#SBATCH \ddash{}job-name=example
 \#SBATCH \ddash{}partition=community.q
 \#\# 3 day max run time for community.q, kill.q, exclusive.q, and htc.q.  1 Hour max run time for sb.q
-\#SBATCH \ddash{}time=3-00:00:00
+\#SBATCH \ddash{}time=3-00:00:00 ## time format is DD-HH:MM:SS
 \#\# task-per-node x cpus-per-task should not typically exceed core count on an individual node 
 \#SBATCH \ddash{}nodes=1
 \#SBATCH \ddash{}tasks-per-node=1
@@ -1089,7 +1088,6 @@ srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel
 
 export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 
-cd \$SLURM\_SUBMIT\_DIR
 ./hello\_world
 \end{semiverbatim}
 \end{frame}
@@ -1105,7 +1103,7 @@ cd \$SLURM\_SUBMIT\_DIR
 \#SBATCH \ddash{}job-name=example
 \#SBATCH \ddash{}partition=community.q
 \#\# 3 day max run time for community.q, kill.q, exclusive.q, and htc.q.  1 Hour max run time for sb.q
-\#SBATCH \ddash{}time=3-00:00:00 
+\#SBATCH \ddash{}time=3-00:00:00 ## time format is DD-HH:MM:SS
 \#\# task-per-node x cpus-per-task should not typically exceed core count on an individual node 
 \#SBATCH \ddash{}nodes=1
 \#SBATCH \ddash{}tasks-per-node=1
@@ -1121,7 +1119,6 @@ cd \$SLURM\_SUBMIT\_DIR
 
 export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 
-cd \$SLURM\_SUBMIT\_DIR
 ./worker\_bee -i input\_\$\{SLURM_ARRAY_TASK_ID\}.flower -o output\_\$\{SLURM_ARRAY_TASK_ID\}.honey
 \end{semiverbatim}
 \end{frame}
@@ -1233,9 +1230,7 @@ Due to users not having any quotas on the {\lustre} filesystem, we need some pol
 \begin{center}
 \footnotesize \textbf{\emph{Purge policy is subject to change~\\Users will be notified via email prior to changes taking effect}}
 \end{center}
-
 \end{frame}
-
 
 
 \begin{frame}
@@ -1256,7 +1251,7 @@ Due to users not having any quotas on the {\lustre} filesystem, we need some pol
   \item \textbf{Answer:} We are willing to help, just send us an email at \textit{uh-hpc-help@lists.hawaii.edu} with a description of what you have attempted as well as a link to the software you are trying to compile, and/or where it is located on the cluster.
   \end{itemize}
   
-\item HELP! My job needs more time and does not support checkpointing.  What can I do?
+\item HELP! My job needs more time and does not support check-pointing.  What can I do?
   \begin{itemize}\tiny
   \item \textbf{Answer:} We understand that jobs may not all fit within the 3 day timelimit or unforeseen issues during the execution can cause a job to run long.  The {\citeam} does review and potentially approves requests to extend jobs in a one off fashion.  A request to extend a job can be denied, since we need to take into account factor such as: how busy the cluster is, the number of time extension requests a user has made in recent history.\\If it is known before the job is submitted that more than 3 days is required, we would ask that you contact us first so we can verify that you truly will need more time.\\If a job is already running and just doesn't look like it will complete in time, please send us a request with the jobid number and what you want the job extended to e.g., please extend my jobs run time to 7 days.\\Please remember the {\citeam} is small and we are also human.  Depending on when you make your request we may not be able to immediately respond or act.  It is best to make your request at the first signs you need more time, in hopes that you can provide us with ample time to act.
   \end{itemize}
