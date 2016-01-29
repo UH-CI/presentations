@@ -1057,7 +1057,6 @@ export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 export I\_MPI\_FABRICS=tmi  
 export I\_MPI\_PMI\_LIBRARY=/opt/local/slurm/default/lib64/libpmi.so
 
-cd \$SLURM\_SUBMIT\_DIR
 srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel 
 \end{semiverbatim}
 \end{frame}
@@ -1089,7 +1088,6 @@ srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel
 
 export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 
-cd \$SLURM\_SUBMIT\_DIR
 ./hello\_world
 \end{semiverbatim}
 \end{frame}
@@ -1121,7 +1119,6 @@ cd \$SLURM\_SUBMIT\_DIR
 
 export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 
-cd \$SLURM\_SUBMIT\_DIR
 ./worker\_bee -i input\_\$\{SLURM_ARRAY_TASK_ID\}.flower -o output\_\$\{SLURM_ARRAY_TASK_ID\}.honey
 \end{semiverbatim}
 \end{frame}
@@ -1237,12 +1234,12 @@ Due to users not having any quotas on the {\lustre} filesystem, we need some pol
 \end{frame}
 
 
-
 \begin{frame}
 \Huge{\centerline{Questions?}}
 \end{frame}
 
-%\section{Frequently Asked Questions}
+
+\section{Frequently Asked Questions}
 \begin{frame}
 \frametitle{FAQ}
 \begin{itemize}\footnotesize
@@ -1263,8 +1260,6 @@ Due to users not having any quotas on the {\lustre} filesystem, we need some pol
 
 
 \end{itemize}
-
-
 
 \end{frame}
 
