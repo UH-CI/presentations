@@ -1051,6 +1051,8 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 \#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
 \#SBATCH \ddash{}mail-user=user@test.org
 
+source \ctilde/.bash_profile \#if you want to use modules or need environment variables, source your bash profile
+
 \#\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
 \#\# Intel MPI manual: \href{https://software.intel.com/en-us/mpi-refman-lin-html}{https://software.intel.com/en-us/mpi-refman-lin-html}
 export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
@@ -1084,8 +1086,9 @@ srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel
 \#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
 \#SBATCH \ddash{}mail-user=user@test.org
 
-\#\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
+source \ctilde/.bash_profile \#if you want to use modules or need environment variables, source your bash profile
 
+\#\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
 export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 
 ./hello\_world
@@ -1114,6 +1117,8 @@ export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 \#\# Useful for remote notification
 \#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
 \#SBATCH \ddash{}mail-user=user@test.org
+
+source \ctilde/.bash_profile \#if you want to use modules or need environment variables, source your bash profile
 
 \#\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
 
