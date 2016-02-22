@@ -1012,7 +1012,13 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 \begin{frame}
 \frametitle{Interactive Job with SLURM}
 	\begin{block}{Interactive session (no X11)}\tiny
-	$[$login \ctilde$]$\$ srun \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 5 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00:00 \ddash{}pty /bin/bash
+	$[$login \ctilde$]$\$ srun \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 1 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00:00 \ddash{}pty /bin/bash
+          ~\\
+          ~\\
+          \hrule
+          ~\\
+	$[$login \ctilde$]$\$ srun -I -p sb.q -N 1 -c 1 -n 1 -t 0-01:00:00 \ddash{}pty /bin/bash
+
 	\end{block}
 	
 	\begin{block}{Interactive session (with X11)}\tiny
@@ -1023,7 +1029,7 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 		~\\
 		~\\
 		$[$local \ctilde$]$\$ ssh -Y user99@uhhpc1.its.hawaii.edu	~\\
-		$[$login \ctilde$]$\$ srun.x11 \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 5 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00:00	~\\
+		$[$login \ctilde$]$\$ srun.x11 \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 1 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00:00	~\\
 		$[$compute-0001 \ctilde$]$\$ xterm	~\\
 	\end{block}
 \end{frame}
@@ -1046,8 +1052,8 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 \#SBATCH \ddash{}tasks-per-node=20
 \#SBATCH \ddash{}cpus-per-task=1
 \#SBATCH \ddash{}mem-per-cpu=6400 \#\# max of 6400 for standard nodes, max of 26214 for large memory nodes                                                                                                                                             
-\#SBATCH \ddash{}error=hello-\%A\_\%a.err \#\# \%A - filled with jobid. \%a - filled with job arrayid
-\#SBATCH \ddash{}output=hello-\%A\_\%a.out \#\# \%A - filled with jobid. \%a - filled with job arrayid
+\#SBATCH \ddash{}error=hello-\%A.err \#\# \%A - filled with jobid.
+\#SBATCH \ddash{}output=hello-\%A.out \#\# \%A - filled with jobid.
 \#\# Useful for remote notification
 \#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
 \#SBATCH \ddash{}mail-user=user@test.org
@@ -1081,8 +1087,8 @@ srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel
 \#SBATCH \ddash{}tasks-per-node=1
 \#SBATCH \ddash{}cpus-per-task=5
 \#SBATCH \ddash{}mem-per-cpu=6400 \#\# max of 6400 for standard nodes, max of 26214 for large memory nodes                                                                                                                                              
-\#SBATCH \ddash{}error=hello-\%A\_\%a.err \#\# \%A - filled with jobid. \%a - filled with job arrayid
-\#SBATCH \ddash{}output=hello-\%A\_\%a.out \#\# \%A - filled with jobid. \%a - filled with job arrayid
+\#SBATCH \ddash{}error=hello-\%A.err \#\# \%A - filled with jobid.
+\#SBATCH \ddash{}output=hello-\%A.out \#\# \%A - filled with jobid.
 \#\# Useful for remote notification
 \#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
 \#SBATCH \ddash{}mail-user=user@test.org
