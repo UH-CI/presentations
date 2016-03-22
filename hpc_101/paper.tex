@@ -1122,6 +1122,39 @@ export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 \end{frame}
 
 
+\subsection{MPI Batch Job Example Script}
+\begin{frame}[fragile]
+\frametitle{SLURM sbatch -- Submission Script File -- GPU}
+\begin{semiverbatim}\tiny
+[login lus]\$ cat gpu.slurm
+
+\#!/bin/bash
+\#SBATCH \ddash{}job-name=GPU\_example
+\#SBATCH \ddash{}partition=gpu.q
+\#SBATCH \ddash{}time=3-00:00:00 ## time format is DD-HH:MM:SS
+\#\# task-per-node x cpus-per-task should not typically exceed core count on an individual node 
+\#SBATCH \ddash{}nodes=1
+\#SBATCH \ddash{}tasks-per-node=1
+\#SBATCH \ddash{}cpus-per-task=10
+\#SBATCH \ddash{}gres=gpu:NV-K40:2  \#\# request both GPUs in the GPU node.
+\#\#\# To request only 1 of the two GPUs in the node, you would do: gpu:NV-K40:1
+\#SBATCH \ddash{}error=hello-\%A.err \#\# \%A - filled with jobid
+\#SBATCH \ddash{}output=hello-\%A.out \#\# \%A - filled with jobid
+\#\# Useful for remote notification
+\#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
+\#SBATCH \ddash{}mail-user=user@test.org
+
+source \ctilde/.bash_profile \#if you want to use modules or need environment variables, source your bash profile
+module load GPGPU/cuda/samples/7.5
+
+\#\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
+export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
+
+bandwidthTest; cudaOpenMP; deviceQuery; simpleMultiGPU
+\end{semiverbatim}
+\end{frame}
+
+
 \subsection{Executing and Monitoring Batch Jobs}
 \begin{frame}[fragile]
 \frametitle{SLURM sbatch -- Executing \& Monitoring Jobs}\footnotesize
