@@ -179,7 +179,7 @@ leftmargin\romannumeral\@ld \endcsname
 
 \title[HPC--101]{HPC--101\\Onboarding} % The short title appears at the bottom of every slide, the full title is only on the title page
 
-\author{Sean Cleveland Ph.D, Ron Merrill Ph.D,\\David Schanzenbach M.S.} % Your name
+\author{Sean Cleveland Ph.D, Ron Merrill Ph.D,\\David Schanzenbach M.S.\\~\\Director\\Gwen Jacobs Ph.D}
 \institute[University of {\hawaii} -- ITS--CI] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 Information Technology Services \\
@@ -361,7 +361,7 @@ University of {\hawaii} \\ % Your institution for the title page
 	\frametitle{Community Resources}
 	\begin{itemize}
 		\item The initial investment in the cluster provides resources for all faculty, staff, and students affiliated with the University of {\hawaii}
-		\item All users can run on the publicly accessible partitions:\\ \emph{community.q, exclusive.q, lm.q, sb.q, kill.q, htc.q}
+		\item All users can run on the publicly accessible partitions:\\ \emph{community.q, exclusive.q, lm.q, gpu.q, sb.q, kill.q, htc.q}
 		\item For some users, the publicly available resources may not be enough~\ldots
 	\end{itemize}
 \end{frame}
@@ -431,7 +431,7 @@ University of {\hawaii} \\ % Your institution for the title page
 	\smallskip
 	\begin{center}
 		{\large \textbf{Service Unit Price Card}}\\
-		\begin{tabular}{l c r }
+		\begin{tabular}{l || c || r}
 			\toprule
 			\textbf{Product} & \textbf{Cost} & \textbf{Minimum Order}\\
 			\midrule
@@ -494,6 +494,7 @@ University of {\hawaii} \\ % Your institution for the title page
 		\begin{itemize}
 			\item \href{http://www.hawaii.edu/askus/685}{SSH Secure Shell}~(SSH 3.2.9)
 			\item \href{http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html}{Putty}
+                        \item \href{http://mobaxterm.mobatek.net/}{MobaXterm}
 		\end{itemize}
 	\end{itemize}
 	\item[] ~\\
@@ -976,7 +977,7 @@ SLURM has a series of commands, each of which allow users to interact with the j
 A partition can be thought of as a group of nodes/resources divided into possibly overlapping sets.  Each partition can be considered as a job queue, each of which has an assortment of constraints such as job size limit, job time limit, users permitted to use it, etc. Priority-ordered jobs are allocated nodes within a partition until the resources (nodes, processors, memory, etc.) within that partition are exhausted.\footnotemark
 \end{block}
 \begin{itemize}
-	\item The {\craycs} currently has six public partitions:~\\\textbf{lm.q}, \textbf{community.q}, \textbf{exclusive.q}, \textbf{sb.q}, \textbf{kill.q}, \textbf{htc.q}
+	\item The {\craycs} currently has seven public partitions:~\\\textbf{community.q}, \textbf{exclusive.q}, \textbf{lm.q}, \textbf{gpu.q}, \textbf{sb.q}, \textbf{kill.q}, \textbf{htc.q}
 	\item Jobs submitted to kill.q and htc.q can be preempted by jobs in other partitions
 \end{itemize}
 \footnotetext[2]{\tiny \url{http://slurm.schedmd.com/quickstart.html}}
@@ -997,22 +998,25 @@ A partition can be thought of as a group of nodes/resources divided into possibl
 %\toprule                                                                    
 \midrule
 \midrule
-community.q & \begin{tabular}{l r} \textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} & \begin{tabular}{c c} \textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} & \padfrom{\ \ \ }{20}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+community.q & \begin{tabular}{l r} \textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} & \begin{tabular}{c c} \textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} & \padfrom{\ \ \ }{20}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
 \hline
 \hline
-exclusive.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:}& \padfrom{\ \ \ }{1}~\\ \textbf{Max:}&\padfrom{\ \ \ }{20}\end{tabular} & 10 & EXCLUSIVE & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+exclusive.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:}& \padfrom{\ \ \ }{1}~\\ \textbf{Max:}&\padfrom{\ \ \ }{20}\end{tabular} & 10 & EXCLUSIVE & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
 \hline
 \hline
-kill.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{12}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+gpu.q & \begin{tabular}{l r} \textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} & \begin{tabular}{c c} \textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} & \padfrom{\ \ \ }{1}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
 \hline
 \hline
-htc.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{1}\end{tabular} & 1 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+kill.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{12}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
 \hline
 \hline
-lm.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{1}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ }{262100}\end{tabular}\\
+htc.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{1}\end{tabular} & 1 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
 \hline
 \hline
-sb.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:05:00~\\ \textbf{Max:} & 0-01:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{2}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ }{6500}\end{tabular}\\
+lm.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{1}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
+\hline
+\hline
+sb.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:05:00~\\ \textbf{Max:} & 0-01:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{2}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
 \bottomrule 
 \end{tabular}   
 }
