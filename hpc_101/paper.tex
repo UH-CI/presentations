@@ -1210,13 +1210,31 @@ JOBID     PARTITION    NAME     USER    ST   TIME    NODES  NODELIST(REASON)
 
 
 
+\section{Problem Reporting}
+\begin{frame}
+\frametitle{Problem Reporting}
+\begin{itemize}
+\item Always email UH-HPC-Help@lists.hawaii.edu
+\item For batch jobs...
+\begin{itemize}
+\item[--] Job ID, path to submission script, submission command, error file location, output files
+\end{itemize} 
+\item For other problems...
+\begin{itemize}
+\item[--] State the problem, command issued, host, directory, remote host, error messages
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
 \section{Cluster Etiquette}
 \begin{frame}
 \frametitle{Cluster Etiquette}
 \begin{itemize}
 \item Never run anything on the login nodes
 \item Try to request only the resources that your job needs.  Leaving unneeded resources available, allows other users to use them
-\item Test what your application in an interactive session before scheduling a long running job
+\item Test your application in an interactive session before scheduling a long running job
 \begin{itemize}
 \item[--] This can help identify what resources your job will require, and potentially aid you in correctly sizing what resources you request.
 \end{itemize}
