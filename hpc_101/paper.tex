@@ -1135,8 +1135,8 @@ export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 \#SBATCH \ddash{}tasks-per-node=1
 \#SBATCH \ddash{}cpus-per-task=5
 \#SBATCH \ddash{}mem=11000 \#\# max amount of memory per node you require
-\#SBATCH \ddash{}error=buzz-\%A\_\%a.err \#\# \%A - filled with jobid. \%a - filled with job arrayid
-\#SBATCH \ddash{}output=buzz-\%A\_\%a.out \#\# \%A - filled with jobid. \%a - filled with job arrayid
+\#SBATCH \ddash{}error=myprog-\%A\_\%a.err \#\# \%A - filled with jobid. \%a - filled with job arrayid
+\#SBATCH \ddash{}output=myprog-\%A\_\%a.out \#\# \%A - filled with jobid. \%a - filled with job arrayid
 \#\# Useful for remote notification
 \#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
 \#SBATCH \ddash{}mail-user=user@test.org
@@ -1147,7 +1147,7 @@ source \ctilde/.bash_profile \#if you want to use modules or need environment va
 
 export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 
-./worker\_bee -i input\_\$\{SLURM_ARRAY_TASK_ID\}.flower -o output\_\$\{SLURM_ARRAY_TASK_ID\}.honey
+./worker\_bee -i input\_\$\{SLURM_ARRAY_TASK_ID\}.dat -o output\_\$\{SLURM_ARRAY_TASK_ID\}
 \end{semiverbatim}
 \end{frame}
 
@@ -1206,19 +1206,24 @@ JOBID PARTITION    NAME     USER    ST TIME  NODES  NODELIST(REASON)
 [login lus]\$ sinfo
 PARTITION     AVAIL  TIMELIMIT  NODES  STATE NODELIST
 community.q   up     3-00:00:00 2      idle  compute-[0001-0002]
-[login lus]\$ sbatch {\ddash}array=0-2 job_array.slurm
+[login lus]\$ sbatch {\ddash}array=1-30 job_array.slurm
 sbatch: Submitted batch job 470
 [login lus]\$ squeue
-JOBID     PARTITION    NAME     USER    ST   TIME    NODES  NODELIST(REASON)
-470[0-2]  community.q  example  user99  PD   00:00   1      (resource)
-470_0     community.q  example  user99  R    00:01   1      compute-0001
-470_1     community.q  example  user99  R    00:05   1      compute-0002
+JOBID      PARTITION    NAME     USER    ST   TIME    NODES  NODELIST(REASON)
+470[1-30]  community.q  example  user99  PD   00:00   1      (resource)
+470_1      community.q  example  user99  R    00:01   1      compute-0001
+470_2      community.q  example  user99  R    00:05   1      compute-0002
 \end{semiverbatim}
 \end{block}
 
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{Slurm Job Array}
+  \includegraphics[width=1\textwidth]{images/job_array}
+
+\end{frame}
 
 
 \section{Problem Reporting}
