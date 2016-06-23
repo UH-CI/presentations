@@ -757,7 +757,7 @@ To utilize Globus, follow the following steps:
 \item Select ‘Start Transfer’ under ‘File Transfer’, or from the drop down menu in the top bar
 \item You can view the list of available endpoints by clicking the button on the ‘Endpoint’ drop down box
 \begin{itemize}\tiny
- \item Each of the login nodes is also an endpoint: \textbf{\emph{hawaii\#UHHPC1}} \& \textbf{\emph{hawaii\#UHHPC2}}
+ \item Each of the login nodes is also an endpoint: \textbf{\emph{UHHPC1}} \& \textbf{\emph{UHHPC2}}
 \end{itemize}
 \item Once you select an endpoint, a login window will pop up. You can access the UHHPC endpoints by simply using your UH username and password. Enter your UH accounts username in the ‘Username’ field and UH accounts password in the ‘Password’ field and click ‘Authenticate’. 
 \item You will see a listing of the contents of your home directory on the UH HPC. Double click on a directory to view its contents
@@ -1052,6 +1052,39 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 \end{frame}
 
 
+\subsection{GPU Batch Job Example Script}
+\begin{frame}[fragile]
+\frametitle{SLURM sbatch -- Submission Script File -- GPU}
+\begin{semiverbatim}\tiny
+[login lus]\$ cat gpu.slurm
+
+\#!/bin/bash
+\#SBATCH \ddash{}job-name=GPU\_example
+\textcolor{blue}{\#SBATCH \ddash{}partition=gpu.q}
+\#SBATCH \ddash{}time=3-00:00:00 ## time format is DD-HH:MM:SS
+\#\# task-per-node x cpus-per-task should not typically exceed core count on an individual node 
+\#SBATCH \ddash{}nodes=1
+\#SBATCH \ddash{}tasks-per-node=1
+\textcolor{blue}{\#SBATCH \ddash{}cpus-per-task=10}
+\textcolor{blue}{\#SBATCH \ddash{}mem=11000} \#\# max amount of memory per node you require
+\textcolor{blue}{\#SBATCH \ddash{}gres=gpu:NV-K40:2 } \#\# request both GPUs in the GPU node.
+\#\#\# To request only 1 of the two GPUs in the node, you would do: gpu:NV-K40:1
+\#SBATCH \ddash{}error=hello-\%A.err \#\# \%A - filled with jobid
+\#SBATCH \ddash{}output=hello-\%A.out \#\# \%A - filled with jobid
+\#\# Useful for remote notification
+\#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
+\#SBATCH \ddash{}mail-user=user@test.org
+
+source \ctilde/.bash_profile \#if you want to use modules or need environment variables, source your bash profile
+module load GPGPU/cuda/samples/7.5
+
+\#\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
+export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
+
+bandwidthTest; cudaOpenMP; deviceQuery; simpleMultiGPU
+\end{semiverbatim}
+\end{frame}
+
 
 \subsection{MPI Batch Job Example Script}
 \begin{frame}[fragile]
@@ -1061,13 +1094,13 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 
 \#!/bin/bash
 \#SBATCH \ddash{}job-name=MPI\_example
-\#SBATCH \ddash{}partition=exclusive.q
+\textcolor{blue}{\#SBATCH \ddash{}partition=exclusive.q}
 \#\# 3 day max run time for community.q, kill.q, exclusive.q, and htc.q.  1 Hour max run time for sb.q
 \#SBATCH \ddash{}time=3-00:00:00 ## time format is DD-HH:MM:SS
 \#\# task-per-node x cpus-per-task should not typically exceed core count on an individual node 
-\#SBATCH \ddash{}nodes=4
-\#SBATCH \ddash{}tasks-per-node=20
-\#SBATCH \ddash{}cpus-per-task=1
+\textcolor{blue}{\#SBATCH \ddash{}nodes=4}
+\textcolor{blue}{\#SBATCH \ddash{}tasks-per-node=20}
+\textcolor{blue}{\#SBATCH \ddash{}cpus-per-task=1}
 \#SBATCH \ddash{}error=hello-\%A.err \#\# \%A - filled with jobid
 \#SBATCH \ddash{}output=hello-\%A.out \#\# \%A - filled with jobid
 \#\# Useful for remote notification
@@ -1095,14 +1128,14 @@ srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel
 
 \#!/bin/bash
 \#SBATCH \ddash{}job-name=example
-\#SBATCH \ddash{}partition=community.q
+\textcolor{blue}{\#SBATCH \ddash{}partition=community.q}
 \#\# 3 day max run time for community.q, kill.q, exclusive.q, and htc.q.  1 Hour max run time for sb.q
 \#SBATCH \ddash{}time=3-00:00:00 ## time format is DD-HH:MM:SS
 \#\# task-per-node x cpus-per-task should not typically exceed core count on an individual node 
 \#SBATCH \ddash{}nodes=1
 \#SBATCH \ddash{}tasks-per-node=1
-\#SBATCH \ddash{}cpus-per-task=5
-\#SBATCH \ddash{}mem=11000 \#\# max amount of memory per node you require
+\textcolor{blue}{\#SBATCH \ddash{}cpus-per-task=5}
+\textcolor{blue}{\#SBATCH \ddash{}mem=11000} \#\# max amount of memory per node you require
 \#SBATCH \ddash{}error=hello-\%A.err \#\# \%A - filled with jobid
 \#SBATCH \ddash{}output=hello-\%A.out \#\# \%A - filled with jobid
 \#\# Useful for remote notification
@@ -1116,6 +1149,41 @@ export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 
 ./hello\_world
 \end{semiverbatim}
+\end{frame}
+
+\subsection{Executing and Monitoring Batch Jobs}
+\begin{frame}[fragile]
+\frametitle{SLURM sbatch -- Executing \& Monitoring Jobs}\footnotesize
+To execute a submission script you use the \textbf{\texttt{sbatch}} command
+\begin{block}{Example}
+\begin{semiverbatim}\tiny
+[login lus]\$ sinfo
+PARTITION     AVAIL  TIMELIMIT  NODES  STATE NODELIST
+community.q   up     3-00:00:00 2      idle  compute-[0001-0002]
+
+[login lus]\$ sbatch hello_world.slurm
+sbatch: Submitted batch job 469
+
+[login lus]\$ squeue
+JOBID PARTITION    NAME     USER    ST TIME  NODES  NODELIST(REASON)
+469   community.q  example  user99  R  00:01 1      compute-0001
+\end{semiverbatim}
+\end{block}
+
+
+\btVFill
+\begin{center}What if I want to run many jobs with identical parameters, but on different inputs?~\\
+  SLURM provides a mechanism for this called a \textbf{Job Array}.\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Slurm Job Array}
+\begin{center}  
+  \includegraphics[width=0.90\textwidth]{images/job_array}
+\end{center}
 \end{frame}
 
 
@@ -1135,8 +1203,8 @@ export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 \#SBATCH \ddash{}tasks-per-node=1
 \#SBATCH \ddash{}cpus-per-task=5
 \#SBATCH \ddash{}mem=11000 \#\# max amount of memory per node you require
-\#SBATCH \ddash{}error=myprog-\%A\_\%a.err \#\# \%A - filled with jobid. \%a - filled with job arrayid
-\#SBATCH \ddash{}output=myprog-\%A\_\%a.out \#\# \%A - filled with jobid. \%a - filled with job arrayid
+\textcolor{blue}{\#SBATCH \ddash{}error=myprog-\%A\_\%a.err} \#\# \%A - filled with jobid. \%a - filled with job arrayid
+\textcolor{blue}{\#SBATCH \ddash{}output=myprog-\%A\_\%a.out} \#\# \%A - filled with jobid. \%a - filled with job arrayid
 \#\# Useful for remote notification
 \#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
 \#SBATCH \ddash{}mail-user=user@test.org
@@ -1152,62 +1220,20 @@ export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
 \end{frame}
 
 
-\subsection{MPI Batch Job Example Script}
+
+\subsection{Executing and Monitoring Job Array Batch Jobs}
+
 \begin{frame}[fragile]
-\frametitle{SLURM sbatch -- Submission Script File -- GPU}
-\begin{semiverbatim}\tiny
-[login lus]\$ cat gpu.slurm
-
-\#!/bin/bash
-\#SBATCH \ddash{}job-name=GPU\_example
-\#SBATCH \ddash{}partition=gpu.q
-\#SBATCH \ddash{}time=3-00:00:00 ## time format is DD-HH:MM:SS
-\#\# task-per-node x cpus-per-task should not typically exceed core count on an individual node 
-\#SBATCH \ddash{}nodes=1
-\#SBATCH \ddash{}tasks-per-node=1
-\#SBATCH \ddash{}cpus-per-task=10
-\#SBATCH \ddash{}gres=gpu:NV-K40:2  \#\# request both GPUs in the GPU node.
-\#\#\# To request only 1 of the two GPUs in the node, you would do: gpu:NV-K40:1
-\#SBATCH \ddash{}error=hello-\%A.err \#\# \%A - filled with jobid
-\#SBATCH \ddash{}output=hello-\%A.out \#\# \%A - filled with jobid
-\#\# Useful for remote notification
-\#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
-\#SBATCH \ddash{}mail-user=user@test.org
-
-source \ctilde/.bash_profile \#if you want to use modules or need environment variables, source your bash profile
-module load GPGPU/cuda/samples/7.5
-
-\#\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
-export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
-
-bandwidthTest; cudaOpenMP; deviceQuery; simpleMultiGPU
-\end{semiverbatim}
-\end{frame}
-
-
-\subsection{Executing and Monitoring Batch Jobs}
-\begin{frame}[fragile]
-\frametitle{SLURM sbatch -- Executing \& Monitoring Jobs}\footnotesize
-To execute a submission script you use the \textbf{\texttt{sbatch}} command
-\begin{block}{Example -- Non Job Array}
+\frametitle{SLURM sbatch -- Executing \& Monitoring Job Arrays}\footnotesize
+\begin{block}{Example}
 \begin{semiverbatim}\tiny
 [login lus]\$ sinfo
 PARTITION     AVAIL  TIMELIMIT  NODES  STATE NODELIST
 community.q   up     3-00:00:00 2      idle  compute-[0001-0002]
-[login lus]\$ sbatch hello_world.slurm
-sbatch: Submitted batch job 469
-[login lus]\$ squeue
-JOBID PARTITION    NAME     USER    ST TIME  NODES  NODELIST(REASON)
-469   community.q  example  user99  R  00:01 1      compute-0001
-\end{semiverbatim}
-\end{block}
-\begin{block}{Example -- Job Array}
-\begin{semiverbatim}\tiny
-[login lus]\$ sinfo
-PARTITION     AVAIL  TIMELIMIT  NODES  STATE NODELIST
-community.q   up     3-00:00:00 2      idle  compute-[0001-0002]
+
 [login lus]\$ sbatch {\ddash}array=1-30 job_array.slurm
 sbatch: Submitted batch job 470
+
 [login lus]\$ squeue
 JOBID      PARTITION    NAME     USER    ST   TIME    NODES  NODELIST(REASON)
 470[1-30]  community.q  example  user99  PD   00:00   1      (resource)
@@ -1215,16 +1241,7 @@ JOBID      PARTITION    NAME     USER    ST   TIME    NODES  NODELIST(REASON)
 470_2      community.q  example  user99  R    00:05   1      compute-0002
 \end{semiverbatim}
 \end{block}
-
-
 \end{frame}
-
-\begin{frame}
-  \frametitle{Slurm Job Array}
-  \includegraphics[width=1\textwidth]{images/job_array}
-
-\end{frame}
-
 
 \section{Problem Reporting}
 \begin{frame}
