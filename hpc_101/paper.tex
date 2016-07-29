@@ -757,7 +757,7 @@ To utilize Globus, follow the following steps:
 \item Select ‘Start Transfer’ under ‘File Transfer’, or from the drop down menu in the top bar
 \item You can view the list of available endpoints by clicking the button on the ‘Endpoint’ drop down box
 \begin{itemize}\tiny
- \item Each of the login nodes is also an endpoint: \textbf{\emph{UHHPC1}} \& \textbf{\emph{UHHPC2}}
+ \item Each of the login nodes is also an endpoint: \textbf{\emph{UH-HPC1}} \& \textbf{\emph{UH-HPC2}}
 \end{itemize}
 \item Once you select an endpoint, a login window will pop up. You can access the UHHPC endpoints by simply using your UH username and password. Enter your UH accounts username in the ‘Username’ field and UH accounts password in the ‘Password’ field and click ‘Authenticate’. 
 \item You will see a listing of the contents of your home directory on the UH HPC. Double click on a directory to view its contents
@@ -1049,6 +1049,9 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 	$[$login \ctilde$]$\$ srun -I -p sb.q -N 1 -c 1 -n 1 -t 0-01:00:00 \ddash{}pty /bin/bash
 
 	\end{block}
+\btVFill
+\begin{center}Interactive sessions terminate when the specified time has elapsed~\\or if you give the \textbf{exit} command \end{center}
+
 \end{frame}
 
 
@@ -1067,7 +1070,7 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 \#SBATCH \ddash{}tasks-per-node=1
 \textcolor{blue}{\#SBATCH \ddash{}cpus-per-task=10}
 \textcolor{blue}{\#SBATCH \ddash{}mem=11000} \#\# max amount of memory per node you require
-\textcolor{blue}{\#SBATCH \ddash{}gres=gpu:NV-K40:2 } \#\# request both GPUs in the GPU node.
+\textcolor{blue}{\#SBATCH \ddash{}gres=gpu:NV-K40:2 } \#\# request both GPUs in the GPU node
 \#\#\# To request only 1 of the two GPUs in the node, you would do: gpu:NV-K40:1
 \#SBATCH \ddash{}error=hello-\%A.err \#\# \%A - filled with jobid
 \#SBATCH \ddash{}output=hello-\%A.out \#\# \%A - filled with jobid
@@ -1101,6 +1104,7 @@ bandwidthTest; cudaOpenMP; deviceQuery; simpleMultiGPU
 \textcolor{blue}{\#SBATCH \ddash{}nodes=4}
 \textcolor{blue}{\#SBATCH \ddash{}tasks-per-node=20}
 \textcolor{blue}{\#SBATCH \ddash{}cpus-per-task=1}
+\textcolor{blue}{\#\#SBATCH \ddash{}mem=11000} \# Memory should not be set for jobs in exclusive.q
 \#SBATCH \ddash{}error=hello-\%A.err \#\# \%A - filled with jobid
 \#SBATCH \ddash{}output=hello-\%A.out \#\# \%A - filled with jobid
 \#\# Useful for remote notification
@@ -1112,7 +1116,7 @@ source \ctilde/.bash_profile \#if you want to use modules or need environment va
 \#\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
 \#\# Intel MPI manual: \href{https://software.intel.com/en-us/mpi-refman-lin-html}{https://software.intel.com/en-us/mpi-refman-lin-html}
 export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
-export I\_MPI\_FABRICS=tmi  
+export I\_MPI\_FABRICS=shm:tmi  
 export I\_MPI\_PMI\_LIBRARY=/opt/local/slurm/default/lib64/libpmi.so
 
 srun  -n \$\{SLURM\_NTASKS\}  ./hello\_mpi.intel 
@@ -1395,7 +1399,7 @@ Due to users not having any quotas on the {\lustre} filesystem, we need some pol
       ~\\
       ~\\
       $[$local \ctilde$]$\$ ssh -Y user99@uhhpc1.its.hawaii.edu	~\\
-      $[$login \ctilde$]$\$ srun.x11 \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 1 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00:00	~\\
+      $[$login \ctilde$]$\$ srun.x11 \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 1 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00:00	~\\
       $[$compute-0001 \ctilde$]$\$ xterm	~\\
  \end{block}
 
