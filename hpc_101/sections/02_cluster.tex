@@ -4,14 +4,27 @@
 \begin{frame}
 \frametitle{{\craycs} -- History}
 \begin{itemize}
- \item Initial investment of 1.8 Million by the University of {\hawaii} (UH)
- \item Delivered in October of 2014
- \item Accepted in December of 2014 
- \item Early adopter testing started in January 2015
- \item Opened for general use in April 2015
- \item March 2016, 92 new nodes added to cluster, raising total core count from 3,800 to 5,876 cores
- \item January 2017, 5 new nodes added to cluster, raising total core count from 5,876 to 5,992 cores
- \item As of Nov 2016, more than 300 users have been granted access to the cluster
+\item[] 2014
+  \begin{itemize}
+  \item Jul. -- University of {\hawaii} (UH) selects Cray's proposal
+  \item Oct. -- Delivered 184 nodes, 3,800 cores
+  \item Dec. -- Passed testing and accepted
+  \end{itemize}
+
+\item[] 2015
+  \begin{itemize}
+  \item Jan. -- Early adopter testing started (8 users)
+  \item Apr. -- Opened for general use
+  \end{itemize}
+\item[] 2016
+  \begin{itemize}
+  \item Mar. -- 92 nodes added, 5,876 cores total
+  \end{itemize}
+\item[] 2017
+  \begin{itemize}
+  \item Jan. -- 5 nodes added, 5,992 cores total
+  \item Jan. -- 370$+$ users have been granted access to the cluster
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -56,30 +69,26 @@
 \end{frame}
 
 
-\begin{frame}
-	\frametitle{{\craycs} -- Storage}
-	\begin{enumerate}
-		\item {\lustre}
-                  \begin{itemize}
-                  \item High performance parallel filesystem 
-                  \item Available on all the cluster nodes
-                    \item Freely available to all users
-                  \end{itemize}
-	\end{enumerate}
-\end{frame}
 
 \begin{frame}
 	\frametitle{{\craycs} -- Storage $\rightarrow$ {\lustre}}
 	\begin{itemize}
-		\item The {\craycs} has $\approx582$TB of storage space
+        \item Lustre is a high performance parallel filesystem 
+        \item Available on all the cluster nodes
+
+	\item The {\craycs} has $\approx582$TB of storage space
 
 		\item Primarily used as scratch space for jobs (Input and Output)
 		\item User do not have a usage quota (soft or hard)
 		\item Certain directories are subject to a 90 day purge policy
 		\item \textbf{Data is not backed up!  Users are responsible for their own data}
                 \item {\lustre} utilizes RAID 6 arrays, and is fairly robust but \ldots~\\RAID is not a backup
+
+
 	\end{itemize}
 \end{frame}
+
+
 
 \begin{frame}
 	\frametitle{{\craycs} -- Network}
