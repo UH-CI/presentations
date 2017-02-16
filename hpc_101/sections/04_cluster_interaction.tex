@@ -361,7 +361,8 @@ These instructions can also be found on the {\ci} website:~\\
 \begin{frame}
 	\frametitle{Modules}
 	\begin{block}{Modules}\tiny
-	A tool to help users manage their Unix or Linux shell environment, by allowing groups of related environment-variable settings to be made or removed dynamically.\footnotemark
+	  A tool to help users manage their Unix or Linux shell environment, by allowing groups of related environment-variable settings to be made or removed dynamically.\footnote{\label{wiki_module}\tiny\
+             \url{https://en.wikipedia.org/wiki/Environment_Modules_(software)}}
 	
 	\end{block}
 	\begin{itemize}
@@ -375,7 +376,7 @@ These instructions can also be found on the {\ci} website:~\\
 		\end{itemize}
 		\item Installing software in your \ctilde{}/apps directory is suggested to prevent us from being a bottleneck
 	\end{itemize}
-	\footnotetext[1]{\tiny \url{https://en.wikipedia.org/wiki/Environment_Modules_(software)}}
+
 \end{frame}
 
 
@@ -395,7 +396,7 @@ These instructions can also be found on the {\ci} website:~\\
 \begin{frame}
 \frametitle{Compilers}
 	\begin{itemize}
-		\item We have the {\intel}, GNU (gcc, g$++$), {\cray} \& PGI{\regtrademark} compilers
+		\item We have the {\intel} \& GNU (gcc, g$++$) compilers
 		\item Compiling must take place on a compute node
 		\begin{itemize}
 			\item Interactive sessions are useful for compiling software
@@ -525,13 +526,12 @@ SLURM has a series of commands, each of which allow users to interact with the j
 \footnotesize
 \frametitle{Partitions}
 \begin{block}{What is a partition?}\footnotesize
-A partition can be thought of as a group of nodes/resources divided into possibly overlapping sets.  Each partition can be considered as a job queue, each of which has an assortment of constraints such as job size limit, job time limit, users permitted to use it, etc. Priority-ordered jobs are allocated nodes within a partition until the resources (nodes, processors, memory, etc.) within that partition are exhausted.\footnotemark
+A partition can be thought of as a group of nodes/resources divided into possibly overlapping sets.  Each partition can be considered as a job queue, each of which has an assortment of constraints such as job size limit, job time limit, users permitted to use it, etc. Priority-ordered jobs are allocated nodes within a partition until the resources (nodes, processors, memory, etc.) within that partition are exhausted.\footnote{\label{schedmd_qstart}\tiny \url{http://slurm.schedmd.com/quickstart.html}}
 \end{block}
 \begin{itemize}
 	\item The {\craycs} currently has seven public partitions:~\\\textbf{community.q}, \textbf{exclusive.q}, \textbf{lm.q}, \textbf{gpu.q}, \textbf{sb.q}, \textbf{kill.q}, \textbf{htc.q}
 	\item Jobs submitted to kill.q and htc.q can be preempted by jobs in other partitions
 \end{itemize}
-\footnotetext[2]{\tiny \url{http://slurm.schedmd.com/quickstart.html}}
 \end{frame}
 
 \begin{frame}
@@ -581,20 +581,20 @@ Partition details also available on the \href{http://www.hawaii.edu/its/ci/hpc-r
 \subsection{Interactive Job -- srun}
 \frametitle{SLURM Job Scripts}
 \begin{frame}
-\frametitle{Interactive Job with SLURM}
-	\begin{block}{Interactive session}\tiny
-	$[$login \ctilde$]$\$ srun \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 1 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00:00 \ddash{}pty /bin/bash
-          ~\\
-          ~\\
-          \hrule
-          ~\\
-	$[$login \ctilde$]$\$ srun -I -p sb.q -N 1 -c 1 -n 1 -t 0-01:00:00 \ddash{}pty /bin/bash
+  \frametitle{Interactive Job with SLURM}
+  \begin{block}{Interactive session}\tiny
+    $[$login \ctilde$]$\$ srun \ddash{}immediate \ddash{}partition sb.q \ddash{}nodes 1 \ddash{}cpus-per-task 1 \ddash{}tasks-per-node 1 \ddash{}time 0-01:00:00 \ddash{}pty /bin/bash
+    ~\\
+    ~\\
+    ~\\
+    \hrule\begin{semiverbatim}$[$login \ctilde$]$\$ srun -I -p sb.q -N 1 -c 1 -n 1 -t 0-01:00:00 \ddash{}pty /bin/bash\end{semiverbatim}
 
-	\end{block}
-\btVFill
-\begin{center}Interactive sessions terminate when the specified time has elapsed~\\or if you give the \textbf{exit} command \end{center}
+  \end{block}
+  \btVFill
+  \begin{center}Interactive sessions terminate when the specified time has elapsed~\\or if you give the \textbf{exit} command \end{center}
 
-\end{frame}
+  \end{frame}
+
 
 
 \subsection{GPU Batch Job Example Script}

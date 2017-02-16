@@ -31,42 +31,35 @@
 
 \subsubsection{Hardware}
 \begin{frame}
-	\frametitle{{\craycs} -- Compute Nodes}
-	\begin{itemize}
-        \item All nodes are diskless with some RAM used for the Operating System
-	\item 178 Standard nodes {\tiny(\emph{community})}
-	  \begin{itemize}
-            {\footnotesize
-	    \item Two 10 core {\intel} Ivy-Bridge processors (\emph{20 cores total})
-	    \item 128GB of physical RAM with $\approx118$GB of useable RAM
-            }
-	  \end{itemize}          
-	\item 6 Large memory nodes {\tiny(\emph{community})}
-	  \begin{itemize}
-            {\footnotesize
-	    \item Four 10 core {\intel}  Ivy-Bridge processors (\emph{40 cores total})
-	    \item 1TB of physical RAM with $\approx1000$GB of useable RAM
-            }
-	  \end{itemize}			
-        \item 1 GPU node {\tiny(\emph{community})}
-          \begin{itemize}
-            {\footnotesize
-	    \item Two 10 core {\intel} Haswell processors (\emph{20 cores total})
-	    \item 128GB of physical RAM with $\approx118$GB of useable RAM
-            \item 2 Nvidia Tesla K40 GPUs
-            }
-	  \end{itemize}
-        \item 96 Owner nodes
-          \begin{itemize}
-            {\footnotesize
-            \item 33 nodes have two 10 core {\intel} Haswell processors with 256 GB of RAM
-            \item 62 nodes have two 12 core {\intel} Haswell processors with 128 GB of RAM
-            \item 1 GPU node
-            }
-          \end{itemize}
-	\item CentOS Linux
-	\end{itemize}
-\end{frame}
+  \frametitle{{\craycs} -- Compute Nodes}
+  \begin{table}
+    \centering
+    \resizebox{\textwidth}{!}{%
+      \begin{tabular}{|l|l|l|l|l|l|l|l|}
+        \multicolumn{8}{c}{ {\large {\textbf{ Community Nodes\footnote{\label{node_note}\tiny Nodes are diskless and run CentOS linux}} } } }\\ \hline
+        \textbf{Type} & \textbf{Cores} & \textbf{Ivy-Bridge} & \textbf{Haswell} & \textbf{Broadwell} &
+        \textbf{128 GB}\footnote{\label{mem_limit}\tiny Usable RAM: $\approx118$ GB of 128 GB, $\approx246$ GB of 256 GB, $\approx1003$ GB of 1 TB} & \textbf{256 GB}\textsuperscript{\ref{mem_limit}}  & \textbf{1 TB}\textsuperscript{\ref{mem_limit}}  \\ \hline
+        Standard & 20 & 178 &  &  & 178 &  &  \\ \hline
+        Large & 40 & 6 &  &  &  &  & 6 \\ \hline
+        GPU\footnote{\label{gpu_v1}\tiny 2 x Nvidia Tesla K40} & 20 &  & 1 &  & 1 &  & \\ \hline
+      \end{tabular}%
+    }
+  \end{table}
+
+  \begin{table}
+    \centering
+    \resizebox{\textwidth}{!}{%
+      \begin{tabular}{|l|l|l|l|l|l|l|l|}
+        \multicolumn{8}{c}{ {\large {\textbf{ Condo Nodes}\textsuperscript{\ref{node_note}} } }} \\ \hline
+        \textbf{Type} & \textbf{Cores} & \textbf{Ivy-Bridge} & \textbf{Haswell} & \textbf{Broadwell} & \textbf{128 GB}\textsuperscript{\ref{mem_limit}} & \textbf{256 GB}\textsuperscript{\ref{mem_limit}} & \textbf{1 TB}\textsuperscript{\ref{mem_limit}} \\ \hline
+        Standard & 24 & & 62 & & 62 & & \\ \hline
+        Standard & 20 & & & (5)\footnote{\label{future}\tiny April 2017 additions} & (5)\textsuperscript{\ref{future}} & & \\ \hline
+        Custom & 20 &  & 33 & (4)\textsuperscript{\ref{future}} &  & 33 & (4)\textsuperscript{\ref{future}} \\ \hline
+        GPU\textsuperscript{\ref{gpu_v1}}     & 20 &  & 1 &  & 1 &  &  \\ \hline
+      \end{tabular}%
+    }
+    \end{table}
+  \end{frame}
 
 
 \begin{frame}
