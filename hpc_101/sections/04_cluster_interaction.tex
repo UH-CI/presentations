@@ -286,41 +286,43 @@ Filesystem                                  Size  Used Avail Use% Mounted on
 	\begin{definition}\tiny
 	An \textbf{\emph{endpoint}} is one of the two file transfer locations -- either the source or the destination -- between which files can move.~\\Once a resource (such as a server, cluster, storage system, laptop, or other system) is defined as an endpoint, it will be available to authorized users who can transfer files to or from this endpoint.
 	\end{definition}
-\numlessfootnotetxt{\tiny \url{https://www.globus.org/file-transfer}}
-\end{frame}
+{\tiny Please visit the {\ci} Globus quick start guide for instructions on how to use Globus:~\href{http://go.hawaii.edu/jMW}{http://go.hawaii.edu/jMW}}
 
-\begin{frame}
-	\frametitle{Globus}\footnotesize
-\begin{block}{How do I get Globus?}
-To utilize Globus, follow the following steps:
-\begin{itemize}\tiny
-\item Register for a Globus Online account -- \url{https://www.globusonline.org/signup}
-\item Sign in to Globus Online (using your Globus Online username and password) -- \url{https://www.globusonline.org/signin}
-\item Select ‘Start Transfer’ under ‘File Transfer’, or from the drop down menu in the top bar
-\item You can view the list of available endpoints by clicking the button on the ‘Endpoint’ drop down box
-\begin{itemize}\tiny
- \item Each of the login nodes is also an endpoint: \textbf{\emph{UH-HPC1}} \& \textbf{\emph{UH-HPC2}}
-\end{itemize}
-\item Once you select an endpoint, a login window will pop up. You can access the UHHPC endpoints by simply using your UH username and password. Enter your UH accounts username in the ‘Username’ field and UH accounts password in the ‘Password’ field and click ‘Authenticate’. 
-\item You will see a listing of the contents of your home directory on the UH HPC. Double click on a directory to view its contents
-\item Select a file or directory and click on the highlighted ‘arrow button’ to initiate the transfer
-\end{itemize}
-\end{block}
-~\\
-These instructions can also be found on the {\ci} website:~\\
-{\footnotesize \href{http://www.hawaii.edu/its/ci/hpc-resources/hpc-tutorials/globus-quick-start-guide/}{http://www.hawaii.edu/its/ci/hpc-resources/hpc-tutorials/globus-quick-start-guide/}}
+        \numlessfootnotetxt{\tiny \url{https://www.globus.org/file-transfer}}
 \end{frame}
 
 
-\begin{frame}
-	\frametitle{Globus}
-        \begin{itemize}
-          \item In order to transfer data from the {\craycs} to your personal computer, a client called the Globus Connect Personal (\url{https://www.globus.org/globus-connect-personal}) needs to be installed
-          \item The Globus Connect Personal, turns your personal computer into a private endpoint that is only useable with your personal Globus Online account.
-          \item If you want to install Globus on your own server, Globus Connect (\url{https://www.globus.org/globus-connect-server}) is required
-            \item If issues arise while trying to install Globus Connect or Globus Connect Personal,  please contact us and we will be more than happy to help
-\end{itemize} 
-\end{frame}
+
+%% \begin{frame}
+%% 	\frametitle{Globus}\footnotesize
+%% \begin{block}{How do I get Globus?}
+%% To utilize Globus, follow the following steps:
+%% \begin{itemize}\tiny
+%% \item Register for a Globus Online account -- \url{https://www.globusonline.org/signup}
+%% \item Sign in to Globus Online (using your Globus Online username and password) -- \url{https://www.globusonline.org/signin}
+%% \item Select ‘Start Transfer’ under ‘File Transfer’, or from the drop down menu in the top bar
+%% \item You can view the list of available endpoints by clicking the button on the ‘Endpoint’ drop down box
+%% \begin{itemize}\tiny
+%%  \item Each of the login nodes is also an endpoint: \textbf{\emph{UH-HPC1}} \& \textbf{\emph{UH-HPC2}}
+%% \end{itemize}
+%% \item Once you select an endpoint, a login window will pop up. You can access the UHHPC endpoints by simply using your UH username and password. Enter your UH accounts username in the ‘Username’ field and UH accounts password in the ‘Password’ field and click ‘Authenticate’. 
+%% \item You will see a listing of the contents of your home directory on the UH HPC. Double click on a directory to view its contents
+%% \item Select a file or directory and click on the highlighted ‘arrow button’ to initiate the transfer
+%% \end{itemize}
+%% \end{block}
+%% ~\\
+%% \end{frame}
+
+
+%% \begin{frame}
+%% 	\frametitle{Globus}
+%%         \begin{itemize}
+%%           \item In order to transfer data from the {\craycs} to your personal computer, a client called the Globus Connect Personal (\url{https://www.globus.org/globus-connect-personal}) needs to be installed
+%%           \item The Globus Connect Personal, turns your personal computer into a private endpoint that is only useable with your personal Globus Online account.
+%%           \item If you want to install Globus on your own server, Globus Connect (\url{https://www.globus.org/globus-connect-server}) is required
+%%             \item If issues arise while trying to install Globus Connect or Globus Connect Personal,  please contact us and we will be more than happy to help
+%% \end{itemize} 
+%% \end{frame}
 
 \begin{frame}
 	\frametitle{Overview -- Cluster Interaction}
@@ -558,7 +560,7 @@ exclusive.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:
 gpu.q & \begin{tabular}{l r} \textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} & \begin{tabular}{c c} \textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} & \padfrom{\ \ \ }{1}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
 \hline
 \hline
-kill.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{12}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
+kill.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{20}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
 \hline
 \hline
 htc.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{1}\end{tabular} & 1 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
