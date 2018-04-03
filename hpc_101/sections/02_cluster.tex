@@ -1,43 +1,29 @@
 \section{University of Hawai'i Cluster}
 
-\subsection{{\craycs}}
-\begin{frame}
-\frametitle{{\craycs} -- History}
-\begin{itemize}
-\item[] 2014
-  \begin{itemize}
-  \item Jul. -- University of {\hawaii} (UH) selects Cray's proposal
-  \item Oct. -- Delivered 184 nodes, 3,800 cores
-  \item Dec. -- Passed testing and accepted
-  \end{itemize}
-
-\item[] 2015
-  \begin{itemize}
-  \item Jan. -- Early adopter testing started (8 users)
-  \item Apr. -- Opened for general use
-  \end{itemize}
-\item[] 2016
-  \begin{itemize}
-  \item Mar. -- 92 nodes added, 5,876 cores total
-  \end{itemize}
-\item[] 2017
-  \begin{itemize}
-  \item Jan. -- 5 nodes added, 5,992 cores total
-  \item May -- 5 nodes added, 6,092 cores total
-  \item Jun. -- 452$+$ users have been granted access to the cluster
-  \end{itemize}
-\end{itemize}
-\end{frame}
+%% \subsection{{\craycs}}
+%% \begin{frame}
+%% \frametitle{{\craycs} -- History}
+%% \begin{itemize}
+%% \item[] 2014 -- Accepted delivery of 184 nodes, 3,800 cores  
+%% \item[] 2015 -- Opened for general use
+%% \item[] 2016 -- 92 nodes added, 5,876 cores
+%% \item[] 2017 -- 14 nodes added, 6,172 cores 
+%% %\item[] 2018
+%% %  \begin{itemize}
+%% %  \item Apr. -- 549$+$ users have been granted access to the cluster
+%% %  \end{itemize}
+%% \end{itemize}
+%% \end{frame}
 
 
 \subsubsection{Hardware}
 \begin{frame}
-  \frametitle{{\craycs} -- Compute Nodes}
+  \frametitle{{\craycs}}% -- Compute Nodes}
   \begin{table}
     \centering
     \resizebox{\textwidth}{!}{%
       \begin{tabular}{|l|l|l|l|l|l|l|l|}
-        \multicolumn{8}{c}{ {\large {\textbf{ Community Nodes\footnote{\label{node_note}\tiny Nodes are diskless and run CentOS linux}} } } }\\ \hline
+        \multicolumn{8}{c}{ {\large {\textbf{ Community Nodes\footnote{\label{node_note}\tiny Nodes are diskless and run CentOS linux}} } } } \\ \hline
         \textbf{Type} & \textbf{Cores} & \textbf{Ivy-Bridge} & \textbf{Haswell} & \textbf{Broadwell} &
         \textbf{128 GB}\footnote{\label{mem_limit}\tiny Usable RAM: $\approx118$ GB of 128 GB, $\approx246$ GB of 256 GB, $\approx1003$ GB of 1 TB} & \textbf{256 GB}\textsuperscript{\ref{mem_limit}}  & \textbf{1 TB}\textsuperscript{\ref{mem_limit}}  \\ \hline
         Standard & 20 & 178 &  &  & 178 &  &  \\ \hline
@@ -77,7 +63,7 @@
                   \begin{itemize}
                   \item Network attached scale out storage
                   \item Only available from the login nodes
-                  \item Available as a for fee service
+                  \item Available as a for fee service (\href{http://www.hawaii.edu/its/value-storage-pricing/}{Pricing})
                   \end{itemize}
 	\end{enumerate}
 \end{frame}
@@ -90,39 +76,39 @@
 
 		\item Primarily used as scratch space for jobs (Input and Output)
 		\item User do not have a usage quota (soft or hard)
-		\item Certain directories are subject to a 90 day purge policy
+		\item User scratch directories are subject to a 30 day purge policy (Begins May 2nd)
 		\item \textbf{Data is not backed up!  Users are responsible for their own data}
                 \item {\lustre} utilizes RAID 6 arrays, and is fairly robust but \ldots~\\RAID is not a backup
 	\end{itemize}
 \end{frame}
 
 
-\begin{frame}
-	\frametitle{{\craycs} -- Storage $\rightarrow$ ValueStorage}
-        ~\\
-	\begin{itemize}
-		\item $500$TB of scale out storage
-		\item Purchased annually in 0.5TB increments 
-	\end{itemize}
-	\btVFill
+%% \begin{frame}
+%% 	\frametitle{{\craycs} -- Storage $\rightarrow$ ValueStorage}
+%%         ~\\
+%% 	\begin{itemize}
+%% 		\item $500$TB of scale out storage
+%% 		\item Purchased annually in 0.5TB increments 
+%% 	\end{itemize}
+%% 	\btVFill
 
-	\begin{center}
-	\textbf{ValueStorage Pricing}~\\ 
-		\resizebox{0.50\textwidth}{!}{%
-		\begin{tabular}{l r }
-			\toprule
-			\textbf{Product} & \textbf{Annual Cost}~~ \\
-	                \midrule
-			\midrule
-			0.5TB & \$65.00\\
-                        0.5TB + Replication  & \$130.00 \\
-			\bottomrule
-		\end{tabular}
-		}
-		~\\ \href{http://www.hawaii.edu/its/value-storage-pricing/}{More Information}
-		~\\	{\footnotesize \emph{All prices are subject to change}}
-	\end{center}
-\end{frame}
+%% 	\begin{center}
+%% 	\textbf{ValueStorage Pricing}~\\ 
+%% 		\resizebox{0.50\textwidth}{!}{%
+%% 		\begin{tabular}{l r }
+%% 			\toprule
+%% 			\textbf{Product} & \textbf{Annual Cost}~~ \\
+%% 	                \midrule
+%% 			\midrule
+%% 			0.5TB & \$65.00\\
+%%                         0.5TB + Replication  & \$130.00 \\
+%% 			\bottomrule
+%% 		\end{tabular}
+%% 		}
+%% 		~\\ \href{http://www.hawaii.edu/its/value-storage-pricing/}{More Information}
+%% 		~\\	{\footnotesize \emph{All prices are subject to change}}
+%% 	\end{center}
+%% \end{frame}
 
 
 \begin{frame}

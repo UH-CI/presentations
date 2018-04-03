@@ -49,10 +49,10 @@
 	\end{itemize}
 	\item[] ~\\
 	\item[] \begin{itemize}
-		\item The {\craycs} has two login nodes:
+		\item The {\craycs} has one active login node:
 		\begin{itemize}
 			\item uhhpc1.its.hawaii.edu
-			\item uhhpc2.its.hawaii.edu
+			%\item uhhpc2.its.hawaii.edu
 		\end{itemize}
 	\end{itemize}
 	\end{description}
@@ -71,7 +71,7 @@
 		\item Open the start menu, and type ``SSH'' and you should see a program called ``SSH Secure File Terminal Client''
 		\item Click ``Quick Connect'' and enter the following information:
 			\begin{itemize}
-			\item[] \textbf{Host Name:} uhhpc1.its.hawaii.edu --OR-- uhhpc2.its.hawaii.edu
+			\item[] \textbf{Host Name:} uhhpc1.its.hawaii.edu %--OR-- uhhpc2.its.hawaii.edu
 			\item[] \textbf{User Name:} Your UH User name e.g., user99
 			\item[] \textbf{Port:} 22
 			\end{itemize}
@@ -90,7 +90,7 @@
 		\item Enter one of the following:
 		\begin{itemize}
 			\item ssh $<$UH User name$>$@uhhpc1.its.hawaii.edu
-			\item ssh $<$UH User name$>$@uhhpc2.its.hawaii.edu
+%			\item ssh $<$UH User name$>$@uhhpc2.its.hawaii.edu
 			\item \textbf{Example:} ssh user99@uhhpc1.its.hawaii.edu
 		\end{itemize}
 		\item Enter your UH user password when prompted and press the return key
@@ -164,27 +164,21 @@
 total 0
 lrwxrwxrwx 1 user99 user99 23 Jan 15 20:38 \textcolor{teal}{apps} -> /lus/scratch/usr/user99
 lrwxrwxrwx 1 user99 user99 19 Jan 15 20:38 \textcolor{teal}{lus} -> /lus/scratch/user99
-lrwxrwxrwx 1 root   root   37 Jan 15 20:41 \colorbox{black}{\textcolor{red}{purge}} -> /lus/scratch/log/purge/current/user99
+
 \end{semiverbatim}
 \end{block}
-	\begin{itemize}\footnotesize
+% lrwxrwxrwx 1 root   root   37 Jan 15 20:41 \colorbox{black}{\textcolor{red}{purge}} -> /lus/scratch/log/purge/current/user99
+\begin{itemize}\footnotesize
 		\item \ctilde{}/ is not on the {\lustre} filesystem and \textbf{should not be used for job data!}
 		\item \ctilde{}/lus/ is a symlink to the {\lustre} scratch
 		\begin{itemize}\tiny
 			\item This is where all your job data files should live
-			\item Items in this directory \emph{\textbf{are}} subject to our 90 day purge policy
+			\item Items in this directory \emph{\textbf{are}} subject to our purge policy
 		\end{itemize}
 		\item \ctilde{}/apps/ is a symlink to where programs should be stored
 		\begin{itemize}\tiny
-			\item Items in this directory \emph{\textbf{are not}} subject to our 90 day purge policy
+			\item Items in this directory \emph{\textbf{are not}} subject to our purge policy
 			\item Directory is monitored for abuse
-		\end{itemize}
-		\item \ctilde{}/purge/ is typically a dead symlink
-		\begin{itemize}\tiny
-			\item Symlink becomes active if the user has files that are part of the next automatic purge
-			\item When \ctilde{}/purge/ is active, the directory containing two files -- \emph{purge\_list.txt} \& \emph{totals.txt}
-			\item An email is sent to users if they have files that will be purged
-			\item Email notification is sent out 14 days before the purge takes place
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -213,7 +207,7 @@ Filesystem                                  Size  Used Avail Use% Mounted on
 			\item \ctilde{}/apps/, \ctilde{}/lus/, and \ctilde{}/purge/ all point to directories on this filesystem
 			\item High performance and a lot more space for users to use
 			\item No hard or soft quotas are in place
-			\item Utilization is managed through the 90 day purge policy
+			\item Utilization is managed through the  purge policy
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -374,6 +368,7 @@ Filesystem                                  Size  Used Avail Use% Mounted on
 			\item `module avail' -- list installed modules
 			\item `module show $<$module name$>$' -- Show what actions a module performs
 			\item `module load $<$module name$>$' -- Loads the named module
+                        \item `module list -- Show what modules are loaded
 			\item `module purge' -- Unload all loaded modules
 		\end{itemize}
 		\item Installing software in your \ctilde{}/apps directory is suggested to prevent us from being a bottleneck
@@ -403,7 +398,7 @@ Filesystem                                  Size  Used Avail Use% Mounted on
 		\begin{itemize}
 			\item Interactive sessions are useful for compiling software
 			\item Sandbox nodes mirror the environment the compute nodes provide and are ideal for compilation
-			\item Login nodes \textbf{do not} load all the software and libraries found on the compute nodes
+			\item Login nodes \textbf{do not} mirror the compute node environment
 		\end{itemize}
 		\item {\intel} compilers are recommended for best performance
 		\begin{itemize}
@@ -531,7 +526,7 @@ SLURM has a series of commands, each of which allow users to interact with the j
 A partition can be thought of as a group of nodes/resources divided into possibly overlapping sets.  Each partition can be considered as a job queue, each of which has an assortment of constraints such as job size limit, job time limit, users permitted to use it, etc. Priority-ordered jobs are allocated nodes within a partition until the resources (nodes, processors, memory, etc.) within that partition are exhausted.\footnote{\label{schedmd_qstart}\tiny \url{http://slurm.schedmd.com/quickstart.html}}
 \end{block}
 \begin{itemize}
-	\item The {\craycs} currently has seven public partitions:~\\\textbf{community.q}, \textbf{exclusive.q}, \textbf{lm.q}, \textbf{gpu.q}, \textbf{sb.q}, \textbf{kill.q}, \textbf{htc.q}
+	\item The current public partitions on the {\craycs}:~\\\textbf{community.q}, \textbf{exclusive.q}, \textbf{lm.q}, \textbf{gpu.q}, \textbf{sb.q}, \textbf{kill.q}, \textbf{kill.gpu.q}, \textbf{htc.q}
 	\item Jobs submitted to kill.q and htc.q can be preempted by jobs in other partitions
 \end{itemize}
 \end{frame}
@@ -551,7 +546,7 @@ A partition can be thought of as a group of nodes/resources divided into possibl
 %\toprule                                                                    
 \midrule
 \midrule
-community.q & \begin{tabular}{l r} \textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} & \begin{tabular}{c c} \textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} & \padfrom{\ \ \ }{20}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
+community.q & \begin{tabular}{l r} \textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} & \begin{tabular}{c c} \textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} & \padfrom{\ \ \ }{1}\end{tabular} & 10 & NO & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
 \hline
 \hline
 exclusive.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:}& \padfrom{\ \ \ }{1}~\\ \textbf{Max:}&\padfrom{\ \ \ }{20}\end{tabular} & 10 & EXCLUSIVE & OFF & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
@@ -561,6 +556,9 @@ gpu.q & \begin{tabular}{l r} \textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3
 \hline
 \hline
 kill.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{20}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
+\hline
+\hline
+kill.gpu.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{1}\end{tabular} & 10 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
 \hline
 \hline
 htc.q & \begin{tabular}{l r}\textbf{Default:} & 0-00:10:00~\\ \textbf{Max:} & 3-00:00:00\end{tabular} &  \begin{tabular}{c  c}\textbf{Min:} & \padfrom{\ \ \ }{1}~\\ \textbf{Max:} &\padfrom{\ \ \ }{1}\end{tabular} & 1 & NO & REQUEUE & \begin{tabular}{l c}\textbf{Default:} & \padfrom{\ \ \ \ \ \ \ }{3250}~\\ \textbf{Max:} & \padfrom{\ \ \ \ \ \ \ \ }{$\infty$}\end{tabular}\\
