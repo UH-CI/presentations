@@ -38,12 +38,23 @@ The login nodes are a shared resource and are the only access to the cluster for
 \subsection{Lustre Filesystem Purge Policies}
 \begin{frame}
 \frametitle{{\lustre} Filesystem Purge Policies}
-Due to users not having any quotas on the {\lustre} filesystem, we need some policy in place which removes older files from the system.  To accomplish this, we have currently implemented a purge policy, for any file that is older than 30 days.
+Due to users not having any quotas on the {\lustre} filesystem, we need some policy in place which removes older files from the system.  To accomplish this, we have implemented a purge policy.
+
 \begin{itemize}
- \item What in \ctilde/lus/ is subject to the purge policy?
+\item What in \ctilde/lus/ is subject to the purge policy?
    \begin{itemize}
-   \item \textbf{Answer:} Everything but directories and files between 1 byte and 32 Kilobytes are subject to the purge policy.
+   \item \textbf{Answer:} Everything but directories.
    \end{itemize}
+\item When will my files be purged?
+  \begin{itemize}  
+    \item \textbf{Answer:} Files greater than or equal to 1 Megabytein size  or are empty (0 bytes) that are 35 days old
+    \item \textbf{Answer:} Files between 1 byte and 1 Megabyte in size that are 120 days old
+  \end{itemize}
+\item What is the age based on?
+   \begin{itemize}
+   \item \textbf{Answer:} Age of file is based on creation time
+   \end{itemize}
+  
 %\item How frequently are files for purged?
 %   \begin{itemize}
 %   \item \textbf{Answer:} Taking into account the fill rate of the {\lustre} filesystem, a purge is performend as usage approaches 80\%.
