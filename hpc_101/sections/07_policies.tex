@@ -54,7 +54,7 @@ Due to users not having any quotas on the {\lustre} filesystem, we need some pol
    \begin{itemize}
    \item \textbf{Answer:} Age of file is based on creation time
    \end{itemize}
-  
+   
 %\item How frequently are files for purged?
 %   \begin{itemize}
 %   \item \textbf{Answer:} Taking into account the fill rate of the {\lustre} filesystem, a purge is performend as usage approaches 80\%.
@@ -65,3 +65,38 @@ Due to users not having any quotas on the {\lustre} filesystem, we need some pol
 \footnotesize \textbf{\emph{Purge policy is subject to change~\\Users will be notified via email prior to changes taking effect}}
 \end{center}
 \end{frame}
+
+
+
+\begin{frame}
+  \frametitle{How to check file age for purge}
+  A tool is available on the cluster called age\_check.  This tool will list all files that are older than the defined date you set.
+\begin{semiverbatim}\tiny \texttt
+  $[$root@login-0001 \ctilde$]$\$ age\_check -h
+  
+  Usage:
+  age\_check [-s] [-z] [-d] [-f] [-a <age cutoff>] [-p <path]
+
+
+  Options:
+
+  -s -- Sort output
+  
+  -d -- display creation date per file
+  
+  -z -- display size in bytes per file
+  
+  -f -- Do not exclude files between 1 byte and 1 MB
+  
+  -a age -- Lists files that were created at least age days ago (default is 20 days)
+  
+  -p path -- Directory to check in (default is /lus/scratch/root)
+
+  
+  Example:
+  age\_check -a 30  
+
+\end{semiverbatim}
+
+\end{frame}
+   
