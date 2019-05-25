@@ -1,0 +1,250 @@
+\part{Introduction}
+\begin{frame}
+			 \partpage
+\end{frame}
+
+\section[Terminology]{Terminology}
+
+\begin{frame}
+	\frametitle{Terminology}
+	\begin{itemize}
+	\item \textbf{Node} -- Another name for a server or computer
+        \item \textbf{Login node} -- A specialized node that users connect to in order to submit work to a computer cluster
+        \item \textbf{Computer cluster} -- A set of loosely or tightly connected nodes that work together so that, in many respects, they can be viewed as a single system\footnote{\label{wiki_ccluster}\tiny\url{https://en.wikipedia.org/wiki/Computer_cluster}}
+        \item \textbf{Data transfer node (DTN)} -- Specialized nodes that minimize the impedance on the network to access the full capability of the network
+	\item \textbf{Science DMZ (SciDMZ)} --  A portion of the network configured with equipment and security policies in order to optimize for high-performance scientific applications rather than for general-purpose business systems or “enterprise” computing 
+	\item \textbf{Multi-factor Authentication (MFA)} -- An authentication method in which a computer user is granted access only after successfully presenting two or more pieces of evidence or factors to an authentication mechanism, e.g., DUO
+
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Terminology}
+	\begin{itemize}
+	\item \textbf{Symbolic Link (symlink)} -- A file that contains a reference to another file or directory
+	\item \textbf{Command-line interface (CLI)} -- A text-based user interface used to view and manage computer files 
+	\item \textbf{Message Passing Interface (MPI)} -- A standard that is used by programs to pass messages between nodes
+	\item \textbf{High Performance Compute (HPC)} -- A computing paradigm in which applications are typically a tightly coupled parallel job that benefit from a low-latency interconnect
+	\item \textbf{High Throughput Compute (HTC)} -- A computing paradigm that focuses on the efficient execution of a large number of loosely-coupled tasks
+%	      \item Pleasantly Parallel -- Processes are independent and no communication is necessary 
+	\end{itemize}
+\end{frame}
+
+
+\section[University of Hawai'i High Performance Compute Cluster]{University of Hawai'i High Performance Compute Cluster}
+\begin{frame}
+    \frametitle{University of {\hawaii} High Performance Compute Cluster}
+    \begin{itemize}
+    \item The University~of~{\hawaii} High Performance Compute Cluster~({\uhhpc}) is \textbf{free} to use for all active faculty, staff, and students affiliated with the University of {\hawaii}
+    \item Community acquired nodes are equally accessible to all users
+    \item Nodes purchased through the {\textbf{condo program}} are shared with the community, but priority is given to the node owner and their agents
+		\item Nodes may be {\textbf{leased}} from the community pool
+		\item Additional permanent storage can be leased with up to a five year contract by faculty \& staff
+    \end{itemize}
+		\begin{block}{UH-HPC Resource Summary}
+  \begin{table}
+    \centering
+    \resizebox{\textwidth}{!}{%
+      \begin{tabular}{l||l||l||l||l||l||l||l}
+      %  \multicolumn{8}{c}{ {\large {\textbf{UH-HPC Resource Summary} } } } \\ 
+			\toprule                                                                    
+
+              {}               & \thead{\textbf{Nodes}} & \thead{\textbf{CPU Cores}} & \thead{\textbf{Memory}} & \thead{\textbf{GPUs}} & \thead{\textbf{Home/Group Space}} & \thead{\textbf{Scratch Space}} & Storage for lease \\ 
+							\midrule  \midrule %\hline
+        \thead{\textbf{Total}} & 297                    & 6,308                      & 50 TB                   &  56                   & 80 TB                             &  700 TB                        & 1 PB              \\ %\hline
+				\bottomrule
+      \end{tabular}%
+    }
+  \end{table}
+	\end{block}
+\end{frame}
+
+\subsection{Condo Program \& Leasing}
+\begin{frame}
+  \frametitle{What is the Condo Program \& leasing?}
+	\begin{block}{Condo Program}\scriptsize
+		\begin{itemize}
+		\item The condo program allows faculty \& staff to purchase nodes and have them integrated with the UH-HPC
+		\item Condo nodes can take advantage of networking and storage infrastructure that one may not typically have access to
+		\item Condo nodes are managed and maintained by ITS staff
+		\item No maintenance fee will be assessed until the node is off warranty (typically five years)
+		\end{itemize}
+	\end{block}
+	\begin{block}{Leasing}\scriptsize
+		\begin{itemize}
+		\item Nodes leased from the community can have a contracts period from one month, up to one year
+		\item Node lessees are provided priority access to their leased hardware
+		\item Leases are not considered an equipment purchase
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Storage}
+\begin{frame}
+  \frametitle{Storage}
+  The UH-HPC has two classes and three types of storage that users can potentially access.\\Each type of storage has their own attributes and restrictions
+	\begin{columns}
+		\begin{column}{0.46\textwidth}
+		\begin{block}{Free Storage}
+			\begin{enumerate}
+			\item Permanent Storage
+				\begin{itemize}
+				\item Home Storage
+				\item Group/Lab Storage
+				\end{itemize}
+			\item Scratch Storage
+				\begin{itemize}
+				\item {\lustre (Aug 2019)}
+				\item Network File System (NFS)
+				\end{itemize}
+		\end{enumerate}
+		\end{block}
+		\end{column}
+		\begin{column}{0.46\textwidth}
+		\begin{block}{For Fee Storage}
+			\begin{enumerate}
+				\item ValueStorage
+				\item Long Term Storage (LTS)
+		\end{enumerate}
+		\end{block}
+		\end{column}
+	\end{columns}      
+\end{frame}
+
+\begin{frame}
+  \frametitle{Permanent Storage}
+  \begin{enumerate}
+  \item Home Storage
+    \begin{itemize}
+    \item {\textbf{Purpose}}: Personal storage for applications and active data that needs to persist on the UH-HPC
+    \end{itemize}
+  \item Group/Lab Storage
+    \begin{itemize}
+    \item {\textbf{Purpose}}: Group/Lab storage allows users to share data \& applications with a need for persistence on the UH-HPC
+    \end{itemize}
+  \end{enumerate}
+~\\
+  All permanent storage options on the UH-HPC have the following attributes:
+  \begin{itemize}
+  \item 50 GB default quota with a max quota of 300 GB
+  \item Quota increases are re-evaluated annually
+  \item Available on all nodes
+  \item Freely available to users
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Scratch Storage}
+  \begin{enumerate}
+    \item {\lustre (Aug 2019)}
+      \begin{itemize}
+      \item High performance parallel file system 
+      \item 50 TB quota
+      \end{itemize}
+    \item NFS
+      \begin{itemize}
+      \item Not a parallel file system
+      \item Potentially better performance for random I/O patterns
+      \item 5 TB quota
+      \end{itemize}
+  \end{enumerate}
+~\\
+  All scratch file systems on the UH-HPC have the following attributes:
+  \begin{itemize}
+  \item \textbf{Purge policy} -- 10 days based on file modify time
+  \item Available on all nodes
+  \item Freely available to users
+  \end{itemize}
+
+\end{frame}
+
+
+
+%\begin{frame}
+  %\frametitle{For Fee Storage}
+  %\begin{enumerate}
+    %\item ValueStorage
+      %\begin{itemize}
+      %\item Enterprise class equipment 
+      %\item 10 Gbit connected to the UH-HPC
+      %\item Currently only accessible on the DTNs and login nodes
+      %\end{itemize}
+    %\item LTS  
+      %\begin{itemize}
+      %\item Cheap-n-Deep
+      %\item 100 Gbit connected to the UH-HPC
+      %\item Accessible on all nodes
+      %\end{itemize}
+  %\end{enumerate}
+%\end{frame}
+
+
+
+\subsection{Networking}
+\begin{frame}
+  \frametitle{Networking}
+	\begin{columns}
+	\begin{column}{0.46\textwidth}
+		\begin{block}{Internal Networks}
+		\begin{itemize}
+			\item Quad Data Rate (QDR)\\InfiniBand{\regtrademark} (IB)   
+				\begin{itemize}
+					\item 40 Gbit
+					\item Older compute nodes
+					\item low latency ($\approx1.3\mu$s)
+					\item non-blocking
+				\end{itemize}
+				~\\
+			\item 25/100 Gbit Ethernet
+				\begin{itemize}
+					\item Newer compute nodes
+					\item Nodes connected @ 25~Gbit
+					\item non-blocking
+				\end{itemize}
+	        \end{itemize}
+                \end{block}
+	\end{column}
+	\begin{column}{0.46\textwidth}
+		\begin{block}{External Networks}
+		\begin{itemize}
+			\item 100 Gbit SciDMZ
+				\begin{itemize}
+					\item Login \& compute nodes\\connected via a firewall
+					\item DTNs are directly connected
+				\end{itemize}
+		\end{itemize}
+                \end{block}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+
+
+\subsection{User Support}
+\begin{frame}
+  \frametitle{User Support}
+
+  \begin{block}{Online docuements \& FAQ}
+    Users are encouraged to look through the online documentation \& FAQ prior to contacting ITS-CI directly.  Many questions we receive are repeated questions and we try to capture them in our FAQ~\\
+    \href{https://www.hawaii.edu/its/ci/xcat/}{xCAT cluster information, policies \& FAQ}
+  \end{block}
+  \begin{block}{Contact Information}
+    If your questions is not answered in our online documentation, please contact us at: UH-HPC-Help@lists.hawaii.edu
+    
+    \begin{itemize}
+    \item For batch jobs \ldots
+      \begin{itemize}
+      \item[--] Job ID, path to submission script, submission command, error file location, output files
+      \end{itemize} 
+    \item For other problems \ldots
+      \begin{itemize}
+      \item[--] State the problem, command issued, host, directory, remote host, error messages
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+

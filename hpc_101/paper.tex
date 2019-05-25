@@ -32,7 +32,7 @@
 %https://www.sharelatex.com/blog/2013/08/16/beamer-series-pt3.html
 
 %\documentclass[t]{beamer}
-\documentclass[t,hyperref={pdfpagelabels=false}]{beamer}
+\documentclass[t,hyperref={pdfpagelabels=false},9pt]{beamer}
 
 
 \usepackage[T1]{fontenc}
@@ -49,6 +49,7 @@
 \usepackage{makecell}
 \usepackage{xstring}
 \usepackage{color}
+\usepackage{makecell}
 \mode<presentation> {
 
 % The Beamer class comes with a number of default slide themes
@@ -110,6 +111,16 @@
 
 \setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
 }
+%\setbeamerfont{section in toc}{size=\small}
+%\setbeamerfont{subsection in toc}{size=\footnotesize}
+
+%\setbeamerfont{section in toc}{size=fontsize}
+
+%\setbeamerfont{subsection in toc}{size=fontsize}
+
+%\setbeamerfont{subsubsection in toc}{size=fontsize}
+
+
 
 \let\Tiny=\tiny
 \definecolor{links}{HTML}{2A1B81}
@@ -147,19 +158,41 @@ leftmargin\romannumeral\@ld \endcsname
 \newcommand{\intel}{Intel{\regtrademark}}
 \newcommand{\cray}{Cray{\regtrademark}}
 
-\newcommand{\craycs}{Cray~CS300}
+\newcommand{\uhhpc}{UH-HPC}
 
 \newcommand{\ci}{Cyberinfrastructure}
 \newcommand{\citeam}{CI--Team}
 
 \newcommand\padfrom[2]{\StrLen{#2}[\templen]\StrGobbleLeft{#1}{\templen}#2}
 
+%%
+%\setbeamertemplate{part page}{
+%\begin{beamercolorbox}[sep=8pt,center,wd=\textwidth]{part title}
+%\usebeamerfont{part title}\insertpart\par
+%\end{beamercolorbox}}
 
-\AtBeginSection[]
-{
-   \begin{frame}
-       \frametitle{Outline}
-       \tableofcontents[currentsection, hideallsubsections]
+%\newcommand{\OUTLINE}[1]{   \begin{frame}\frametitle{Outline}\tableofcontents[currentsection]\end{frame}
+%\newcommand{\OUTLINE}{
+	%\begin{frame}
+%%       \frametitle{Outline}
+       %\frametitle{{}}	
+			 %\partpage
+       %\tableofcontents[currentsection]
+       %%\tableofcontents[currentsection, hideallsubsections]
+   %\end{frame}
+%}
+\makeatletter
+\AtBeginPart{
+  \beamer@tocsectionnumber=0\relax
+  \setcounter{section}{0}
+}
+\makeatother
+
+\AtBeginSection[]{
+	\begin{frame}\
+       \frametitle{\insertpart~--~Overview}	
+       \tableofcontents[currentsection]
+       %\tableofcontents[currentsection, hideallsubsections]
    \end{frame}
 }
 
@@ -191,22 +224,29 @@ leftmargin\romannumeral\@ld \endcsname
 
 
 \begin{frame}
-\frametitle{Outline} % Table of contents slide, comment this block out to remove it
-\tableofcontents[hideallsubsections] % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+Part I -- Introduction:
+\tableofcontents[part=1,hideallsubsections]
+Part II -- Using the UH-HPC:
+\tableofcontents[part=2,hideallsubsections]
+Part III -- High Level View of Policies:
+\tableofcontents[part=3,hideallsubsections]
+
+\tableofcontents[] % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 \end{frame}
 
 
 
 \include{sections/01_intro}
-\include{sections/02_cluster}
-\include{sections/03_sustainability}
-\include{sections/04_cluster_interaction}
-\include{sections/05_reporting}
-\include{sections/06_ediquette}
-\include{sections/07_policies}
+\include{sections/02_interaction}
+\include{sections/03_policies}
+%\include{sections/04_cluster_interaction}
+%\include{sections/05_reporting}
+%\include{sections/06_ediquette}
+%\include{sections/07_policies}
 \include{sections/08_end}
 %\include{sections/09_related_services}
-\include{sections/10_faq}
+%\include{sections/10_faq}
 
 
 
