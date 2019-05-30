@@ -30,7 +30,7 @@ all: paper.pdf
 # missing file reference and interactively asking you for an alternative.
 
 paper.pdf: paper.tex
-	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make paper.tex
+	latexmk -f -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make paper.tex
 
 clean:
 	latexmk -CA
