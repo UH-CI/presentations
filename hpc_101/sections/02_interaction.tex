@@ -45,7 +45,7 @@
 		\end{itemize}
 	\end{block}
 	\begin{center}\scriptsize
-	\textbf{The UH-HPC uses the same credentials as you would use to access any other centrally managed service at UH,\\e.g., STAR, myUHportal, UH e-mail\\~\\Try and connect to the UH-HPC now}
+	\textbf{\large Try and connect to the UH-HPC Login node now using your SSH client}
 	\end{center}
 \end{frame}
 
@@ -73,7 +73,7 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 \end{block}
 \begin{itemize}
 		\item \ctilde{}/examples contains example scripts to use as templates
-		\item \ctilde{}/nfs\_02 is a symlink to the NFS scratch file system
+		\item \ctilde{}/nfs\_fs02 is a symlink to the NFS scratch file system
 \end{itemize}
 \end{frame}
 
@@ -89,12 +89,14 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 			\item `module avail' -- list installed modules
 			\item `module show $<$module name$>$' -- Show what actions a module performs
 			\item `module load $<$module name$>$' -- Loads the named module
-                        \item `module list -- Show what modules are loaded
+                        \item `module spider $<$search string$>$' -- search the modules list for a match
+                        \item `module list' -- Show what modules are loaded
 			\item `module purge' -- Unload all loaded modules
 		\end{itemize}
         \end{block}
 	\begin{itemize}\footnotesize
-		\item We create modules for frequently requested software packages for all users to access
+                \item Hidden modules can be shown using the \ddash{}show\_hidden flag, e.g., `module \ddash{}show\_hidden avail'
+	        \item We create modules for frequently requested software packages for all users to access
 		\item Compilers, libraries, interpreters, applications are all added as modules
 		\item Users are encouraged to install software in their home/group directories
 		\item Modules can be listed on the login nodes, but loaded applications will only work on the compute nodes
@@ -103,14 +105,34 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 \end{frame}
 
 \section[Job Scheduler]{Job Scheduler}
+
+\subsection{Terminology}
+\begin{frame}
+	\frametitle{Terminology}
+	\begin{itemize}
+          \item \textbf{Job Scheduler} -- A tool/application to control and prioritize the execution order of unrelated jobs 
+          \item \textbf{Job} -- Another name for a script or application that is to be executed
+          \item \textbf{Job ID} -- A number assigned to each job submitted to the job scheduler
+	  \item \textbf{CPU/Socket} -- A processing unit in the node which may contain one or more cores
+	  \item \textbf{Core} -- A processing element on a CPU  (Multi-threading)
+	  \item \textbf{Task} -- An instance of a running program or process (MPI)
+	  \item \textbf{Partition} -- A group of nodes divided into possibly overlapping sets, which also contains constraints for the given set of nodes
+            
+            %	  \btVFill
+            %    \begin{center}On the UH-HPC, you will primarily specify jobs using Cores, Tasks, and the partition.  CPU/Socket are an option is SLURM, but  Please navigate to \textbf{\ctilde/examples/slurm/non-mpi} and try to submit the example batch submission script.\end{center}
+	\end{itemize}
+\numlessfootnotetxt{\tiny \url{http://slurm.schedmd.com/quickstart.html}}
+\end{frame}
+
+
 \subsection{SLURM}
 \begin{frame}
-  \frametitle{SLURM}
-  The UH-HPC uses the \textbf{S}imple \textbf{L}inux \textbf{U}tility for \textbf{R}esource \textbf{M}anagement job~\\scheduler or simply known as the \emph{SLURM scheduler}
+  \frametitle{SLURM -- \textbf{S}imple \textbf{L}inux \textbf{U}tility for \textbf{R}esource \textbf{M}anagement }
+  The UH-HPC uses the SLURM job scheduler to allocate nodes and assign jobs to them
   
   \begin{block}{How it works}
     Jobs are not executed in a \textbf{first in first out} manner.  Instead, jobs are assigned a priority, which is continuously being re-evaluated for pending jobs.
-    Depending on load, some resources may go idle while waiting for sufficient free resources for a higher priority job.
+    \\~\\Depending on load, some resources may go idle while waiting for sufficient free resources for a higher priority job.
     In these cases, the scheduler will use what is known as \textbf{backfilling} to fill in the idle machines with jobs that will not affect the start time of higher priority jobs.
 	\end{block}
     
@@ -119,39 +141,31 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 	\numlessfootnotetxt{\tiny \url{http://slurm.schedmd.com/slurm.html}}
 \end{frame}
 
-\subsection{Terminology}
 
-\begin{frame}
-	\frametitle{Terminology}
-	\begin{itemize}
-	      \item \textbf{CPU/Socket} -- A processing unit in the node which may contain one or more cores
-	      \item \textbf{Core} -- A processing element on a CPU 
-	      \item \textbf{Task} -- An instance of a running program or process
-	      \item \textbf{Partition} -- A group of nodes divided into possibly overlapping sets, which also contains constraints for the given set of nodes
-             %	  \btVFill
-             %    \begin{center}On the UH-HPC, you will primarily specify jobs using Cores, Tasks, and the partition.  CPU/Socket are an option is SLURM, but  Please navigate to \textbf{\ctilde/examples/slurm/non-mpi} and try to submit the example batch submission script.\end{center}
-                
-	\end{itemize}
-\numlessfootnotetxt{\tiny \url{http://slurm.schedmd.com/quickstart.html}}
-\end{frame}
+
 
 \subsection{Commands}
 \begin{frame}
 \frametitle{Commands}
-\begin{itemize}
-	\item \emph{\textbf{srun}} --  Used to submit a job for execution or initiate job steps in real time
-	\item \emph{\textbf{sbatch}} -- Used to submit a job script for later execution. The script could contain one or more srun commands
-	\item \emph{\textbf{scancel}} -- Used to cancel a pending or running job or job step. It can also be used to send an arbitrary signal to all processes associated with a running job or job step
-	\item \emph{\textbf{squeue}} -- Reports the state of jobs or job steps
-	\item \emph{\textbf{sinfo}} -- Reports the state of partitions and nodes managed by Slurm. It has a wide variety of filtering, sorting, and formatting options
-	\item \emph{\textbf{sacct}} -- Used to report job or job step accounting information about active or completed jobs
-	\item \emph{\textbf{scontrol}} -- The administrative tool used to view and/or modify Slurm state. Note that many scontrol commands can only be executed as user root
-\end{itemize}
-\begin{itemize}\footnotesize
-	\item[--] Examples usage of the SLURM commands can be seen on schedmd's \href{http://slurm.schedmd.com/quickstart.html}{quickstart}
-	\item[--] Each command should have a `man' page, or displays help when the -h flag is used
-\end{itemize}
-\numlessfootnotetxt{\tiny \url{http://slurm.schedmd.com/quickstart.html}}
+  \begin{block}{Basic}
+    \begin{itemize}
+    \item \emph{\textbf{sbatch}} -- Used to submit a job script for later execution
+    \item \emph{\textbf{srun}} --  Used to submit a job for execution or initiate job steps in real time
+    \item \emph{\textbf{scancel}} -- Used to cancel a pending or running job or job step
+    \end{itemize}
+  \end{block}
+  \begin{block}{Informational}
+    \begin{itemize}
+    \item \emph{\textbf{squeue}} -- Reports the state of jobs or job steps
+    \item \emph{\textbf{sinfo}} -- Reports the state of partitions and nodes managed by Slurm
+    \item \emph{\textbf{sacct}} -- Reports job accounting information about active or completed jobs
+    \end{itemize}
+  \end{block}
+  
+  \begin{itemize}\footnotesize
+  \item[--] Examples usage of the SLURM commands can be seen on schedmd's \href{http://slurm.schedmd.com/quickstart.html}{quickstart}
+  \end{itemize}
+  \numlessfootnotetxt{\tiny \url{http://slurm.schedmd.com/quickstart.html}}
 \end{frame}
 
 %% \subsubsection{How jobs are scheduled}
@@ -171,53 +185,132 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 %% \end{itemize}
 %% \end{frame}
 
+\subsection {Submitting Jobs}
+\subsubsection{Interactive Jobs}
+\begin{frame}
+  \frametitle{Interactive jobs using srun}
+
+  \begin{block}{Command}\small
+		\begin{semiverbatim}$[$login \ctilde$]$\$ srun -I30 -p sandbox -N 1 -c 1 \ddash{}mem=6G -t 0-01:00:00 \ddash{}pty /bin/bash\end{semiverbatim}	
+  \end{block}
+  \begin{block}{Options}\small
+	\begin{itemize}
+	\item \textbf{-I30} -- exit if resources are not available within the time period specified (30 seconds)
+	\item \textbf{-p sandbox} -- Submit my interactive job to the sandbox partition
+	\item \textbf{-N 1} -- Number of nodes requested (If omitted, default is 1)
+	\item \textbf{-c 1} -- Number of cores per task requested (If omitted, default is 1)
+	\item \textbf{\ddash{}mem$=$6G} --Memory allocated per node (See partition details for defaults)
+	\item \textbf{-t 0-01:00:00} -- How much time you are requesting (DD-HH:MM:SS)
+	\item \textbf{\ddash{}pty} -- Execute initial task in pseudo terminal mode
+	\item \textbf{/bin/bash} -- Task to execute
+	\end{itemize}
+	\end{block}
+  \btVFill
+  \begin{center}\small Interactive jobs terminate when the specified time has elapsed or if you give the \textbf{exit} command.\\Interactive jobs are good for testing, compiling and relatively short jobs.\\Longer jobs should use a shell script and \textbf{sbatch}.\\ \end{center}
+  \end{frame}
+
+
+\subsubsection{Batch Jobs}
+\begin{frame}
+  \frametitle{Batch job using sbatch}
+  \begin{block}{Command}
+		\begin{semiverbatim}$[$login \ctilde$]$\$ sbatch <path to shell script>\end{semiverbatim}	
+  \end{block}
+  \begin{block}{Info}
+		\begin{itemize}
+		\item Where sbatch is executed, becomes the jobs working directory
+		\item Submission scripts are shell scripts that begin with special comments that are parameters for the scheduler
+		\item Parameters are evaluated with the command-line taking precedent over what the shell script contains
+                \item Jobs submitted with sbatch are assigned a job ID by SLURM
+		\end{itemize}
+	\end{block}
+	  \btVFill
+  \begin{center}Please navigate to \textbf{\ctilde/examples/slurm/non-mpi} and try to submit the example batch submission script uising sbatch.\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Example Batch Job Script}
+\begin{semiverbatim}\tiny
+[login001 nfs_fs02]\$ cat example.slurm
+
+\#!/bin/bash
+\# Comments (\#) and empty lines are fine between \#SBATCH
+\#SBATCH \ddash{}job-name=example
+\#SBATCH \ddash{}partition=sandbox
+\#SBATCH \ddash{}time=0-04:00:00 ## time format is DD-HH:MM:SS
+\# task-per-node x cpus-per-task should not exceed core count on an individual node 
+\#SBATCH \ddash{}nodes=1
+\#SBATCH \ddash{}tasks-per-node=1
+\#SBATCH \ddash{}cpus-per-task=20
+\#SBATCH \ddash{}cpu-specs=0 # Allow access to all cores on a node
+\#SBATCH \ddash{}mem=64G \# Memory per node my job requires
+\#SBATCH \ddash{}distribution="*:*:*" \# set the task and core distribution to the defaults
+\#SBATCH \ddash{}constraint=``x86''
+\#\#SBATCH \ddash{}constraint=``x86\&ib_qdr'' \# Used for MPI jobs that requires inter-node communication via IB
+\#\#SBATCH \ddash{}gres=gpu:NV-K40:2 \# commented out
+\#SBATCH \ddash{}error=example-\%A.err \# \%A - filled with jobid, where to write the stderr
+\#SBATCH \ddash{}output=example-\%A.out \# \%A - filled with jobid, wher to write the stdout
+\#\# Useful for remote notification
+\#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
+\#SBATCH \ddash{}mail-user=user@test.org
+\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
+\# =============== Start of commands to execute ===============
+\# source \ctilde/.bash_profile \# Not required unless you need something from your environment
+export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
+module load lang/R  \# load the default R software module
+Rscript hello.r
+\end{semiverbatim}
+\end{frame}
+
+
+
+
 \subsection{Partition Details}
 
 \begin{frame}
 \footnotesize
-\frametitle{Partition Details}
-\begin{block}{}
-\resizebox{0.99\textwidth}{!}{%
-\begin{tabular}{l || c || c || c || c || c || c || c}
+\frametitle{Partitions }
+\vspace{-10pt}
+\begin{block}{\small Details}
+\centering
+  \resizebox{0.95\textwidth}{!}{%
+\begin{tabular}{l || c || c || c || c || c || c }
 \toprule                                                                    
-\thead{\textbf{Partition}} & \thead{\textbf{Max walltime}} & \thead{\textbf{Jobs per User}\\\textbf{total(running)}} & \thead{\textbf{Max nodes}\\\textbf{per job}} & \thead{\textbf{Default}\\\textbf{memory per job}} & \thead{\textbf{A core reserved}\\\textbf{for OS}\footnote[1,frame]{\tiny Override with \ddash{}core-spec=0} } & \thead{\textbf{Shared}} & \thead{\textbf{Preemption}}  \\
+\thead{\textbf{Partition}} & \thead{\textbf{Max walltime}} & \thead{\textbf{Jobs - total(running)}} & \thead{\textbf{Max nodes per job}} & \thead{\textbf{Default memory}}& \thead{\textbf{Shared}} & \thead{\textbf{Preemption}}  \\
 %\toprule                                                                    
 %\toprule                                                                    
 \midrule
 \midrule
-sandbox & 0-04:00:00 & $\infty$ & 2 & 100 MB & YES & YES & NO \\
+sandbox & 0-04:00:00 & $\infty$ & 2 & 100 MB & YES & NO \\
 \hline
 \hline
-shared & 3-00:00:00 & $\infty$ & 1 & 100 MB & YES & YES & NO \\
+shared & 3-00:00:00 & $\infty$ & 1 & 100 MB & YES & NO \\
 \hline
 \hline
-shared-long & 7-00:00:00 & 5(2) & 1 & 100 MB & YES & YES & NO \\
+shared-long & 7-00:00:00 & 5(2) & 1 & 100 MB & YES & NO \\
 \hline
 \hline
-exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & YES & NO & NO \\
+exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & NO & NO \\
 \hline
 \hline
-exclusive-long & 7-00:00:00 & 5(2) & 20 & $\infty$ & YES & NO & NO \\
+exclusive-long & 7-00:00:00 & 5(2) & 20 & $\infty$ & NO & NO \\
 \hline
 \hline
-kill-shared & 3-00:00:00 & $\infty$ & 1 & 100 MB & YES & YES & YES \\
+kill-shared & 3-00:00:00 & $\infty$ & 1 & 100 MB & YES & YES \\
 \hline
 \hline
-kill-exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & YES & NO & YES \\
+kill-exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & NO & YES \\
 \bottomrule 
 \end{tabular}   
 }
 \end{block}
-\end{frame}
 
+\vspace{-5pt}
 
-\begin{frame}
-\frametitle{Partitions}
-\begin{block}{}\footnotesize
-Each partition on the UH-HPC is made of a set of heterogeneous nodes
-\end{block}
-\begin{block}{Partition Node Breakdown}
-\resizebox{0.99\textwidth}{!}{%
+\begin{block}{\small Node Breakdown}
+\centering
+  \resizebox{0.95\textwidth}{!}{%
 \begin{tabular}{l || c || c || c || c || c || c }
 \toprule  
 \thead{\textbf{Partition}} & \thead{\textbf{Intel x86}}  & \thead{\textbf{GPU}} & \thead{\textbf{IB}} & \thead{\textbf{Ethernet}} & \thead{\textbf{Min:Max Cores per node}} & \thead{\textbf{Min:Max Memory per node}} \\
@@ -250,22 +343,7 @@ kill-exclusive & 24 & 8 & 17 & 7 & 20:20 & 96:128 GB \\
 \end{block}
 \end{frame}
 
-\subsection{Reserved Resources, Constraints \& General Resources}
-
-\begin{frame}
-\frametitle{Reserved Resources}
-
-\begin{block}{Per Node Reserved Resources}\footnotesize
-On the UH-HPC, the scheduler by default withholds 1 core per node from use by users through a feature in SLURM known as \textbf{core specialization}.
-\end{block}
-\begin{definition}\footnotesize
-Core specialization is a feature designed to isolate system overhead (system interrupts, etc.) to designated cores on a compute node. This can reduce applications interrupts ranks to improve completion time. \footnote[1,frame]{\tiny \href{https://slurm.schedmd.com/core_spec.html}{https://slurm.schedmd.com/core\_spec.html}} \footnote[2,frame]{\tiny \href{https://slurm.schedmd.com/SUG14/process_isolation.pdf}{https://slurm.schedmd.com/SUG14/process\_isolation.pdf}}
-\end{definition}
-\begin{block}{Override}\footnotesize
-\textbf{{\ddash}core-spec=0}: In some cases, users may find through testing that using all the cores on a node show no degradation in performance.  The user is able to override the 1 core reservation and utilize all cores on a node.  Please note, that when this options is used, the node is placed into exclusive mode not allowing other jobs to be scheduled along side it.\\
-\begin{center}\textbf{\normalsize{Only use this option if you are allocating all cores on a node!}}\end{center}
-\end{block}
-\end{frame}
+\subsection{Constraints \& General Resources}
 
 \begin{frame}
 \frametitle{Constraints \&  General Resources}
@@ -305,79 +383,22 @@ gpu-[0009] & gpu:NV-RTX2070:8 \\
 \end{block}
 \end{frame}
 
-\subsection {Submitting Jobs}
-\subsubsection{Interactive Jobs}
+\subsection{Reserved Resources}
+
+
 \begin{frame}
-  \frametitle{Interactive jobs using srun}
+\frametitle{Reserved Resources}
 
-  \begin{block}{Command}\small
-		\begin{semiverbatim}$[$login \ctilde$]$\$ srun -I30 -p sandbox -N 1 -c 1 \ddash{}mem=6G -t 0-01:00:00 \ddash{}pty /bin/bash\end{semiverbatim}	
-  \end{block}
-  \begin{block}{Options}\small
-	\begin{itemize}
-	\item \textbf{-I30} -- exit if resources are not available within the time period specified (30 seconds)
-	\item \textbf{-p sandbox} -- Submit my interactive job to the sandbox partition
-	\item \textbf{-N 1} -- Number of nodes requested (If omitted, default is 1)
-	\item \textbf{-c 1} -- Number of cores per task requested (If omitted, default is 1)
-	\item \textbf{\ddash{}mem$=$6G} --Memory allocated per node (See partition details for defaults)
-	\item \textbf{-t 0-01:00:00} -- How much time you are requesting (DD-HH:MM:SS)
-	\item \textbf{\ddash{}pty} -- Execute initial task in pseudo terminal mode
-	\item \textbf{/bin/bash} -- Task to execute
-	\end{itemize}
-	\end{block}
-  \btVFill
-  \begin{center}\small Interactive jobs terminate when the specified time has elapsed or if you give the \textbf{exit} command.\\Interactive jobs are good for testing, compiling and relatively short jobs.\\Longer jobs should use a script and \textbf{sbatch}.\\ \end{center}
-  \end{frame}
-
-
-\subsubsection{Batch Jobs}
-\begin{frame}
-  \frametitle{Batch job using sbatch}
-  \begin{block}{Command}
-		\begin{semiverbatim}$[$login \ctilde$]$\$ sbatch <path to shell script>\end{semiverbatim}	
-  \end{block}
-  \begin{block}{Info}
-		\begin{itemize}
-		\item Where sbatch is executed, becomes the jobs working directory
-		\item Submission scripts are shell scripts that begin with special comments that are parameters for the scheduler
-		\item Parameters are evaluated with the command-line taking precedent over what the shell script contains
-		\end{itemize}
-	\end{block}
-	  \btVFill
-  \begin{center}Please navigate to \textbf{\ctilde/examples/slurm/non-mpi} and try to submit the example batch submission script.\end{center}
+\begin{block}{Per Node Reserved Resources}\footnotesize
+On the UH-HPC, the scheduler by default withholds 1 core per node from use by users through a feature in SLURM known as \textbf{core specialization}.
+\end{block}
+\begin{definition}\footnotesize
+Core specialization is a feature designed to isolate system overhead (system interrupts, etc.) to designated cores on a compute node. This can reduce applications interrupts ranks to improve completion time. \footnote[1,frame]{\tiny \href{https://slurm.schedmd.com/core_spec.html}{https://slurm.schedmd.com/core\_spec.html}} \footnote[2,frame]{\tiny \href{https://slurm.schedmd.com/SUG14/process_isolation.pdf}{https://slurm.schedmd.com/SUG14/process\_isolation.pdf}}
+\end{definition}
+\begin{block}{Override}\footnotesize
+\textbf{{\ddash}core-spec=0}: In some cases, users may find through testing that using all the cores on a node show no degradation in performance.  The user is able to override the 1 core reservation and utilize all cores on a node.  Please note, that when this options is used, the node is placed into \textbf{exclusive mode not allowing other jobs to be scheduled along side it}.\\
+\begin{center}\textbf{\normalsize{Only use this option if you are allocating all cores on a node!}}\end{center}
+\end{block}
 \end{frame}
 
 
-\begin{frame}[fragile]
-\frametitle{Example Batch Job Script}
-\begin{semiverbatim}\tiny
-[login001 nfs_fs02]\$ cat example.slurm
-
-\#!/bin/bash
-\# Comments (\#) and empty lines are fine between \#SBATCH
-\#SBATCH \ddash{}job-name=example
-\#SBATCH \ddash{}partition=sandbox
-\#SBATCH \ddash{}time=0-04:00:00 ## time format is DD-HH:MM:SS
-\# task-per-node x cpus-per-task should not exceed core count on an individual node 
-\#SBATCH \ddash{}nodes=1
-\#SBATCH \ddash{}tasks-per-node=1
-\#SBATCH \ddash{}cpus-per-task=20
-\#SBATCH \ddash{}cpu-specs=0 # Allow access to all cores on a node
-\#SBATCH \ddash{}mem=64G \# Memory per node my job requires
-\#SBATCH \ddash{}distribution="*:*:*" \# set the task and core distribution to the defaults
-\#SBATCH \ddash{}constraint=``x86''
-\#\#SBATCH \ddash{}constraint=``x86\&ib_qdr'' \# Used for MPI jobs that requires inter-node communication via IB
-\#\#SBATCH \ddash{}gres=gpu:NV-K40:2 \# commented out
-\#SBATCH \ddash{}error=example-\%A.err \# \%A - filled with jobid, where to write the stderr
-\#SBATCH \ddash{}output=example-\%A.out \# \%A - filled with jobid, wher to write the stdout
-\#\# Useful for remote notification
-\#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
-\#SBATCH \ddash{}mail-user=user@test.org
-\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
-\# =============== Start of commands to execute ===============
-\# source \ctilde/.bash_profile \# Not required unless you need something from your environment
-export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
-module load lang/R  \# load the default R software module
-Rscript hello.r
-\end{semiverbatim}
-\end{frame}
