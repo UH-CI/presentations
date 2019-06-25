@@ -65,7 +65,6 @@
 \item[] \texttt{sbatch \pth{slurm\_script}}\desc{Submit a slurm script to the scheduler for batch processing}
 \item[] \texttt{sbatch~--array=[\#-\#]~\pth{slurm\_script}}\desc{Submit a job array to the scheduler}
 \item[] \texttt{srun} \desc{Used in submitting an interactive job, or also  used within a slurm\_script}
-\item[] \texttt{srun.x11} \desc{Used in submitting an interactive job, that also forwards the X, if you logged in while enabling X forwarding}
 \item[] \texttt{squeue} \desc{Display all jobs running or waiting on the cluster}
 \item[] \texttt{squeue -u{\lft}user{\rht}} \desc{Only display jobs for the specified user}
 \item[]\texttt{sinfo} \desc{Display the partitions and nodes state}
@@ -105,15 +104,37 @@
 
 \subsection{Hosts}
 \begin{itemize}
-\item[] login-0001 -- \texttt{uhhpc1.its.hawaii.edu}
-%% \item[] login-0002 -- \texttt{uhhpc2.its.hawaii.edu}
+\item[] login node -- \texttt{uhhpc.its.hawaii.edu}
+\item[] dtn 1 node -- \texttt{hpc-dtn1.its.hawaii.edu}
+\item[] dtn 2 node -- \texttt{hpc-dtn2.its.hawaii.edu}
+
+  %% \item[] login-0002 -- \texttt{uhhpc2.its.hawaii.edu}
 \end{itemize}
 
 \subsection{Globus Endpoints}
 \begin{itemize}
-\item[] login-0001 -- \texttt{UH-HPC1}
+\item[] \texttt{UH-HPC}
 %% \item[] login-0002 -- \texttt{UH-HPC2}
 \end{itemize}
+
+
+\subsection{Downtime}
+The UH-HPC has a downtime scheduled for the first Wednesday of each month
+%% \item[] login-0002 -- \texttt{UH-HPC2}
+
+
+\subsection{Updated Example Scripts}
+Users may obtain updated example submission scripts from ``/mnt/config/examples/''
+
+
+%% \item[] login-0002 -- \texttt{UH-HPC2}
+
+\subsection{UH-HPC links}
+\begin{itemize}
+\item[]  \href{https://www.hawaii.edu/its/ci/xcat/}{General Information}
+\item[] \href{http://go.hawaii.edu/jdG}{FAQ}
+\end{itemize}
+
 
 
 \end{document}

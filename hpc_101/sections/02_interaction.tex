@@ -225,7 +225,7 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 		\end{itemize}
 	\end{block}
 	  \btVFill
-  \begin{center}Please navigate to \textbf{\ctilde/examples/slurm/non-mpi} and try to submit the example batch submission script uising sbatch.\end{center}
+  \begin{center}Please navigate to \textbf{\ctilde/examples/slurm/non\_mpi} and try to submit the example batch submission script (non\_mpi.slurm)  using sbatch.\end{center}
 \end{frame}
 
 
@@ -242,8 +242,8 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 \# task-per-node x cpus-per-task should not exceed core count on an individual node 
 \#SBATCH \ddash{}nodes=1
 \#SBATCH \ddash{}tasks-per-node=1
-\#SBATCH \ddash{}cpus-per-task=20
-\#SBATCH \ddash{}cpu-specs=0 # Allow access to all cores on a node
+\#SBATCH \ddash{}cpus-per-task=19
+\#\#SBATCH \ddash{}cpu-specs=0 # Allow access to all cores on a node
 \#SBATCH \ddash{}mem=64G \# Memory per node my job requires
 \#SBATCH \ddash{}distribution="*:*:*" \# set the task and core distribution to the defaults
 \#SBATCH \ddash{}constraint=``x86''
@@ -282,13 +282,13 @@ Rscript hello.r
 %\toprule                                                                    
 \midrule
 \midrule
-sandbox & 0-04:00:00 & $\infty$ & 2 & 100 MB & YES & NO \\
+sandbox & 0-04:00:00 & $\infty$ & 2 & 512 MB & YES & NO \\
 \hline
 \hline
-shared & 3-00:00:00 & $\infty$ & 1 & 100 MB & YES & NO \\
+shared & 3-00:00:00 & $\infty$ & 1 & 512 MB & YES & NO \\
 \hline
 \hline
-shared-long & 7-00:00:00 & 5(2) & 1 & 100 MB & YES & NO \\
+shared-long & 7-00:00:00 & 5(2) & 1 & 512 MB & YES & NO \\
 \hline
 \hline
 exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & NO & NO \\
@@ -297,7 +297,7 @@ exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & NO & NO \\
 exclusive-long & 7-00:00:00 & 5(2) & 20 & $\infty$ & NO & NO \\
 \hline
 \hline
-kill-shared & 3-00:00:00 & $\infty$ & 1 & 100 MB & YES & YES \\
+kill-shared & 3-00:00:00 & $\infty$ & 1 & 512 MB & YES & YES \\
 \hline
 \hline
 kill-exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & NO & YES \\
