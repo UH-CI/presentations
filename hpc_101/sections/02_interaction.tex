@@ -321,22 +321,22 @@ kill-exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & NO & YES \\
 sandbox & 4 & 0 & 4 & 0 & 20:20 & 128:128 GB \\
 \hline
 \hline
-shared & 116 & 1 & 116 & 0 & 20:40 & 128:1024 GB \\
+shared & 146 & 1 & 146 & 0 & 20:40 & 128:1024 GB \\
 \hline
 \hline
-shared-long & 116 & 1 & 116 & 0 & 20:40 & 128:1024 GB \\
+shared-long & 146 & 1 & 146 & 0 & 20:40 & 128:1024 GB \\
 \hline
 \hline
-exclusive & 116 & 1 & 116 & 0 & 20:40 & 128:1024 GB \\
+exclusive & 146 & 1 & 146 & 0 & 20:40 & 128:1024 GB \\
 \hline
 \hline
-exclusive-long & 116 & 1 & 116 & 0 & 20:40 & 128:1024 GB \\
+exclusive-long & 146 & 1 & 146 & 0 & 20:40 & 128:1024 GB \\
 \hline
 \hline
-kill & 24 & 8 & 17 & 7 & 20:20 & 96:128 GB \\
+kill & 146 & 9 & 138 & 9 & 20:40 & 96:512 GB \\
 \hline
 \hline
-kill-exclusive & 24 & 8 & 17 & 7 & 20:20 & 96:128 GB \\
+kill-exclusive & 146 & 9 & 138 & 9 & 20:40 & 96:512 GB \\
 \bottomrule 
 \end{tabular}   
 }
@@ -361,14 +361,20 @@ kill-exclusive & 24 & 8 & 17 & 7 & 20:20 & 96:128 GB \\
 \toprule                                                                    
 \thead{\large\textbf{Node range}} & \thead{\large\textbf{Constraint}} \\                                      
 \midrule \midrule
-lmem-[0001-0005], node-[0001-0067,0081-0143] & x86, intel, ivy-bridge, ib\_qdr \\
+lmem-[0001-0006], node-[0001-0178] & x86, intel, ivy-bridge, ib\_qdr \\
+\hline \hline
+lmem-[0007-0010], node-[0179-0263, 0269-0278] & x86, intel, haswell, ib\_qdr \\
+\hline \hline
+node-[0264-0268] & x86, intel, broadwell, ib\_qdr \\
 \hline \hline
 gpu-[0001-0002] & x86, intel, haswell, nvidia, tesla, kepler, ib\_qdr \\
 \hline \hline
 gpu-[0003-0009] & x86, intel, skylake, nvidia, turing, geforce, eth, eth\_25 \\
+\hline \hline
+gpu-[0010] & x86, intel, broadwell, nvidia, tesla, volta, eth, eth\_100, eth\_25 \\
 \bottomrule
 \toprule 
-\thead{\large\textbf{Node range}} & \thead{\large\textbf{Gres [type:desc:count]}} \\                                      
+\thead{\large\textbf{Node range}} & \thead{\large\textbf{Gres [type:description:count]}} \\                                      
 \midrule \midrule
 gpu-[0001-0002] & gpu:NV-K40:2 \\
 \hline \hline
@@ -377,6 +383,8 @@ gpu-[0003] & gpu:NV-RTX2080Ti:4 \\
 gpu-[0004-0008] & gpu:NV-RTX2080Ti:8 \\
 \hline \hline
 gpu-[0009] & gpu:NV-RTX2070:8 \\
+\hline \hline
+gpu-[0010] & gpu:NV-V100-SXM2:8 \\
 \bottomrule 
 \end{tabular}   
 }
