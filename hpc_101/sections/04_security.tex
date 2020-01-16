@@ -1,0 +1,334 @@
+\part{Data Governance \& Security}
+\begin{frame}
+			 \partpage
+\end{frame}
+
+\section[Data Governance]{Data Governance}
+
+\begin{frame}
+  \frametitle{What is data governance}
+  %        \begin{definition}\footnotesize
+  %          Data governance is a data management concept concerning the capability that enables an organization to ensure that high data quality exists throughout the complete lifecycle of the data. The key focus areas of data governance include availability, usability, consistency, data integrity and data security and includes establishing processes to ensure effective data management throughout the enterprise such as accountability for the adverse effects of poor data quality and ensuring that the data which an enterprise has can be used by the entire organization.
+  %        \footnote[1,frame]{\tiny \href{https://en.wikipedia.org/wiki/Data\_governance}{https://en.wikipedia.org/wiki/Data\_governance}}
+  %        \end{definition}
+  \begin{itemize}
+  \item Defines how data are collected, stored, and used
+  \item Defines who can access data, when, and under what conditions
+  \item Establishes decision rights
+  \item Establishes clear lines of accountability
+  \item Gives a voice to all appropriate parties
+  \item Provides a mechanism for conflict resolutions involving data
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Goals of data governance @ UH}  
+  \begin{itemize}
+  \item Protect the privacy and security of ``Protected Data''
+    \begin{itemize}
+    \item All non-public data
+    \item Institutional data
+    \item Research data
+    \end{itemize}
+  \item Produce higher quality data for informed decision making
+  \item Promote efficient use of resources
+  \item Increase transparency and accountability
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Data Classifications @ UH}
+  \begin{table}
+    \centering
+    \resizebox{\textwidth}{!}{%
+      \begin{tabular}{l||p{6cm}||p{6cm}}
+      %  \multicolumn{8}{c}{ {\large {\textbf{UH-HPC Resource Summary} } } } \\ 
+	\toprule                                                                    
+        \thead{\large\textbf{Category}} & \thead{\large\textbf{Definition}} & \thead{\large\textbf{Examples}} \\ 
+	\midrule  \midrule %\hline
+        \textbf{Public} & Access is not restricted and is subject to open records requests  & Student directory information, employee’s business contact info \\
+	\midrule  \midrule %\hline
+        \multicolumn{3}{c}{ {\large {\textbf{Protected Data} } } } \\ 
+	\midrule  \midrule %\hline
+        \textbf{Restricted} & Used for UH business only; will not be distributed to external parties; released externally only under the terms of a written MOA or contract & Student contact information, UH ID number \\
+	\midrule  
+        \textbf{Sensitive} & Data subject to privacy considerations  & Date of birth, job applicant records, salary/payroll information, most student information \\
+	\midrule  
+        \textbf{Regulated} & Inadvertent disclosure or inappropriate access requires a breach notification by law or is subject to financial fines & FN or first initial/LN in combination with SSN, driver license number, or bank information; credit card, HIPAA, or financial aid information \\            
+    \bottomrule
+      \end{tabular}%
+    }
+  \end{table}
+\end{frame}  
+	%% \begin{columns}
+	%% \begin{column}{0.46\textwidth}
+	%% 	\begin{block}{}
+	%% 	\begin{itemize}
+	%% 		\item Quad Data Rate (QDR)\\InfiniBand{\regtrademark} (IB)   
+	%% 			\begin{itemize}
+	%% 				\item 40 Gbit
+	%% 				\item Older compute nodes
+	%% 				\item low latency ($\approx1.3\mu$s)
+	%% 				\item non-blocking
+	%% 			\end{itemize}
+	%% 			~\\
+	%% 		\item 25/100 Gbit Ethernet
+	%% 			\begin{itemize}
+	%% 				\item Newer compute nodes
+	%% 				\item Nodes connected @ 25~Gbit
+	%% 				\item non-blocking
+	%% 			\end{itemize}
+	%%         \end{itemize}
+        %%         \end{block}
+	%% \end{column}
+	%% \begin{column}{0.46\textwidth}
+	%% 	\begin{block}{External Networks}
+	%% 	\begin{itemize}
+	%% 		\item 100 Gbit SciDMZ
+	%% 			\begin{itemize}
+	%% 				\item Login \& compute nodes\\connected via a firewall
+	%% 				\item DTNs are directly connected
+	%% 			\end{itemize}
+	%% 	\end{itemize}
+        %%         \end{block}
+	%% \end{column}
+	%% \end{columns}
+
+
+        
+
+
+
+%% \begin{frame}
+%% 	\frametitle{Terminology}
+%% 	\begin{itemize}
+%% 	\item \textbf{Symbolic Link (symlink)} -- A file that contains a reference to another file or directory
+%% 	\item \textbf{Command-line interface/interpreter (CLI)} -- A text-based user interface used to view and manage computer files 
+%% 	\item \textbf{Message Passing Interface (MPI)} -- A standard that is used by programs to pass messages between nodes
+%% 	\item \textbf{High Performance Compute (HPC)} -- A computing paradigm in which applications are typically a tightly coupled parallel job that benefit from a low-latency interconnect
+%% 	\item \textbf{High Throughput Compute (HTC)} -- A computing paradigm that focuses on the efficient execution of a large number of loosely-coupled tasks
+%%         \item \textbf{Modified time} -- The last time the file was modified (content has been modified)\footnote{\label{Types of timestamps}\tiny\url{https://unix.stackexchange.com/a/2465}}
+%%         \item \textbf{Shell script (script)} -- A computer program designed to be run by a CLI\footnote{\label{Shell script}\tiny\url{https://en.wikipedia.org/wiki/Shell_script}}
+%% %        \item Pleasantly Parallel -- Processes are independent and no communication is necessary 
+%% 	\end{itemize}
+
+
+%% \end{frame}
+
+
+%% \section[University of Hawai'i High Performance Compute Cluster]{University of Hawai'i High Performance Compute Cluster}
+%% \begin{frame}
+%%     \frametitle{University of {\hawaii} High Performance Compute Cluster}
+%%     \begin{itemize}
+%%     \item The University~of~{\hawaii} High Performance Compute Cluster~({\uhhpc}) is \textbf{free} to use for all active faculty, staff, and students affiliated with the University of {\hawaii}
+%%     \item Community acquired nodes are equally accessible to all users
+%%     \item Nodes purchased through the {\textbf{condo program}} are shared with the community, but priority is given to the node owner and their agents
+%% 		\item Nodes may be {\textbf{leased}} from the community pool
+%% 		\item Additional permanent storage can be leased with up to a five year contract by faculty \& staff
+%%     \end{itemize}
+%% 		\begin{block}{UH-HPC Resource Summary}
+%%   \begin{table}
+%%     \centering
+%%     \resizebox{\textwidth}{!}{%
+%%       \begin{tabular}{l||l||l||l||l||l||l||l}
+%%       %  \multicolumn{8}{c}{ {\large {\textbf{UH-HPC Resource Summary} } } } \\ 
+%% 			\toprule                                                                    
+
+%%               {}               & \thead{\textbf{Nodes}} & \thead{\textbf{CPU Cores}} & \thead{\textbf{Memory}} & \thead{\textbf{GPUs}} & \thead{\textbf{Home/Group Space}} & \thead{\textbf{Scratch Space}} & Storage for lease \\ 
+%% 							\midrule  \midrule %\hline
+%%         \thead{\textbf{Total}} & 297                    & 6,308                      & 50 TB                   &  56                   & 80 TB                             &  700 TB                        & 1 PB              \\ %\hline
+%% 				\bottomrule
+%%       \end{tabular}%
+%%     }
+%%   \end{table}
+%% 	\end{block}
+%% \end{frame}
+
+%% \subsection{Condo Program \& Leasing}
+%% \begin{frame}
+%%   \frametitle{What is the Condo Program \& leasing?}
+%% 	\begin{block}{Condo Program}\scriptsize
+%% 		\begin{itemize}
+%% 		\item The condo program allows faculty \& staff to purchase nodes and have them integrated with the UH-HPC
+%% 		\item Condo nodes can take advantage of networking and storage infrastructure that one may not typically have access to
+%% 		\item Condo nodes are managed and maintained by ITS staff
+%% 		\item No maintenance fee will be assessed until the node is off warranty (typically five years)
+%% 		\end{itemize}
+%% 	\end{block}
+%% 	\begin{block}{Leasing}\scriptsize
+%% 		\begin{itemize}
+%% 		\item Nodes leased from the community can have a contract period from one month, up to one year
+%% 		\item Node lessees are provided priority access to their leased hardware
+%% 		\item Leases are not considered an equipment purchase
+%% 		\end{itemize}
+%% 	\end{block}
+%% \end{frame}
+
+%% \subsection{Storage}
+%% \begin{frame}
+%%   \frametitle{Storage}
+%%   The UH-HPC has two classes and three types of storage that users can potentially access.\\Each type of storage has their own attributes and restrictions
+%% 	\begin{columns}
+%% 		\begin{column}{0.46\textwidth}
+%% 		\begin{block}{Free Storage}
+%% 			\begin{enumerate}
+%% 			\item Permanent Storage
+%% 				\begin{itemize}
+%% 				\item Home Storage
+%% 				\item Group/Lab Storage
+%% 				\end{itemize}
+%% 			\item Scratch Storage
+%% 				\begin{itemize}
+%% %				\item {\lustre}(TBD)
+%% 				\item Network File System (NFS)
+%% 				\end{itemize}
+%% 		\end{enumerate}
+%% 		\end{block}
+%% 		\end{column}
+%% 		\begin{column}{0.46\textwidth}
+%% 		\begin{block}{For Fee Storage}
+%% 			\begin{enumerate}
+%% 				\item Long Term Storage (LTS)
+%% 		\end{enumerate}
+%% 		\end{block}
+%% 		\end{column}
+%% 	\end{columns}      
+%% \end{frame}
+
+%% \begin{frame}
+%%   \frametitle{Permanent Storage}
+%%   \begin{enumerate}
+%%   \item Home Storage
+%%     \begin{itemize}
+%%     \item {\textbf{Purpose}}: Personal storage for applications and active data that needs to persist on the UH-HPC
+%%     \end{itemize}
+%%   \item Group/Lab Storage
+%%     \begin{itemize}
+%%     \item {\textbf{Purpose}}: Group/Lab storage allows users to share data \& applications with a need for persistence on the UH-HPC
+%%     \end{itemize}
+%%   \end{enumerate}
+%% ~\\
+%%   All permanent storage options on the UH-HPC have the following attributes:
+%%   \begin{itemize}
+%%   \item 50 GB default quota with a max quota of 300 GB
+%%   \item Quota increases are re-evaluated annually
+%%   \item Available on all nodes
+%%   \item Freely available to users
+%%   \end{itemize}
+
+%% \end{frame}
+
+
+%% \begin{frame}
+%%   \frametitle{Scratch Storage}
+%%   \begin{enumerate}
+%% %    \item {\lustre (TBD)}
+%% %      \begin{itemize}
+%% %      \item High performance parallel file system 
+%% %      \item 50 TB quota
+%% %      \end{itemize}
+%%     \item NFS
+%%       \begin{itemize}
+%% %      \item Not a parallel file system
+%%       \item 5 TB quota
+%%       \end{itemize}
+%%   \end{enumerate}
+%% ~\\
+%%   All scratch file systems on the UH-HPC have the following attributes:
+%%   \begin{itemize}
+%%   \item \textbf{Purge policy} -- 10 days based on file modify time
+%%   \item Available on all nodes
+%%   \item Freely available to users
+%%   \end{itemize}
+
+%% \end{frame}
+
+
+
+%% %\begin{frame}
+%%   %\frametitle{For Fee Storage}
+%%   %\begin{enumerate}
+%%     %\item ValueStorage
+%%       %\begin{itemize}
+%%       %\item Enterprise class equipment 
+%%       %\item 10 Gbit connected to the UH-HPC
+%%       %\item Currently only accessible on the DTNs and login nodes
+%%       %\end{itemize}
+%%     %\item LTS  
+%%       %\begin{itemize}
+%%       %\item Cheap-n-Deep
+%%       %\item 100 Gbit connected to the UH-HPC
+%%       %\item Accessible on all nodes
+%%       %\end{itemize}
+%%   %\end{enumerate}
+%% %\end{frame}
+
+
+
+%% \subsection{Networking}
+%% \begin{frame}
+%%   \frametitle{Networking}
+%% 	\begin{columns}
+%% 	\begin{column}{0.46\textwidth}
+%% 		\begin{block}{Internal Networks}
+%% 		\begin{itemize}
+%% 			\item Quad Data Rate (QDR)\\InfiniBand{\regtrademark} (IB)   
+%% 				\begin{itemize}
+%% 					\item 40 Gbit
+%% 					\item Older compute nodes
+%% 					\item low latency ($\approx1.3\mu$s)
+%% 					\item non-blocking
+%% 				\end{itemize}
+%% 				~\\
+%% 			\item 25/100 Gbit Ethernet
+%% 				\begin{itemize}
+%% 					\item Newer compute nodes
+%% 					\item Nodes connected @ 25~Gbit
+%% 					\item non-blocking
+%% 				\end{itemize}
+%% 	        \end{itemize}
+%%                 \end{block}
+%% 	\end{column}
+%% 	\begin{column}{0.46\textwidth}
+%% 		\begin{block}{External Networks}
+%% 		\begin{itemize}
+%% 			\item 100 Gbit SciDMZ
+%% 				\begin{itemize}
+%% 					\item Login \& compute nodes\\connected via a firewall
+%% 					\item DTNs are directly connected
+%% 				\end{itemize}
+%% 		\end{itemize}
+%%                 \end{block}
+%% 	\end{column}
+%% 	\end{columns}
+%% \end{frame}
+
+
+
+%% \subsection{User Support}
+%% \begin{frame}
+%%   \frametitle{User Support}
+
+%%   \begin{block}{Online documents \& FAQ}
+%%     Users are encouraged to look through the online documentation \& FAQ prior to contacting ITS-CI directly.  Many questions we receive are repeat questions and we try to capture them in our FAQ~\\
+%%     \href{https://www.hawaii.edu/its/ci/xcat/}{xCAT cluster information, policies \& FAQ}
+%%   \end{block}
+%%   \begin{block}{Contact Information}
+%%     If your question is not answered in our online documentation, please contact us at: UH-HPC-Help@lists.hawaii.edu
+    
+%%     \begin{itemize}
+%%     \item For batch jobs \ldots
+%%       \begin{itemize}
+%%       \item[--] Job ID, path to submission script, submission command, error file location, output files
+%%       \end{itemize} 
+%%     \item For other problems \ldots
+%%       \begin{itemize}
+%%       \item[--] State the problem, command issued, host, directory, remote host, error messages
+%%       \end{itemize}
+%%     \end{itemize}
+%%   \end{block}
+%% \end{frame}
+
+

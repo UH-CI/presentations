@@ -303,7 +303,8 @@ kill-shared & 3-00:00:00 & $\infty$ & 1 & 512 MB & YES & YES \\
 kill-exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & NO & YES \\
 \bottomrule 
 \end{tabular}   
-}
+  }
+
 \end{block}
 
 \vspace{-5pt}
@@ -313,7 +314,7 @@ kill-exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & NO & YES \\
   \resizebox{0.95\textwidth}{!}{%
 \begin{tabular}{l || c || c || c || c || c || c }
 \toprule  
-\thead{\textbf{Partition}} & \thead{\textbf{Intel x86}}  & \thead{\textbf{GPU}} & \thead{\textbf{IB}} & \thead{\textbf{Ethernet}} & \thead{\textbf{Min:Max Cores per node}} & \thead{\textbf{Min:Max Memory per node}} \\
+\thead{\textbf{Partition}} & \thead{\textbf{Intel x86}}  & \thead{\textbf{GPU}} & \thead{\textbf{IB}} & \thead{\textbf{Ethernet}} & \thead{\textbf{Min:Max Cores per node}} & \thead{\textbf{Min:Max Memory per node}\\\textbf{\tiny{(95\% useable)}}} \\
 %\toprule                                                                    
 %\toprule                                                                    
 \midrule
@@ -333,13 +334,14 @@ exclusive & 146 & 1 & 146 & 0 & 20:40 & 128:1024 GB \\
 exclusive-long & 146 & 1 & 146 & 0 & 20:40 & 128:1024 GB \\
 \hline
 \hline
-kill & 146 & 9 & 138 & 8 & 20:40 & 96:512 GB \\
+kill & 146 & 9 & 138 & 8 & 20:40 & 96:1024 GB \\
 \hline
 \hline
 kill-exclusive & 146 & 9 & 138 & 8 & 20:40 & 96:1024 GB \\
 \bottomrule 
 \end{tabular}   
 }
+
 \end{block}
 \end{frame}
 
