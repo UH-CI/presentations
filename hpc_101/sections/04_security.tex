@@ -12,7 +12,7 @@
   %        \footnote[1,frame]{\tiny \href{https://en.wikipedia.org/wiki/Data\_governance}{https://en.wikipedia.org/wiki/Data\_governance}}
   %        \end{definition}
   \begin{itemize}
-  \item Defines how data are collected, stored, and used
+  \item Defines how data is collected, stored, and used
   \item Defines who can access data, when, and under what conditions
   \item Establishes decision rights
   \item Establishes clear lines of accountability
@@ -38,10 +38,11 @@
 \end{frame}
 
 
+\subsection{Data Classifications @ UH}
 \begin{frame}
   \frametitle{Data Classifications @ UH}
-  \begin{table}
-    \centering
+  \vspace{-5pt}
+  \makebox[\linewidth][c]{
     \resizebox{\textwidth}{!}{%
       \begin{tabular}{l||p{6cm}||p{6cm}}
       %  \multicolumn{8}{c}{ {\large {\textbf{UH-HPC Resource Summary} } } } \\ 
@@ -59,10 +60,214 @@
         \textbf{Regulated} & Inadvertent disclosure or inappropriate access requires a breach notification by law or is subject to financial fines & FN or first initial/LN in combination with SSN, driver license number, or bank information; credit card, HIPAA, or financial aid information \\            
     \bottomrule
       \end{tabular}%
-    }
-  \end{table}
+    }    }
+  \vspace{-5pt}
+  \begin{block}{Protected Data}
+    Collecting, managing, sharing or using  data that can be classified in a protected data category the Data Governance Process (DGP) is required 
+  \end{block}
 \end{frame}  
-	%% \begin{columns}
+
+\section{Regulations}
+
+\begin{frame}
+  \frametitle{Regulations}
+\begin{block}{}
+  The following lists of regulations are not exahustive lists that may apply to your data at the university (personal \& research).
+  It is important that you know and understand what regulations the data you are working with is subject to.
+
+\end{block}
+\end{frame}
+
+\subsection{Personally Identifiable Information (PII)  \& Financial Regulations}
+\begin{frame}
+  \frametitle{Regulations}
+  \begin{block}{Personally Identifiable Information (PII)  \& Financial Regulations}
+    \begin{itemize}
+    \item \href{https://studentprivacy.ed.gov/ferpa-regulations}{Family Educational Rights and Privacy Act (FERPA)} [UH Policy \href{https://www.hawaii.edu/policy/?action=viewPolicy\&policySection=ap\&policyChapter=7\&policyNumber=022\&menuView=closed}{AP 7.022}]
+      \begin{itemize}
+      \item Federal law that protects the privacy of student education records
+      \end{itemize}
+    
+    \item Higher Education Act (HEA)
+      \begin{itemize}
+      \item Federal law that protects the federal financial aid information
+      \end{itemize}
+      
+    \item \href{https://www.ftc.gov/tips-advice/business-center/privacy-and-security/gramm-leach-bliley-act}{Gramm-Leach-Bliley Act (GLBA)}
+      \begin{itemize}
+      \item Federal law that requires finanical institutions to explain how they share \& protect customer's data
+      \end{itemize}
+
+    \item \href{https://gdpr-info.eu/}{General Data Protection Regulation (GDPR)}
+      \begin{itemize}
+      \item A European Union (EU) consumer protection law that applies to companies collecting PII as part of delivering goods and services
+      \end{itemize}
+
+    \item \href{Health Insurance Portability and Accountability Act (https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html}{HIPPA}) [UH Policy \href{https://www.hawaii.edu/policy/index.php?action=viewPolicy\&policySection=ep\&policyChapter=2\&policyNumber=217\&menuView=closed}{EP 2.217}]
+      \begin{itemize}
+      \item Federal law that protects the privacy of health information
+        \item \href{https://www.hawaii.edu/infosec/hipaa/}{HIPPA @ UH}
+      \end{itemize}
+    \end{itemize}  
+  \end{block}
+\end{frame}  
+
+
+
+\subsection{Federal Regulations}
+\begin{frame}
+  \frametitle{Regulations}
+  \vspace{-5pt}
+  \begin{block}{Federal Regulations}
+    \begin{itemize}
+    \item \href{https://csrc.nist.gov/publications/detail/sp/800-171/rev-1/final}{National Institute of Standards and Technology Special Programs (NIST) 800-171}
+      \begin{itemize}
+      \item Federal Department of Defense (DoD) standards aimed at safeguarding Controlled Unclassified Information (CUI)
+      \item May apply to grants from DoD and possibly other federal agencies
+      \end{itemize}
+    
+    \item \href{https://www.hsdl.org/?abstract\&did=461297}{National Industrial Security Program [DoD Directive 5220.22-M]}
+      \begin{itemize}
+      \item Classified data subject to regulation
+      \end{itemize}
+      
+    \item \href{https://www.pmddtc.state.gov/ddtc_public?id=ddtc_public_portal_itar_landing\#tab-itar}{Export Control \& International Traffic in Arms Regulations (ITAR)}
+      \begin{itemize}
+      \item Federal regulations that impose access, dissemination or participation restrictions on the use and/or transfer of commodities, technical data, or the provision of services subject to United States (US) export controls for reasons of national security, foreign policy, anti-terrorism or non-proliferation
+      \end{itemize}
+
+    \item \href{https://www.bis.doc.gov/index.php/regulations/export-administration-regulations-ear}{Export Administration Regulations (EAR)}
+      \begin{itemize}
+      \item EAR govern whether a person may export a thing from the U.S., reexport the thing from a foreign country, or transfer a thing from one person to another in a foreign country. The EAR apply to physical things (sometimes referred to as "commodities") as well as technology and software.\footnote{\label{EAR on Wikipedia}\tiny\url{https://en.wikipedia.org/wiki/Export_Administration_Regulations}} 
+      \end{itemize}
+    \end{itemize}
+\end{block}
+\end{frame}  
+
+
+\subsection{State Regulations}
+\begin{frame}
+  \frametitle{Regulations}
+  \vspace{-5pt}
+  \begin{block}{State Regulations}
+    \begin{itemize}
+    \item \href{https://www.capitol.hawaii.gov/hrscurrent/Vol11_Ch0476-0490/HRS0487N/HRS_0487N-.htm}{{\hawaii} Revised Statues (HRS) 487N}
+      \begin{itemize}
+      \item State law that defines the breach notification to the legislature
+      \item Examples: First name or First initial and Last name in combination with
+        \begin{itemize}
+        \item Social Security Number (SSN)
+        \item Driver license or State ID \#
+        \item Person's finanical account information
+          \end{itemize}
+      \end{itemize}
+    
+    \item \href{https://www.capitol.hawaii.gov/hrscurrent/Vol02_Ch0046-0115/HRS0092F/HRS_0092F-.htm}{Uniform Information Practices Act (UIPA)[HRS Chapter 92F]}
+      \begin{itemize}
+      \item Governs open records requests
+      \end{itemize}
+    \end{itemize}
+\end{block}
+\end{frame}  
+
+
+
+
+\section{UH Data Related Policies \& Procedures}
+\begin{frame}
+  \frametitle{UH Data Related Policies \& Procedures}
+  \vspace{-7pt}
+\makebox[\linewidth][c]{
+    \resizebox{\textwidth}{!}{%                                                                                                                                                                                                                                                       
+      \begin{tabular}{l||l}
+      %  \multicolumn{8}{c}{ {\large {\textbf{UH-HPC Resource Summary} } } } \\                                                                                                                                                                                                       
+        \toprule
+        \thead{\large\textbf{Policy}} & \thead{\large\textbf{Description}} \\
+        \midrule  \midrule %\hline
+        \multicolumn{2}{c}{ {\large {\textbf{Administrative Procedure} } } } \\  
+        \midrule \midrule
+        \textbf{AP2.215} & Mandatory Training \& Continuing Education Requirements \\
+        \midrule
+        \textbf{AP7.022} & FERPA \\
+        \midrule \midrule
+        \multicolumn{2}{c}{ {\large {\textbf{Executive Policy} } } } \\  
+        \midrule \midrule
+        \href{https://www.hawaii.edu/policy/?action=viewPolicy\&policySection=ep\&policyChapter=2\&policyNumber=210\&menuView=closed}{\textbf{EP2.210}} & Use and Management of Information Technology Resources \\
+        \midrule
+        \href{}{\textbf{EP2.213}} & System and Campus Wide Electronic Channels for Communicating with Students\\
+        \midrule        
+        \textbf{EP2.214} & Data Classification Categories \& Information Security Guidelines \\
+        \midrule
+        \textbf{EP2.215} & Institutional Data Governance \\
+        \midrule
+        \textbf{EP2.216} & Institutional Records Management \& Electronic Approvals/Signatures (\textit{Pending Approval}) \\
+        \midrule
+        \textbf{EP2.217} & HIPPA (\textit{To be Revised}) \\
+        \midrule
+        \textbf{EP2.218} & Online Approvals of Internal University Transactions\\
+        \midrule
+        \textbf{EP2.2xx} & Student Online Data Protection Requirements (\textit{Draft}) \\
+        \midrule
+        \textbf{EP2.215} & Institutional Data Governance \\
+        \midrule
+        \textbf{EP8.200} & Policy on Contracts \& Signing Authority \\
+        \bottomrule
+      \end{tabular}%
+      }
+}
+\vspace{-5pt}
+
+
+\end{frame}  
+
+
+  %% \item General Data Protection Regulation (GDPR)
+  %%   \begin{itemize}
+  %%   \item A European Union (EU) consumer protection law that applies to companies collecting personally identifiable information (PII) as part of delivering goods and services
+  %%   \end{itemize}
+
+  %% \item General Data Protection Regulation (GDPR)
+  %%   \begin{itemize}
+  %%   \item A European Union (EU) consumer protection law that applies to companies collecting personally identifiable information (PII) as part of delivering goods and services
+  %%   \end{itemize}
+
+  %% \item General Data Protection Regulation (GDPR)
+  %%   \begin{itemize}
+  %%   \item A European Union (EU) consumer protection law that applies to companies collecting personally identifiable information (PII) as part of delivering goods and services
+  %%   \end{itemize}
+
+  %% \item General Data Protection Regulation (GDPR)
+  %%   \begin{itemize}
+  %%   \item A European Union (EU) consumer protection law that applies to companies collecting personally identifiable information (PII) as part of delivering goods and services
+  %%   \end{itemize}
+
+    
+  %% \end{itemize}
+  
+  %% \begin{table}
+  %%   \centering
+  %%   \resizebox{\textwidth}{!}{%
+  %%     \begin{tabular}{l||p{6cm}||p{6cm}}
+  %%     %  \multicolumn{8}{c}{ {\large {\textbf{UH-HPC Resource Summary} } } } \\ 
+  %%       \toprule                                                                    
+  %%       \thead{\large\textbf{Regulation}} & \thead{\large\textbf{Description}} & \thead{\large\textbf{}} \\ 
+  %%       \midrule  \midrule %\hline
+  %%       \textbf{Public} & Access is not restricted and is subject to open records requests  & Student directory information, employee’s business contact info \\
+  %%       \midrule  \midrule %\hline
+  %%       \multicolumn{3}{c}{ {\large {\textbf{Protected Data} } } } \\ 
+  %%       \midrule  \midrule %\hline
+  %%       \textbf{Restricted} & Used for UH business only; will not be distributed to external parties; released externally only under the terms of a written MOA or contract & Student contact information, UH ID number \\
+  %%       \midrule  
+  %%       \textbf{Sensitive} & Data subject to privacy considerations  & Date of birth, job applicant records, salary/payroll information, most student information \\
+  %%       \midrule  
+  %%       \textbf{Regulated} & Inadvertent disclosure or inappropriate access requires a breach notification by law or is subject to financial fines & FN or first initial/LN in combination with SSN, driver license number, or bank information; credit card, HIPAA, or financial aid information \\            
+  %%   \bottomrule
+  %%     \end{tabular}%
+  %%   }
+  %% \end{table}
+
+
+%% \begin{columns}
 	%% \begin{column}{0.46\textwidth}
 	%% 	\begin{block}{}
 	%% 	\begin{itemize}
