@@ -165,6 +165,9 @@ leftmargin\romannumeral\@ld \endcsname
 
 \newcommand\padfrom[2]{\StrLen{#2}[\templen]\StrGobbleLeft{#1}{\templen}#2}
 
+
+
+
 %%
 %\setbeamertemplate{part page}{
 %\begin{beamercolorbox}[sep=8pt,center,wd=\textwidth]{part title}
@@ -186,6 +189,7 @@ leftmargin\romannumeral\@ld \endcsname
   \beamer@tocsectionnumber=0\relax
   \setcounter{section}{0}
 }
+\newcommand\HUGE{\@setfontsize\Huge{30}{40}}
 \makeatother
 
 \AtBeginSection[]{
@@ -195,7 +199,6 @@ leftmargin\romannumeral\@ld \endcsname
        %\tableofcontents[currentsection, hideallsubsections]
    \end{frame}
 }
-
 
 
 %% \AtBeginSubsection[]
