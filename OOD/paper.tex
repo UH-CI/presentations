@@ -1,0 +1,259 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Template Heavily modified by David Schanzenbach
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+%https://tex.stackexchange.com/questions/74353/what-commands-are-there-for-horizontal-spacing
+%https://tex.stackexchange.com/questions/80212/controling-padding-using-the-xstring-package
+%https://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell
+%https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabularx_package
+%https://tex.stackexchange.com/questions/312/correctly-typesetting-a-tilde
+%https://tex.stackexchange.com/questions/34580/escape-character-in-latex
+%https://tex.stackexchange.com/questions/54180/how-do-i-write-something-at-the-end-of-the-slide-in-beamer
+%http://code.hammerpig.com/add-footnote-number-latex.html
+%https://tex.stackexchange.com/questions/51452/reduce-spacing-in-table-of-contents-beamer
+%https://www.sharelatex.com/learn/Using_colours_in_LaTeX
+%http://www.math-linux.com/latex-26/article/how-to-make-a-presentation-with-latex-introduction-to-beamer
+%https://stackoverflow.com/questions/3594329/semi-transparent-text-in-beamer-pdflatex
+%https://www.sharelatex.com/blog/2013/08/16/beamer-series-pt3.html
+
+%\documentclass[t]{beamer}
+\documentclass[t,hyperref={pdfpagelabels=false},9pt]{beamer}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{etoolbox}
+\usepackage{lmodern}% http://ctan.org/pkg/lm
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{anyfontsize}
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{calc}
+\usepackage{makecell}
+\usepackage{xstring}
+\usepackage{color}
+\usepackage{makecell}
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+
+\usetheme{ITS_CI}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+%\setbeamerfont{section in toc}{size=\small}
+%\setbeamerfont{subsection in toc}{size=\footnotesize}
+
+%\setbeamerfont{section in toc}{size=fontsize}
+
+%\setbeamerfont{subsection in toc}{size=fontsize}
+
+%\setbeamerfont{subsubsection in toc}{size=fontsize}
+
+
+
+\let\Tiny=\tiny
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+
+\makeatletter
+\newcommand{\setlistspacing}[2]{\def\@ld{#1}\expandafter\def\csname
+@list\romannumeral\@ld \endcsname{\leftmargin\csname
+leftmargin\romannumeral\@ld \endcsname
+              \topsep    #2
+              \parsep    0\p@   \@plus\p@
+              \itemsep   #2}}
+\makeatother
+
+\makeatletter
+\patchcmd{\beamer@sectionintoc}{\vskip1.5em}{\vskip0.5em}{}{}
+\makeatother
+
+
+\newlength{\okinalen}
+\setlength{\okinalen}{\widthof{'}}
+\newcommand{\okina}{\hbox to.666\okinalen{\hss`\hss}}
+\newcommand{\ctilde}{{\fontfamily{ptm}\selectfont\texttildelow}}
+
+\newcommand{\trademark}{\fontsize{5}{6}\selectfont \textsuperscript{\texttrademark}}
+\newcommand{\regtrademark}{\fontsize{5}{6}\selectfont \textsuperscript{\textregistered}}
+\newcommand{\numlessfootnotetxt}[1]{ \let\thefootnote\relax\footnotetext{#1}}
+
+\newcommand{\semitransp}[2][35]{\color{fg!#1}#2}
+\newcommand{\btVFill}{\vskip0pt plus 1filll}
+\newcommand{\ddash}{-{}-}
+
+\newcommand{\hawaii}{Hawai{\okina}i}
+\newcommand{\lustre}{Lustre{\regtrademark}}
+\newcommand{\intel}{Intel{\regtrademark}}
+\newcommand{\cray}{Cray{\regtrademark}}
+
+\newcommand{\uhhpc}{UH-HPC}
+
+\newcommand{\ci}{Cyberinfrastructure}
+\newcommand{\citeam}{CI--Team}
+
+\newcommand\padfrom[2]{\StrLen{#2}[\templen]\StrGobbleLeft{#1}{\templen}#2}
+
+
+
+
+%%
+%\setbeamertemplate{part page}{
+%\begin{beamercolorbox}[sep=8pt,center,wd=\textwidth]{part title}
+%\usebeamerfont{part title}\insertpart\par
+%\end{beamercolorbox}}
+
+%\newcommand{\OUTLINE}[1]{   \begin{frame}\frametitle{Outline}\tableofcontents[currentsection]\end{frame}
+%\newcommand{\OUTLINE}{
+	%\begin{frame}
+%%       \frametitle{Outline}
+       %\frametitle{{}}	
+			 %\partpage
+       %\tableofcontents[currentsection]
+       %%\tableofcontents[currentsection, hideallsubsections]
+   %\end{frame}
+%}
+\makeatletter
+\AtBeginPart{
+  \beamer@tocsectionnumber=0\relax
+  \setcounter{section}{0}
+}
+\newcommand\HUGE{\@setfontsize\Huge{30}{40}}
+\makeatother
+
+%\AtBeginSection[]{%
+	%\begin{frame}\
+       %\frametitle{\insertpart~--~Overview}	
+       %\tableofcontents[currentsection]
+       %%\tableofcontents[currentsection, hideallsubsections]
+   %\end{frame}
+%}
+
+
+%% \AtBeginSubsection[]
+%% {
+%%   \begin{frame}
+%%       \frametitle{Outline}
+%%       \tableofcontents[currentsection,currentsubsection]
+%%   \end{frame}
+%% }
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\include{sections/00_title}
+
+
+
+\begin{document}
+
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+Part I -- Background
+\tableofcontents[part=1,hideallsubsections]
+Part II -- Connecting \& Tour
+\tableofcontents[part=2,hideallsubsections]
+Part III -- Customization:
+\tableofcontents[part=3,hideallsubsections]
+%Part IV -- Data Governance \& Security:
+%\tableofcontents[part=4,hideallsubsections]
+
+\tableofcontents[] % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+
+
+\include{sections/01_intro}
+\include{sections/02_walking}
+\include{sections/03_custom}
+%\include{sections/04_security}
+%\include{sections/05_reporting}
+%\include{sections/06_ediquette}
+%\include{sections/07_policies}
+\include{sections/08_end}
+%\include{sections/09_related_services}
+%\include{sections/10_faq}
+
+
+
+\end{document}
+
