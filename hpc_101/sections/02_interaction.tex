@@ -1,4 +1,4 @@
-\part{Using the UH-HPC}
+\part{Using Mana}
 \begin{frame}
 			 \partpage
 \end{frame}
@@ -45,7 +45,7 @@
 		\end{itemize}
 	\end{block}
 	\begin{center}\scriptsize
-	\textbf{\large Try and connect to the UH-HPC Login node now using your SSH client}
+	\textbf{\large Try and connect to the {\mana} Login node now using your SSH client}
 	\end{center}
 \end{frame}
 
@@ -100,7 +100,7 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 		\item Compilers, libraries, interpreters, applications are all added as modules
 		\item Users are encouraged to install software in their home/group directories
 		\item Modules can be listed on the login nodes, but loaded applications will only work on the compute nodes
-                \item The UH-HPC currently uses \href{https://lmod.readthedocs.io/en/latest/010\_user.html}{lmod}
+                \item {\mana} currently uses \href{https://lmod.readthedocs.io/en/latest/010\_user.html}{lmod}
 	\end{itemize}
 \end{frame}
 
@@ -125,10 +125,10 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 \end{frame}
 
 
-\subsection{SLURM}
+\subsection{Slurm}
 \begin{frame}
-  \frametitle{SLURM -- \textbf{S}imple \textbf{L}inux \textbf{U}tility for \textbf{R}esource \textbf{M}anagement }
-  The UH-HPC uses the SLURM job scheduler to allocate nodes and assign jobs to them
+  \frametitle{Slurm Workload Manager}
+  {\mana} uses the Slurm Workload Manager to allocate nodes and assign jobs to them
   
   \begin{block}{How it works}
     Jobs are not executed in a \textbf{first in first out} manner.  Instead, jobs are assigned a priority, which is continuously being re-evaluated for pending jobs.
@@ -163,7 +163,7 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
   \end{block}
   
   \begin{itemize}\footnotesize
-  \item[--] Examples usage of the SLURM commands can be seen on schedmd's \href{http://slurm.schedmd.com/quickstart.html}{quickstart}
+  \item[--] Examples usage of the Slurm commands can be seen on schedmd's \href{http://slurm.schedmd.com/quickstart.html}{quickstart}
   \end{itemize}
   \numlessfootnotetxt{\tiny \url{http://slurm.schedmd.com/quickstart.html}}
 \end{frame}
@@ -221,7 +221,7 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 		\item Where sbatch is executed, becomes the jobs working directory
 		\item Submission scripts are shell scripts that begin with special comments that are parameters for the scheduler
 		\item Parameters are evaluated with the command-line taking precedent over what the shell script contains
-                \item Jobs submitted with sbatch are assigned a job ID by SLURM
+                \item Jobs submitted with sbatch are assigned a job ID by Slurm
 		\end{itemize}
 	\end{block}
 	  \btVFill
@@ -408,7 +408,7 @@ gpu-[0010] & gpu:NV-V100-SXM2:8 \\
 \frametitle{Reserved Resources}
 
 \begin{block}{}\footnotesize
-On the UH-HPC, the scheduler by default withholds 1 core per node from use by users through a feature in SLURM known as \textbf{core specialization}.
+On {\mana}, the scheduler by default withholds 1 core per node from use by users through a feature in Slurm known as \textbf{core specialization}.
 \end{block}
 \begin{definition}\footnotesize
 Core specialization is a feature designed to isolate system overhead (system interrupts, etc.) to designated cores on a compute node. This can reduce applications interrupts ranks to improve completion time. \footnote[1,frame]{\tiny \href{https://slurm.schedmd.com/core_spec.html}{https://slurm.schedmd.com/core\_spec.html}} \footnote[2,frame]{\tiny \href{https://slurm.schedmd.com/SUG14/process_isolation.pdf}{https://slurm.schedmd.com/SUG14/process\_isolation.pdf}}
