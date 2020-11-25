@@ -91,7 +91,7 @@
 \begin{frame}[fragile]
 	\frametitle{Jupyter Notebook - Custom Environment Procedure}
 	\begin{block}{}
-	The following steps were adapted from \url{https://github.com/PSC-PublicHealth/pha-nbextensions}.~\\The following commands should be executed from a compute node in an interactive session prior to starting up a Juypter Notebook in Open OnDemand.
+	The following steps were adapted from \url{https://hpc.sites.caltech.edu/documentation/software-and-modules/jupyter-notebook}.~\\The following commands should be executed from a compute node in an interactive session prior to starting up a Juypter Notebook in Open OnDemand.
 	\end{block}
 	\begin{semiverbatim}\footnotesize
 	[\$] module load lang/Anaconda3
@@ -99,10 +99,9 @@
 	[\$] source activate test\_env
 	\#\#\# Install your required packages \#\#\#
 	\# \ldots 
-	\# \ldots 
-	\#\#\# Finalize setup with these last two packages \#\#\#
+	\#\#\# Finalize setup with this last package \#\#\#
 	[\$(test\_env)] conda install ipykernel
-	[\$(test\_env)] pip install git+https://github.com/PSC-PublicHealth/pha-nbextensions.git
+	[\$(test\_env)] python -m ipykernel install \ddash{}user \ddash{}name test\_env \ddash{}display-name "test\_env"
 	\#\#\# DONE and ready for use in Open OnDemand \#\#\#
  	\end{semiverbatim}
 	\vspace{-1.5em}
