@@ -61,7 +61,7 @@
 				\begin{itemize}
 					\item At a minimum it requires an R module to be loaded - lang/R
 				\end{itemize}
-			\item The collection must be named "rstudio"
+			\item The collection must be named "ood\_rstudio"
 		\end{itemize}
 	\end{block}
 	\begin{block}{Procedure}
@@ -76,9 +76,9 @@
 				\item module load lang/R/3.5.1-intel-2018.5.274-Python-2.7.15 
 				\item module load data/GDAL/2.2.3-intel-2018.5.274-Python-2.7.15
 				\end{itemize}
-			\item Save the module environment to the name "rstudio"
+			\item Save the module environment to the name "ood\_rstudio"
 				\begin{itemize}
-				\item module save rstudio
+				\item module save ood\_rstudio
 				\end{itemize}
 			\item Start up a new Rstudio instance and Rstudio should now have the additional libraries and be using the version of R you specified.
 		\end{enumerate}
@@ -86,10 +86,9 @@
 \end{frame}
 
 
-\section[Jupyternote]{Jupyter Notebooks}
-\subsection[jupenv]{Jupyter Notebook - Custom Environment Procedure}
+\section[Jupyternote]{Jupyter Environments}
 \begin{frame}[fragile]
-	\frametitle{Jupyter Notebook - Custom Environment Procedure}
+	\frametitle{Jupyter- Custom Kernel Environment}
 	\begin{block}{}
 	The following steps were adapted from \url{https://hpc.sites.caltech.edu/documentation/software-and-modules/jupyter-notebook}.~\\The following commands should be executed from a compute node in an interactive session prior to starting up a Juypter Notebook in Open OnDemand.
 	\end{block}
@@ -107,7 +106,31 @@
 	\vspace{-1.5em}
 	\begin{center}
   \includegraphics[scale=0.08]{juypter.png}
-	\end{center}
+	\end{center}	
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Jupyter - Custom version}
+	\begin{block}{}Users can also install a custom version of Jupyter Lab/notebook by creating a custom collection with the name "`ood\_jupyterlab"'\end{block}
+	\begin{semiverbatim}\footnotesize
+[\$] srun -p sandbox -c 2 --mem=6 -t 60 --pty /bin/bash
+[\$] module load lang/Anaconda3
+[\$] conda create -n ood_jupyterlab -c conda-forge jupyterlab=3 xeus-python
+[\$] exit 
+# go to OOD and create an interactive session using the existing "jupyter
+notebook app/server" 
+# check Jupyter notebook's about for version to verify.
+ 	\end{semiverbatim}
 	
+\end{frame}
+
+\begin{frame}
+  \frametitle{Jupyter Quirks}
+	\begin{block}{Quirks}
+			\begin{itemize}
+			\item jupyter applies all parameters from a global config file and those specified at run time \url{https://jupyterlab.readthedocs.io/en/latest/user/directories.html\#labconfig-directories}.
+			\item Users will need to remove or rename their global config file so as to not conflict with the Open OnDemand launcher. For example:\\ .jupyter/jupyter\_server\_config.py~->~.jupyter/jupyter\_server\_config\_custom.py
+		\end{itemize}
+	\end{block}
 \end{frame}
 
