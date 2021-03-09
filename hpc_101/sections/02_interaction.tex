@@ -57,9 +57,10 @@
 \begin{block}{Filesystem}
 \begin{semiverbatim}\tiny \texttt
 [testuser@login001 \ctilde]\$ df -h
-Filesystem                                   Size  Used Avail Use% Mounted on
-fs01:/mnt/datastore/hpc/home/testuser         50G  128K   50G   1% /home/testuser
-fs02:/mnt/datastore/hpc/scratch/testuser     5.0T  256K  5.0T   1% /mnt/scratch/nfs_fs02/testuser
+Filesystem                                       Size  Used Avail Use\%  Mounted on
+fs01:/mnt/datastore/hpc/home/testuser             50G  128K   50G   1\%  /home/testuser
+fs02:/mnt/datastore/hpc/scratch/testuser         5.0T  256K  5.0T   1\%  /mnt/scratch/nfs_fs02/testuser
+10.103.15.230@o2ib,10.103.15.231@o2ib:/scratch    61T  5.1T  55T   9\%   /mnt/scratch/lustre_01
 \end{semiverbatim}
 \end{block}
 \begin{block}{Home}
@@ -68,12 +69,14 @@ fs02:/mnt/datastore/hpc/scratch/testuser     5.0T  256K  5.0T   1% /mnt/scratch/
 [testuser@login001 \ctilde]\$ ls -l 
 total 1
 drwxr-xr-x 3 testuser testuser 23 Jan 15 20:38 examples
-lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mnt/scratch/nfs_fs02/testuser
+lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_scratch} -> /mnt/scratch/nfs_fs02/testuser
+lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{lus_scratch} -> /mnt/scratch/lustre_01/scratch/testuser
 \end{semiverbatim}
 \end{block}
 \begin{itemize}
 		\item \ctilde{}/examples contains example scripts to use as templates
-		\item \ctilde{}/nfs\_fs02 is a symlink to the NFS scratch file system
+		\item \ctilde{}/nfs\_scratch is a symlink to the NFS scratch file system
+		\item \ctilde{}/lus\_scratch is a symlink to the lustre scratch file system
 \end{itemize}
 \end{frame}
 
@@ -229,39 +232,39 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_fs02} -> /mn
 \end{frame}
 
 
-\begin{frame}[fragile]
-\frametitle{Example Batch Job Script}
-\begin{semiverbatim}\tiny
-[login001 nfs_fs02]\$ cat example.slurm
-
-\#!/bin/bash
-\# Comments (\#) and empty lines are fine between \#SBATCH
-\#SBATCH \ddash{}job-name=example
-\#SBATCH \ddash{}partition=sandbox
-\#SBATCH \ddash{}time=0-04:00:00 ## time format is DD-HH:MM:SS
-\# task-per-node x cpus-per-task should not exceed core count on an individual node 
-\#SBATCH \ddash{}nodes=1
-\#SBATCH \ddash{}tasks-per-node=1
-\#SBATCH \ddash{}cpus-per-task=19
-\#\#SBATCH \ddash{}cpu-specs=0 # Allow access to all cores on a node
-\#SBATCH \ddash{}mem=64G \# Memory per node my job requires
-\#SBATCH \ddash{}distribution="*:*:*" \# set the task and core distribution to the defaults
-\#SBATCH \ddash{}constraint=``x86''
-\#\#SBATCH \ddash{}constraint=``x86\&ib_qdr'' \# Used for MPI jobs that requires inter-node communication via IB
-\#\#SBATCH \ddash{}gres=gpu:NV-K40:2 \# commented out
-\#SBATCH \ddash{}error=example-\%A.err \# \%A - filled with jobid, where to write the stderr
-\#SBATCH \ddash{}output=example-\%A.out \# \%A - filled with jobid, wher to write the stdout
-\#\# Useful for remote notification
-\#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
-\#SBATCH \ddash{}mail-user=user@test.org
-\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
-\# =============== Start of commands to execute ===============
-\# source \ctilde/.bash_profile \# Not required unless you need something from your environment
-export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
-module load lang/R  \# load the default R software module
-Rscript hello.r
-\end{semiverbatim}
-\end{frame}
+%\begin{frame}[fragile]
+%\frametitle{Example Batch Job Script}
+%\begin{semiverbatim}\tiny
+%[login001 nfs_fs02]\$ cat example.slurm
+%
+%\#!/bin/bash
+%\# Comments (\#) and empty lines are fine between \#SBATCH
+%\#SBATCH \ddash{}job-name=example
+%\#SBATCH \ddash{}partition=sandbox
+%\#SBATCH \ddash{}time=0-04:00:00 ## time format is DD-HH:MM:SS
+%\# task-per-node x cpus-per-task should not exceed core count on an individual node 
+%\#SBATCH \ddash{}nodes=1
+%\#SBATCH \ddash{}tasks-per-node=1
+%\#SBATCH \ddash{}cpus-per-task=19
+%\#\#SBATCH \ddash{}cpu-specs=0 # Allow access to all cores on a node
+%\#SBATCH \ddash{}mem=64G \# Memory per node my job requires
+%\#SBATCH \ddash{}distribution="*:*:*" \# set the task and core distribution to the defaults
+%\#SBATCH \ddash{}constraint=``x86''
+%\#\#SBATCH \ddash{}constraint=``x86\&ib_qdr'' \# Used for MPI jobs that requires inter-node communication via IB
+%\#\#SBATCH \ddash{}gres=gpu:NV-K40:2 \# commented out
+%\#SBATCH \ddash{}error=example-\%A.err \# \%A - filled with jobid, where to write the stderr
+%\#SBATCH \ddash{}output=example-\%A.out \# \%A - filled with jobid, wher to write the stdout
+%\#\# Useful for remote notification
+%\#SBATCH \ddash{}mail-type=BEGIN,END,FAIL,REQUEUE,TIME\_LIMIT\_80
+%\#SBATCH \ddash{}mail-user=user@test.org
+%\# All options and environment variables found on schedMD site: \href{http://slurm.schedmd.com/sbatch.html}{http://slurm.schedmd.com/sbatch.html}
+%\# =============== Start of commands to execute ===============
+%\# source \ctilde/.bash_profile \# Not required unless you need something from your environment
+%export OMP\_NUM\_THREADS=\$\{SLURM\_CPUS\_PER\_TASK\}
+%module load lang/R  \# load the default R software module
+%Rscript hello.r
+%\end{semiverbatim}
+%\end{frame}
 
 
 
@@ -290,6 +293,9 @@ Rscript hello.r
 %\toprule                                                                    
 \midrule
 \midrule
+gpu & 3-00:00:00 & $\infty$ & 1 & 512 MB & YES & NO \\
+\hline
+\hline
 sandbox & 0-04:00:00 & $\infty$(2) & 2 & 512 MB & YES & NO \\
 \hline
 \hline
@@ -315,108 +321,58 @@ kill-exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & NO & YES \\
 
 \end{block}
 
-\vspace{-5pt}
-
-\begin{block}{\small Node Breakdown}
-\centering
-  \resizebox{0.95\textwidth}{!}{%
-\begin{tabular}{l || c || c || c || c || c || c }
-\toprule  
-\thead{\textbf{Partition}} & \thead{\textbf{Intel x86}}  & \thead{\textbf{GPU}} & \thead{\textbf{IB}} & \thead{\textbf{Ethernet}} & \thead{\textbf{Min:Max Cores per node}} & \thead{\textbf{Min:Max Memory per node}\\\textbf{\tiny{(95\% useable)}}} \\
-%\toprule                                                                    
-%\toprule                                                                    
-\midrule
-\midrule
-sandbox & 4 & 0 & 4 & 0 & 20:20 & 128:128 GB \\
-\hline
-\hline
-shared & 152 & 1 & 152 & 0 & 20:40 & 128:1024 GB \\
-\hline
-\hline
-shared-long & 152 & 1 & 152 & 0 & 20:40 & 128:1024 GB \\
-\hline
-\hline
-exclusive & 152 & 1 & 152 & 0 & 20:40 & 128:1024 GB \\
-\hline
-\hline
-exclusive-long & 152 & 1 & 152 & 0 & 20:40 & 128:1024 GB \\
-\hline
-\hline
-kill & 141 & 9 & 133 & 8 & 20:40 & 96:1024 GB \\
-\hline
-\hline
-kill-exclusive & 141 & 9 & 133 & 8 & 20:40 & 96:1024 GB \\
-\bottomrule 
-\end{tabular}   
-}
-
-\end{block}
+%\vspace{-5pt}
+%
+%\begin{block}{\small Node Breakdown}
+%\centering
+  %\resizebox{0.95\textwidth}{!}{%
+%\begin{tabular}{l || c || c || c || c || c || c }
+%\toprule  
+%\thead{\textbf{Partition}} & \thead{\textbf{Intel x86}}  & \thead{\textbf{GPU}} & \thead{\textbf{IB}} & \thead{\textbf{Ethernet}} & \thead{\textbf{Min:Max Cores per node}} & \thead{\textbf{Min:Max Memory per node}\\\textbf{\tiny{(95\% useable)}}} \\
+%%\toprule                                                                    
+%%\toprule                                                                    
+%\midrule
+%\midrule
+%sandbox & 4 & 0 & 4 & 0 & 20:20 & 128:128 GB \\
+%\hline
+%\hline
+%shared & 152 & 1 & 152 & 0 & 20:40 & 128:1024 GB \\
+%\hline
+%\hline
+%shared-long & 152 & 1 & 152 & 0 & 20:40 & 128:1024 GB \\
+%\hline
+%\hline
+%exclusive & 152 & 1 & 152 & 0 & 20:40 & 128:1024 GB \\
+%\hline
+%\hline
+%exclusive-long & 152 & 1 & 152 & 0 & 20:40 & 128:1024 GB \\
+%\hline
+%\hline
+%kill & 141 & 9 & 133 & 8 & 20:40 & 96:1024 GB \\
+%\hline
+%\hline
+%kill-exclusive & 141 & 9 & 133 & 8 & 20:40 & 96:1024 GB \\
+%\bottomrule 
+%\end{tabular}   
+%}
+%
+%\end{block}
 \end{frame}
 
 \subsection{Constraints \& General Resources}
 
 \begin{frame}
-\frametitle{Constraints \&  General Resources}
-\begin{block}{{\ddash}constraint} Nodes have features assigned to them by the administrators. Users can specify which of these features are required by their job using the constraint option. Only nodes having features matching the job constraints will be used to satisfy the request.  Multiple constraints may be specified with ``\&'' (AND), ``|'' (OR), etc.
+\frametitle{Constraints, General Resources \& Core Specialization}
+\vspace{-8pt}
+\begin{block}{{\ddash}constraint} Users can select nodes for a job by specifying a value or values for the constraint option. Only nodes having features matching the job constraints will be used to satisfy the request. Multiple constraints may be specified with ``\&'' (AND), ``|'' (OR), etc.
 \end{block}
+\vspace{-5pt}
 \begin{block}{{\ddash}gres} Specifies a comma delimited list of generic consumable resources which a job should be granted access to. 
 \end{block}
-\end{frame}
-
-\begin{frame}
-\frametitle{Constraints \& General resources to Node ID}
-\begin{block}{}
-\resizebox{0.99\textwidth}{!}{%
-\begin{tabular}{l || c }
-\toprule                                                                    
-\thead{\large\textbf{Node range}} & \thead{\large\textbf{Constraint}} \\                                      
-\midrule \midrule
-lmem-[0001-0006], node-[0001-0178] & x86, intel, ivy-bridge, ib\_qdr \\
-\hline \hline
-lmem-[0007-0010], node-[0179-0263, 0269-0278] & x86, intel, haswell, ib\_qdr \\
-\hline \hline
-node-[0264-0268] & x86, intel, broadwell, ib\_qdr \\
-\hline \hline
-gpu-[0001-0002] & x86, intel, haswell, nvidia, tesla, kepler, ib\_qdr \\
-\hline \hline
-gpu-[0003-0009] & x86, intel, skylake, nvidia, turing, geforce, eth, eth\_25 \\
-\hline \hline
-gpu-[0010] & x86, intel, broadwell, nvidia, tesla, volta, eth, eth\_100, eth\_25 \\
-\bottomrule
-\toprule 
-\thead{\large\textbf{Node range}} & \thead{\large\textbf{Gres [type:description:count]}} \\                                      
-\midrule \midrule
-gpu-[0001-0002] & gpu:NV-K40:2 \\
-\hline \hline
-gpu-[0003] & gpu:NV-RTX2080Ti:4 \\
-\hline \hline
-gpu-[0004-0008] & gpu:NV-RTX2080Ti:8 \\
-\hline \hline
-gpu-[0009] & gpu:NV-RTX2070:8 \\
-\hline \hline
-gpu-[0010] & gpu:NV-V100-SXM2:8 \\
-\bottomrule 
-\end{tabular}   
-}
+\vspace{-5pt}
+\begin{block}{{\ddash}core-spec}
+On {\mana}, the scheduler by default withholds 1 core per node from use by users through a feature in Slurm known as \textbf{core specialization}.  This is done to improve job performance.  This can be overridden by users but is not recommended.
+\footnote[1,frame]{\tiny \href{https://slurm.schedmd.com/core_spec.html}{https://slurm.schedmd.com/core\_spec.html}} \footnote[2,frame]{\tiny \href{https://slurm.schedmd.com/SUG14/process_isolation.pdf}{https://slurm.schedmd.com/SUG14/process\_isolation.pdf}}
 \end{block}
+  \numlessfootnotetxt{\tiny \href{https://docs.google.com/spreadsheets/d/13ZkKonHVotNm7WUzPlxgJkQJFh3IYLEvD-GcmHyiJAc/}{Information on Constraints, general resources and node specifications}}
 \end{frame}
-
-\subsection{Reserved Resources}
-
-
-\begin{frame}
-\frametitle{Reserved Resources}
-
-\begin{block}{}\footnotesize
-On {\mana}, the scheduler by default withholds 1 core per node from use by users through a feature in Slurm known as \textbf{core specialization}.
-\end{block}
-\begin{definition}\footnotesize
-Core specialization is a feature designed to isolate system overhead (system interrupts, etc.) to designated cores on a compute node. This can reduce applications interrupts ranks to improve completion time. \footnote[1,frame]{\tiny \href{https://slurm.schedmd.com/core_spec.html}{https://slurm.schedmd.com/core\_spec.html}} \footnote[2,frame]{\tiny \href{https://slurm.schedmd.com/SUG14/process_isolation.pdf}{https://slurm.schedmd.com/SUG14/process\_isolation.pdf}}
-\end{definition}
-\begin{block}{Override}\footnotesize
-\textbf{{\ddash}core-spec=0}: In some cases, users may find through testing that using all the cores on a node show no degradation in performance.  The user is able to override the 1 core reservation and utilize all cores on a node.  Please note, that when this options is used, the node is placed into \textbf{exclusive mode not allowing other jobs to be scheduled along side it}.\\
-\begin{center}\textbf{\normalsize{Only use this option if you are allocating all cores on a node!}}\end{center}
-\end{block}
-\end{frame}
-
-
