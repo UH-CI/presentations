@@ -296,6 +296,9 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{lus_scratch} -> 
 gpu & 3-00:00:00 & $\infty$ & 1 & 512 MB & YES & NO \\
 \hline
 \hline
+gpu-sandbox & 0-04:00:00 & $\infty$(2) & 2 & 512 MB & YES & NO \\
+\hline
+\hline
 sandbox & 0-04:00:00 & $\infty$(2) & 2 & 512 MB & YES & NO \\
 \hline
 \hline
@@ -374,5 +377,5 @@ kill-exclusive & 3-00:00:00 & $\infty$ & 20 & $\infty$ & NO & YES \\
 On {\mana}, the scheduler by default withholds 1 core per node from use by users through a feature in Slurm known as \textbf{core specialization}.  This is done to improve job performance.  This can be overridden by users but is not recommended.
 \footnote[1,frame]{\tiny \href{https://slurm.schedmd.com/core_spec.html}{https://slurm.schedmd.com/core\_spec.html}} \footnote[2,frame]{\tiny \href{https://slurm.schedmd.com/SUG14/process_isolation.pdf}{https://slurm.schedmd.com/SUG14/process\_isolation.pdf}}
 \end{block}
-  \numlessfootnotetxt{\tiny \href{https://docs.google.com/spreadsheets/d/13ZkKonHVotNm7WUzPlxgJkQJFh3IYLEvD-GcmHyiJAc/}{Information on Constraints, general resources and node specifications}}
+  \numlessfootnotetxt{\tiny \href{http://go.hawaii.edu/ex2}{Information on Constraints, general resources and node specifications}}
 \end{frame}
