@@ -30,3 +30,93 @@
 
 
 \end{frame}
+\section{Monitoring Jobs and Partitions}{Monitoring Jobs and Partitions}
+\begin{frame}[fragile]
+\frametitle{Monitoring Running Jobs}
+\begin{block}{\textbf{squeue}}
+\begin{semiverbatim}\tiny \texttt
+[victorgc@node-0093 HDM]\$ squeue --me
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          43486015   sandbox     bash victorgc  R    2:05:37      1 node-0093
+\end{semiverbatim}
+\end{block}
+The --me flag can be removed and \textbf{squeue} will report all running jobs in the system.
+\begin{block}{\textbf{squeue}}
+\begin{semiverbatim}\tiny \texttt
+[victorgc@node-0093 HDM]\$ squeue | head
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          43078226   bioinfo    sgSQL     user  R 23-02:12:35      1 node-0327
+          43078227   bioinfo cromwell     user  R 23-02:12:09      1 node-0327
+          43485890   bioinfo       QC     user  R    4:45:59      1 node-0327
+          43399271   bioinfo      TQC     user  R 3-20:49:10      1 node-0328
+          43485868 exclusive    MoSe2     user  R    5:20:14      1 node-0296
+          43485867 exclusive    MoSe2     user  R    5:30:46      1 node-0295
+          43485866 exclusive    MoSe2     user  R    5:35:43      1 node-0294
+          43485815 exclusive    MoSe2     user  R    5:57:03      1 node-0281
+\end{semiverbatim}
+\end{block}
+\numlessfootnotetxt{\tiny \href{https://slurm.schedmd.com/squeue.html}{https://slurm.schedmd.com/squeue.html}}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Completed Jobs Reports}
+\begin{block}{\textbf{sacct}}
+\begin{semiverbatim}\tiny \texttt
+[victorgc@node-0093 HDM]\$ sacct -u victorgc -X | head
+JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
+------------ ---------- ---------- ---------- ---------- ---------- --------
+43486049_1     spectrum     shared         uh          1  COMPLETED      0:0
+43486049_12    spectrum     shared         uh          1  COMPLETED      0:0
+\end{semiverbatim}
+\end{block}
+\begin{block}{\textbf{seff}}
+\begin{semiverbatim}\tiny \texttt
+[victorgc@node-0093 HDM]\$ seff 43486049_12
+Job ID: 43486061
+Array Job ID: 43486049_12
+Cluster: uh_hpc
+User/Group: victorgc/victorgc
+State: COMPLETED (exit code 0)
+Cores: 1
+CPU Utilized: 00:00:33
+CPU Efficiency: 97.06\% of 00:00:34 core-walltime
+Job Wall-clock time: 00:00:34
+Memory Utilized: 75.91 MB
+Memory Efficiency: 1.27\% of 5.86 GB
+\end{semiverbatim}
+\end{block}
+The output of \textbf{sacct} is highly customizable.
+\numlessfootnotetxt{\tiny \href{https://slurm.schedmd.com/sacct.html}{https://slurm.schedmd.com/sacct.html}}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Partition Information}
+\begin{block}{\textbf{sinfo}}
+\begin{semiverbatim}\tiny \texttt
+[victorgc@node-0093 HDM]\$ sinfo | head
+PARTITION       AVAIL  TIMELIMIT  NODES  STATE NODELIST
+gpu                up 3-00:00:00      9    mix gpu-[0013,0017-0024]
+gpu                up 3-00:00:00      1  alloc gpu-0016
+sandbox            up    4:00:00      1    mix node-0093
+sandbox            up    4:00:00      3  alloc node-[0094-0096]
+shared*            up 3-00:00:00      4  down* node-[0102,0120,0122,0178]
+shared*            up 3-00:00:00      8  drain node-[0111-0112,0126,0130,0150,0175,0344,0350]
+\end{semiverbatim}
+\end{block}
+Partition information can be printed in a per node basis.
+\begin{block}{\textbf{sinfo}}
+\begin{semiverbatim}\tiny \texttt
+[victorgc@node-0093 HDM]\$ sinfo -Nel | head
+Wed May 03 01:20:33 2023
+NODELIST   NODES       PARTITION       STATE CPUS    S:C:T MEMORY TMP_DISK WEIGHT AVAIL_FE REASON
+gpu-0001       1     gpu-sandbox       mixed 20     2:10:1 128500        0  10000 x86,inte none
+gpu-0001       1  kill-exclusive       mixed 20     2:10:1 128500        0  10000 x86,inte none
+gpu-0001       1     kill-shared       mixed 20     2:10:1 128500        0  10000 x86,inte none
+gpu-0002       1  kill-exclusive        idle 20     2:10:1 128500        0  10000 x86,inte none
+gpu-0002       1     kill-shared        idle 20     2:10:1 128500        0  10000 x86,inte none
+\end{semiverbatim}
+\end{block}
+\numlessfootnotetxt{\tiny \href{https://slurm.schedmd.com/sinfo.html}{https://slurm.schedmd.com/sinfo.htmls}}
+\end{frame}
