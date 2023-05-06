@@ -30,17 +30,17 @@
 
 
 \end{frame}
-\section{Monitoring Jobs and Partitions}{Monitoring Jobs and Partitions}
+\section[Monitoring Jobs and Partitions]{Monitoring Jobs and Partitions}
 \begin{frame}[fragile]
 \frametitle{Monitoring Running Jobs}
 \begin{block}{\textbf{squeue}}
 \begin{semiverbatim}\tiny \texttt
-[victorgc@node-0093 HDM]\$ squeue --me
+[victorgc@node-0093 HDM]\$ squeue -u victorgc
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
           43486015   sandbox     bash victorgc  R    2:05:37      1 node-0093
 \end{semiverbatim}
 \end{block}
-The --me flag can be removed and \textbf{squeue} will report all running jobs in the system.
+By default, \textbf{squeue} will report all running jobs in the system.
 \begin{block}{\textbf{squeue}}
 \begin{semiverbatim}\tiny \texttt
 [victorgc@node-0093 HDM]\$ squeue | head
