@@ -10,10 +10,11 @@
     \item The University~of~{\hawaii} High Performance Compute Cluster - \textbf{\mana} is \textbf{free} to use for all active faculty, staff, and students affiliated with the University of {\hawaii}
     \item Community acquired nodes are equally accessible to all users
     \item Nodes purchased through the {\textbf{condo program}} are shared with the community, but priority is given to the node owner and their agents
+    \itmem Mana is currently undergoing a migration, resource summary subject to change. 
 		\item Nodes may be {\textbf{leased}} from the community pool
 		\item Additional permanent storage can be leased by faculty \& staff
     \end{itemize}
-		\begin{block}{Mana Resource Summary}
+		\begin{block}{Mana Resource Summary\footnotemark}
   \begin{table}
     \centering
     \resizebox{\textwidth}{!}{%
@@ -29,15 +30,14 @@
     }
   \end{table}
 	\end{block}
+ \footnotetext{Mana is currently undergoing a migration, resource summary subject to change over the next few months.}
 \end{frame}
 
 
 
 \subsection{Storage}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %\begin{frame}
   %\frametitle{Storage}
@@ -124,7 +124,7 @@
   \begin{enumerate}
   \item Long Term Storage (LTS)
     \begin{itemize}
-    \item {\textbf{Purpose}}: \footnotesize Additional Personal and/or group storage for applications and active data when all other storage options have been exhausted{\mana}\footnote{\label{LTS}\tiny\ \url{https://hawaii.kualibuild.com/app/builder/app/6062a8170d0d97001cb7d3af/run}}
+    \item {\textbf{Purpose}}: \footnotesize Additional Personal and/or group storage for applications and active data when all other storage options have been exhausted in {\mana}\footnote{\label{LTS}\tiny\ \url{https://hawaii.kualibuild.com/app/builder/app/6062a8170d0d97001cb7d3af/run}}
     
     \end{itemize}
   \end{enumerate}
@@ -138,6 +138,20 @@
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{Mana Migration}
+~\\
+  The new Mana/Koa cluster will have the following attributes:
+  \begin{itemize}
+	  \item {\textbf{Storage}}: New separate storage system. Files will need to be migrated, and files remaining in Mana will be deleted once the old cluster is turned off. 
+	  \item{\textbf{Home}}:Permanent storage with 50GB quota for personal applications and data
+	  \item{\textbf{Scratch}}: 800 TB and 400,000,000 file quota shared across all users with a 90 day purge policy. 
+  \item{\textbf{Workspace}}: Factulty and staff members will allocated 1TB of workspace upon request, to be shared by lab and group members. 
+  \item {\textbf{Timeline}}: Progressive migration in 6 differnt stages \footnotemark
+  \end{itemize}
+  \footnotetext{\tiny\url{https://datascience.hawaii.edu/mana-upgrade/}}
+
+\end{frame}
 
 %\begin{frame}
   %\frametitle{For Fee Storage}
