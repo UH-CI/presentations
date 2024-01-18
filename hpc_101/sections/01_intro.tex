@@ -3,38 +3,38 @@
 			 \partpage
 \end{frame}
 
-\section[Terminology]{Terminology}
+%\section[Terminology]{Terminology}
 
-\begin{frame}
-	\frametitle{Terminology}
-	\begin{itemize}
-	\item \textbf{Node} -- Another name for a server or computer
-        \item \textbf{Login node} -- A specialized node that users connect to in order to submit work to a computer cluster
-        \item \textbf{Computer cluster} -- A set of loosely or tightly connected nodes that work together so that, in many respects, they can be viewed as a single system\footnote{\label{wiki_ccluster}\tiny\url{https://en.wikipedia.org/wiki/Computer_cluster}}
-        \item \textbf{Data transfer node (DTN)} -- Specialized nodes that minimize the impedance on the network to access the full capability of the network
-	\item \textbf{Science DMZ (SciDMZ)} --  A portion of the network configured with equipment and security policies in order to optimize for high-performance scientific applications rather than for general-purpose business systems or “enterprise” computing 
-	\item \textbf{Multi-factor Authentication (MFA)} -- An authentication method in which a computer user is granted access only after successfully presenting two or more pieces of evidence or factors to an authentication mechanism, e.g., DUO
-
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Terminology}
-	\begin{itemize}
-	\item \textbf{Symbolic Link (symlink)} -- A file that contains a reference to another file or directory
-	\item \textbf{Command-line interface/interpreter (CLI)} -- A text-based user interface used to view and manage computer files 
-	\item \textbf{Message Passing Interface (MPI)} -- A standard that is used by programs to pass messages between nodes
-	\item \textbf{High Performance Compute (HPC)} -- A computing paradigm in which applications are typically a tightly coupled parallel job that benefit from a low-latency interconnect
-	\item \textbf{High Throughput Compute (HTC)} -- A computing paradigm that focuses on the efficient execution of a large number of loosely-coupled tasks
-        \item \textbf{Modified time} -- The last time the file was modified (content has been modified)\footnote{\label{Types of timestamps}\tiny\url{https://unix.stackexchange.com/a/2465}}
-        \item \textbf{Shell script (script)} -- A computer program designed to be run by a CLI\footnote{\label{Shell script}\tiny\url{https://en.wikipedia.org/wiki/Shell_script}}
-%        \item Pleasantly Parallel -- Processes are independent and no communication is necessary 
-	\end{itemize}
+%\begin{frame}
+	%\frametitle{Terminology}
+	%\begin{itemize}
+	%\item \textbf{Node} -- Another name for a server or computer
+        %\item \textbf{Login node} -- A specialized node that users connect to in order to submit work to a computer cluster
+        %\item \textbf{Computer cluster} -- A set of loosely or tightly connected nodes that work together so that, in many respects, they can be viewed as a single system\footnote{\label{wiki_ccluster}\tiny\url{https://en.wikipedia.org/wiki/Computer_cluster}}
+        %\item \textbf{Data transfer node (DTN)} -- Specialized nodes that minimize the impedance on the network to access the full capability of the network
+	%\item \textbf{Science DMZ (SciDMZ)} --  A portion of the network configured with equipment and security policies in order to optimize for high-performance scientific applications rather than for general-purpose business systems or “enterprise” computing 
+	%\item \textbf{Multi-factor Authentication (MFA)} -- An authentication method in which a computer user is granted access only after successfully presenting two or more pieces of evidence or factors to an authentication mechanism, e.g., DUO
+%
+	%\end{itemize}
+%\end{frame}
 
 
-\end{frame}
-
+%\begin{frame}
+	%\frametitle{Terminology}
+	%\begin{itemize}
+	%\item \textbf{Symbolic Link (symlink)} -- A file that contains a reference to another file or directory
+	%\item \textbf{Command-line interface/interpreter (CLI)} -- A text-based user interface used to view and manage computer files 
+	%\item \textbf{Message Passing Interface (MPI)} -- A standard that is used by programs to pass messages between nodes
+	%\item \textbf{High Performance Compute (HPC)} -- A computing paradigm in which applications are typically a tightly coupled parallel job that benefit from a low-latency interconnect
+	%\item \textbf{High Throughput Compute (HTC)} -- A computing paradigm that focuses on the efficient execution of a large number of loosely-coupled tasks
+        %\item \textbf{Modified time} -- The last time the file was modified (content has been modified)\footnote{\label{Types of timestamps}\tiny\url{https://unix.stackexchange.com/a/2465}}
+        %\item \textbf{Shell script (script)} -- A computer program designed to be run by a CLI\footnote{\label{Shell script}\tiny\url{https://en.wikipedia.org/wiki/Shell_script}}
+        %\item Pleasantly Parallel -- Processes are independent and no communication is necessary 
+	%\end{itemize}
+%
+%
+%\end{frame}
+%
 
 \section[University of Hawai'i High Performance Compute Cluster]{University of Hawai'i High Performance Compute Cluster}
 \begin{frame}
@@ -46,7 +46,7 @@
 		\item Nodes may be {\textbf{leased}} from the community pool
 		\item Additional permanent storage can be leased by faculty \& staff
     \end{itemize}
-		\begin{block}{Mana Resource Summary}
+		\begin{block}{Koa Resource Summary}
   \begin{table}
     \centering
     \resizebox{\textwidth}{!}{%
@@ -54,9 +54,9 @@
       %  \multicolumn{8}{c}{ {\large {\textbf{UH-HPC Resource Summary} } } } \\ 
 			\toprule                                                                    
 
-              {}               & \thead{\textbf{Nodes}} & \thead{\textbf{CPU Cores}} & \thead{\textbf{Memory}} & \thead{\textbf{GPUs}} & \thead{\textbf{Home/Group Space}} & \thead{\textbf{Scratch Space}} & \thead{\textbf{Storage for lease}} \\ 
+              {}               & \thead{\textbf{Nodes}} & \thead{\textbf{CPU Cores}} & \thead{\textbf{Memory}} & \thead{\textbf{GPUs}} & \thead{\textbf{Home Space}} & \thead{\textbf{Scratch Space}} & \thead{\textbf{Storage for lease}} \\ 
 							\midrule  \midrule %\hline
-        \thead{\textbf{Total}} & 366                    & 9,396                      & 67.3 TB                   &  120                   & 80 TB                             &  111 TB                        & 1 PB              \\ %\hline
+        \thead{\textbf{Total}} & 269                    & 7,501                      & 53 TB                   &  146                   & 50 GB per user                             &  800 TB                        & 2 PB              \\ %\hline
 				\bottomrule
       \end{tabular}%
     }
@@ -110,17 +110,17 @@
   \item Home Storage
     \begin{itemize}
     \item {\textbf{Purpose}}: Personal storage for applications and active data that needs to persist on {\mana}
+		\item {\textbf{Quota}}: 50 GB per user
     \end{itemize}
-  \item Group/Lab Storage
+  \item Lab Storage
     \begin{itemize}
-    \item {\textbf{Purpose}}: Group/Lab storage allows users to share data \& applications with a need for persistence on {\mana}
+    \item {\textbf{Purpose}}: Lab storage allows users to share data \& applications with a need for persistence on {\mana}
+		\item {\textbf{Quota}}: 500 GB and 512,000 files/folders (inodes)
     \end{itemize}
   \end{enumerate}
 ~\\
-  Permanent storage options on {\mana} have the following attributes:
+  Permanent storage options on {\mana} share the following attributes:
   \begin{itemize}
-  \item 50 GB default quota with a max quota of 300 GB
-  \item Quota increases are re-evaluated annually
   \item Available on all nodes
   \item Freely available to users
   \end{itemize}
@@ -135,16 +135,16 @@
       \begin{itemize}
 			\item A parallel distributed file system 
       \end{itemize}
-    \item NFS
-      \begin{itemize}
-			\item A distributed file system 
-      \end{itemize}
+    %\item NFS
+      %\begin{itemize}
+			%\item A distributed file system 
+      %\end{itemize}
   \end{enumerate}
 ~\\
   Scratch file systems on {\mana} have the following attributes:
   \begin{itemize}
-	\item 5 TB quota
-  \item \textbf{Purge policy} -- 20 days based on file modify time
+	\item 800 TB and 400K file/folder (inode) quota shared by all users
+  \item \textbf{Purge policy} -- 90 days based on file modify time
   \item Available on all nodes
   \item Freely available to users
   \end{itemize}
@@ -153,23 +153,24 @@
 
 
 
-%\begin{frame}
-  %\frametitle{For Fee Storage}
-  %\begin{enumerate}
-    %\item ValueStorage
-      %\begin{itemize}
-      %\item Enterprise class equipment 
-      %\item 10 Gbit connected to the UH-HPC
-      %\item Currently only accessible on the DTNs and login nodes
-      %\end{itemize}
-    %\item LTS  
-      %\begin{itemize}
-      %\item Cheap-n-Deep
-      %\item 100 Gbit connected to the UH-HPC
-      %\item Accessible on all nodes
-      %\end{itemize}
-  %\end{enumerate}
-%\end{frame}
+\begin{frame}
+  \frametitle{Storage as a Service}
+  \begin{enumerate}
+    \item KoaStore
+      \begin{itemize}
+      \item \textbf{{Purpose:}} Additional permanent storage for applications and active data on {\mana}.
+			\item \$50/TB/year
+			\item Purchased in year increments
+			\item Available on all nodes
+      \end{itemize}
+    \item KoaCloud
+      \begin{itemize}
+      \item \textbf{{Purpose:}} Dropbox/Google Drive like storage that can be used outside of {\mana} for research data.
+			\item \$55/TB/year
+			\item Purchased in year increments
+      \end{itemize}
+  \end{enumerate}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

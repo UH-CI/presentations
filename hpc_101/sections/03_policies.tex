@@ -31,19 +31,19 @@
 	\end{block}
 \end{frame}
 
-\section[Mana Usage Policies]{Mana Usage Policies}
+\section[Koa Usage Policies]{Koa Usage Policies}
 
-\subsection{Login nodes \& DTN nodes}
+\subsection{Login nodes}
 \begin{frame}
-\frametitle{Login nodes \& DTN nodes}
+\frametitle{Login nodes}
 \begin{block}{}
-The following actions are acceptable on the shared systems in {\mana}:
+The following actions are acceptable on the login nodes of {\mana}:
 \begin{enumerate}
-\item File/Directory management [ Login \& DTN nodes ]
-\item Text editing with a text editor: vi/vim, emacs, nano [ Login \& DTN nodes ]
-\item Transferring files to and from the cluster (scp, rsync, SFTP, globus, aspera, lftp, etc.) [ Login \& DTN nodes ]
-\item Shall be used to submit batch and interactive jobs [Login nodes]
-\item SSH shell access [ Login \& DTN nodes ]
+\item File/Directory management
+\item Text editing with a text editor: vi/vim, emacs, nano
+\item Transferring files to and from the cluster (scp, rsync, SFTP, etc.)
+\item Submit batch and interactive jobs
+\item SSH shell access
 \end{enumerate}
 \end{block}
 
@@ -63,7 +63,7 @@ If any actions outside of the sanctioned activities are detected, the following 
 \frametitle{Storage Policy}
 \begin{enumerate}
 \item ITS is not responsible for any data that is deleted or loss due to user error, hardware failure, administrator error.  Users are responsible for their own data and are highly encouraged to backup data that is important to them at other storage locations
-\item Files located on the scratch file systems are subject to a \textbf{20 day} purge policy that is based on the file/directory modified timestamp.  \textbf{Files that are purge cannot be recovered}.  Users are encouraged to copy their results off the scratch file system as soon as possible upon completion of their job
+\item Files located on the scratch file systems are subject to a \textbf{90 day} purge policy that is based on the file/directory modified timestamp.  \textbf{Files that are purge cannot be recovered}.  Users are encouraged to copy their results off the scratch file system as soon as possible upon completion of their job
 \item  Home storage currently snapshots once a day per user in case of accidental file deletion
 \end{enumerate}
 \end{frame}
@@ -79,8 +79,8 @@ If any actions outside of the sanctioned activities are detected, the following 
 \begin{enumerate}
 \item Accounts that are idle for 120 days will be locked
 \item Accounts that have been locked can be unlocked upon request with no further action then emailing us a request to unlock their account
-\item Accounts that are idle for a total of 180 days will be purged from the cluster
-\item Users that have been purged may request a reactivation of their account, but may be required to take a quiz to confirm retention of how to use {\mana}
+%\item Accounts that are idle for a total of 180 days will be purged from the cluster
+%\item Users that have been purged may request a reactivation of their account, but may be required to take a quiz to confirm retention of how to use {\mana}
 \item Users that will be leaving UH or are no longer active at UH, will need to have an active UH faculty/staff member in good standing, request a {\mana} account extension.
 \end{enumerate}
 \end{frame}

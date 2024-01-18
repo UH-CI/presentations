@@ -1,6 +1,39 @@
-\part{Using Mana}
+\part{Using Koa}
 \begin{frame}
 			 \partpage
+\end{frame}
+
+
+\section[Connecting to Koa]{Connecting to Koa}
+\subsection[Connecting via Web Portal]{Connecting via Web Portal}
+
+\begin{frame}
+\frametitle{Connecting via Web Portal}
+\begin{columns}
+	\begin{column}{0.46\textwidth}
+		\begin{block}{Requirements}
+			\begin{itemize}
+				\item Valid UH credentials 
+				\item Registered for \href{http://www.hawaii.edu/its/uhlogin/}{MFA/DUO}
+			\end{itemize}
+                        \end{block}
+	\end{column}
+	\begin{column}{0.46\textwidth}
+		\begin{block}{Connection Information}\
+	\begin{itemize}
+		  \item \textbf{https://koa.its.hawaii.edu}
+	\end{itemize}
+        \end{block}
+	        \end{column}                
+	\end{columns}
+	\begin{block}{Valid Credentials}\footnotesize
+		\begin{itemize}
+			\item Your UH user name and UH password
+		\end{itemize}
+	\end{block}
+	\begin{center}\scriptsize
+	\textbf{\large Open OnDemand provides (but not limited to): File management; CLI access; Graphical desktop environment and applications.}
+	\end{center}
 \end{frame}
 
 
@@ -23,12 +56,15 @@
 	\begin{itemize}
 		\item Login node: 
 		  \begin{itemize} 
-		  \item \textbf{uhhpc.its.hawaii.edu}
+		  \item \textbf{koa.its.hawaii.edu}
 		  \end{itemize}
-		\item DTNs:
+		%\item DTNs:
+		  %\begin{itemize} 
+		  %\item \textbf{koa-dtn.its.hawaii.edu}
+		  %\end{itemize}
+		\item Globus Collection:
 		  \begin{itemize} 
-		  \item \textbf{hpc-dtn1.its.hawaii.edu}
-		  \item \textbf{hpc-dtn2.its.hawaii.edu}
+		  \item \textbf{UH Koa Collection}
 		  \end{itemize}
 	\end{itemize}
         \end{block}
@@ -54,29 +90,18 @@
 \subsection{User Directories}
 \begin{frame}[fragile]
 \frametitle{User Directories}
-\begin{block}{Filesystem}
-\begin{semiverbatim}\tiny \texttt
-[testuser@login001 \ctilde]\$ df -h
-Filesystem                                       Size  Used Avail Use\%  Mounted on
-fs01:/mnt/datastore/hpc/home/testuser             50G  128K   50G   1\%  /home/testuser
-fs02:/mnt/datastore/hpc/scratch/testuser         5.0T  256K  5.0T   1\%  /mnt/scratch/nfs_fs02/testuser
-10.103.15.230@o2ib,10.103.15.231@o2ib:/scratch    61T  5.1T  55T   9\%   /mnt/scratch/lustre_01
-\end{semiverbatim}
-\end{block}
 \begin{block}{Home}
 %lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{lustre_01} -> /mnt/scratch/lustre_01/testuser
 \begin{semiverbatim}\tiny \texttt
-[testuser@login001 \ctilde]\$ ls -l 
+[testuser@login-0101 \ctilde]\$ ls -l 
 total 1
 drwxr-xr-x 3 testuser testuser 23 Jan 15 20:38 examples
-lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{nfs_scratch} -> /mnt/scratch/nfs_fs02/testuser
-lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{lus_scratch} -> /mnt/scratch/lustre_01/scratch/testuser
+lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{koa_scratch} -> /mnt/lustre/koa/scratch/testuser
 \end{semiverbatim}
 \end{block}
 \begin{itemize}
 		\item \ctilde{}/examples contains example scripts to use as templates
-		\item \ctilde{}/nfs\_scratch is a symlink to the NFS scratch file system
-		\item \ctilde{}/lus\_scratch is a symlink to the lustre scratch file system
+		\item \ctilde{}/koa\_scratch is a symlink to the koa scratch file system
 \end{itemize}
 \end{frame}
 
@@ -294,9 +319,6 @@ lrwxrwxrwx 1 testuser testuser 19 Jan 15 20:38 \textcolor{teal}{lus_scratch} -> 
 \midrule
 \midrule
 gpu & 3-00:00:00 & $\infty$ & 1 & 512 MB & YES & NO \\
-\hline
-\hline
-gpu-sandbox & 0-04:00:00 & $\infty$(2) & 2 & 512 MB & YES & NO \\
 \hline
 \hline
 sandbox & 0-04:00:00 & $\infty$(2) & 2 & 512 MB & YES & NO \\
